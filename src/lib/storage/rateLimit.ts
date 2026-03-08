@@ -2,7 +2,7 @@ import { kv } from "@vercel/kv";
 import { kvKeys } from "./kvKeys";
 
 export async function rateLimitOrThrow(opts: {
-  bucket: "draft-create" | "checkout-create";
+  bucket: "checkout-create" | "template-submit";
   ip: string;
   limit: number;
   windowSeconds: number;

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { rateLimitOrThrow } from "@/lib/storage/rateLimit";
 
 export const runtime = "nodejs";
 
@@ -34,7 +35,7 @@ const TEMPLATE_MAP: Record<
   terms: {
     envKey: "TEMPLATE_FORCE_COPY_URL_TERMS",
     name: "Personal Trainer Terms & Conditions (UK)",
-    subject: "Your PT Terms & Conditions (UK)",
+    subject: "Your Personal Trainer Terms & Conditions (UK)",
   },
   "client-agreement": {
     envKey: "TEMPLATE_FORCE_COPY_URL_CLIENT_AGREEMENT",
@@ -43,21 +44,44 @@ const TEMPLATE_MAP: Record<
   },
 };
 
+function isValidEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
 export async function POST(req: Request) {
   try {
-    const { email, templateId } = (await req.json()) as {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "unknown";
+
+    await rateLimitOrThrow({
+      bucket: "template-submit",
+      ip,
+      limit: 10,
+      windowSeconds: 60,
+    });
+
+    const body = (await req.json()) as {
       email?: unknown;
       templateId?: unknown;
     };
 
-    if (typeof email !== "string" || !email.includes("@")) {
+    const cleanEmail =
+      typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
+
+    if (!isValidEmail(cleanEmail)) {
       return NextResponse.json(
         { success: false, error: "Invalid email" },
         { status: 400 }
       );
     }
 
-    const id = String(templateId || "").trim() as TemplateId;
+    const id =
+      typeof body.templateId === "string"
+        ? body.templateId.trim()
+        : "";
+
     if (!id || !(id in TEMPLATE_MAP)) {
       return NextResponse.json(
         { success: false, error: "Invalid templateId" },
@@ -65,48 +89,72 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log("NEW_LEAD:", email, "TEMPLATE:", id);
+    const templateId = id as TemplateId;
+    const cfg = TEMPLATE_MAP[templateId];
 
-    const apiKey = process.env.RESEND_API_KEY;
+    const apiKey = process.env.RESEND_API_KEY?.trim();
     if (!apiKey) {
-      console.error("Resend env missing");
+      console.error("SUBMIT_ERROR", { error: "Missing RESEND_API_KEY" });
       return NextResponse.json(
         { success: false, error: "Missing RESEND_API_KEY" },
         { status: 500 }
       );
     }
 
-    const cfg = TEMPLATE_MAP[id];
-    const templateUrl = process.env[cfg.envKey];
-
+    const templateUrl = process.env[cfg.envKey]?.trim();
     if (!templateUrl) {
-      console.error(`Missing ${cfg.envKey} env`);
+      console.error("SUBMIT_ERROR", { error: `Missing ${cfg.envKey}` });
       return NextResponse.json(
         { success: false, error: `Missing ${cfg.envKey}` },
         { status: 500 }
       );
     }
 
-    // Use verified domain sender (your current setup)
-    const from =
-      process.env.LEADS_FROM_EMAIL || "PT Templates <owner@siddiqholdings.com>";
-    const notifyTo =
-      process.env.LEADS_NOTIFY_EMAIL || "owner@siddiqholdings.com";
+    const from = (
+      process.env.LEADS_FROM_EMAIL ||
+      "PT Templates <owner@siddiqholdings.com>"
+    ).trim();
 
-    // 1) Owner notification
-    await resend.emails.send({
+    const notifyTo = (
+      process.env.LEADS_NOTIFY_EMAIL ||
+      "owner@siddiqholdings.com"
+    ).trim();
+
+    console.log("NEW_LEAD", {
+      email: cleanEmail,
+      templateId,
+      ip,
+    });
+
+    const ownerResult = await resend.emails.send({
       from,
       to: notifyTo,
       subject: `New lead: ${cfg.name}`,
-      html: `<p>New lead: <strong>${email}</strong></p>
-             <p>Template: <strong>${cfg.name}</strong></p>
-             <p>Template link: <a href="${templateUrl}">${templateUrl}</a></p>`,
+      html: `
+<div style="font-family: Arial, sans-serif; line-height: 1.6; max-width: 520px; margin: 0 auto;">
+  <h2 style="margin-bottom: 16px;">New template lead</h2>
+  <p><strong>Email:</strong> ${cleanEmail}</p>
+  <p><strong>Template:</strong> ${cfg.name}</p>
+  <p><strong>Template link:</strong> <a href="${templateUrl}">${templateUrl}</a></p>
+</div>`,
+      text: `New template lead
+
+Email: ${cleanEmail}
+Template: ${cfg.name}
+Template link: ${templateUrl}`,
     });
 
-    // 2) User delivery
-    await resend.emails.send({
+    if ((ownerResult as { error?: unknown })?.error) {
+      console.error("OWNER_EMAIL_ERROR", ownerResult);
+      return NextResponse.json(
+        { success: false, error: "Failed to send owner notification" },
+        { status: 500 }
+      );
+    }
+
+    const userResult = await resend.emails.send({
       from,
-      to: email,
+      to: cleanEmail,
       replyTo: notifyTo,
       subject: cfg.subject,
       text: `Hi,
@@ -119,7 +167,7 @@ ${templateUrl}
 
 This will generate an editable version in your own Google Drive.
 
-Admin Pack (Get Paid Properly) — designed to protect your time, your clients, and your income. Coming soon.
+Looking for a more complete onboarding system? The full client onboarding pack is also available.
 
 If you have any questions, simply reply to this email.
 
@@ -132,8 +180,7 @@ If you have any questions, simply reply to this email.
 
   <p style="margin: 24px 0;">
     <a href="${templateUrl}"
-       style="background: #111; color: #fff; padding: 12px 18px;
-              text-decoration: none; border-radius: 6px; display: inline-block;">
+       style="background: #111; color: #fff; padding: 12px 18px; text-decoration: none; border-radius: 6px; display: inline-block;">
       Create My Copy
     </a>
   </p>
@@ -144,8 +191,9 @@ If you have any questions, simply reply to this email.
 
   <hr style="margin: 28px 0; border: none; border-top: 1px solid #eee;" />
 
- <p style="font-size: 14px;">
-  <strong>Admin Pack (Get Paid Properly)</strong> — designed to protect your time, your clients, and your income. Coming soon.
+  <p style="font-size: 14px;">
+    Looking for a more complete onboarding system? The full client onboarding pack is also available.
+  </p>
 
   <p style="margin-top: 20px; font-size: 14px;">
     If you have questions, simply reply to this email.
@@ -157,11 +205,23 @@ If you have any questions, simply reply to this email.
 </div>`,
     });
 
+    if ((userResult as { error?: unknown })?.error) {
+      console.error("USER_EMAIL_ERROR", userResult);
+      return NextResponse.json(
+        { success: false, error: "Failed to send template email" },
+        { status: 500 }
+      );
+    }
+
     return NextResponse.json({ success: true });
   } catch (err) {
     console.error("SUBMIT_ERROR:", err);
+
+    const message =
+      err instanceof Error ? err.message : "Server error";
+
     return NextResponse.json(
-      { success: false, error: "Server error" },
+      { success: false, error: message },
       { status: 500 }
     );
   }
