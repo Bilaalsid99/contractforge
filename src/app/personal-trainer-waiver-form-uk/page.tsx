@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 
@@ -67,55 +65,33 @@ function TemplateBlock({ text }: { text: string }) {
   );
 }
 
-function BulletCard({
-  title,
-  items,
-}: {
-  title: string;
-  items: string[];
-}) {
-  return (
-    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-      <p className="text-sm font-semibold text-zinc-900">{title}</p>
-      <ul className="mt-3 space-y-2 text-sm text-zinc-600">
-        {items.map((item) => (
-          <li key={item}>• {item}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
 const waiverTemplate = `PERSONAL TRAINER LIABILITY WAIVER (UK)
 
-Trainer: [Trainer name]
-Business: [Business / trading name]
+Trainer / Business: [Trainer name / Business name]
 Client: [Client name]
-Date: [Date]
 
-1. Acknowledgement of Risk
-The Client understands that physical exercise and personal training involve inherent risks, including but not limited to muscle strain, falls, dizziness, illness, or other injury.
+1. Participation in Exercise
+The Client understands that participation in physical training involves physical exertion and carries inherent risks, including the risk of injury.
 
-2. Voluntary Participation
-The Client confirms that participation in personal training sessions is voluntary and that they choose to take part at their own discretion.
+2. Health Responsibility
+The Client confirms that they are responsible for disclosing any medical condition, injury, illness, or limitation that may affect their ability to participate safely in exercise.
 
-3. Health Responsibility
-The Client confirms that they have disclosed any relevant medical condition, injury, medication, or physical limitation that may affect safe participation in exercise.
+3. Voluntary Participation
+The Client agrees that participation in training sessions is voluntary and that they may stop exercise at any time if they feel pain, discomfort, dizziness, or any unusual symptoms.
 
-4. Medical Advice
-Where appropriate, the Client understands that they may need to seek advice from a qualified medical professional before beginning or continuing a training programme.
+4. Acknowledgement of Risk
+The Client acknowledges that physical activity carries risks which cannot be completely eliminated, even when reasonable care is taken by the Trainer.
 
-5. Following Instructions
-The Client agrees to follow reasonable instructions given by the Trainer and to stop exercise immediately if pain, dizziness, or unusual symptoms occur.
+5. Liability
+To the extent permitted by law, the Client agrees that the Trainer is not responsible for injuries that arise from participation in training where reasonable care has been taken.
 
-6. Personal Responsibility
-The Client understands that it is their responsibility to inform the Trainer of any change in health, injury status, or relevant symptoms before or during training.
+Nothing in this waiver excludes liability where it cannot legally be excluded.
 
-7. Limitation of Liability
-Nothing in this waiver excludes liability where it cannot lawfully be excluded. Subject to that, the Client acknowledges the general risks of exercise participation.
+6. Client Responsibility
+The Client agrees to follow reasonable instructions given by the Trainer and to exercise within their personal limits.
 
-8. General
-This waiver should be read alongside any related client contract, PAR-Q form, and terms and conditions used by the Trainer.
+7. General
+This waiver should be read alongside any related personal training agreement, PAR-Q form, and terms and conditions used by the Trainer.
 
 Client Signature: ______________________
 
@@ -123,18 +99,7 @@ Date: _________________________________`;
 
 export default function PersonalTrainerWaiverFormUKPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <header className="border-b border-zinc-200 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-          <Link href="/" className="text-sm font-bold text-zinc-900">
-            ContractForge
-          </Link>
-          <PrimaryLink href="/client-onboarding-pack">
-            View full pack
-          </PrimaryLink>
-        </div>
-      </header>
-
+    <div className="bg-white">
       <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-wrap items-center gap-2">
           <Badge>UK template</Badge>
@@ -147,9 +112,9 @@ export default function PersonalTrainerWaiverFormUKPage() {
         </h1>
 
         <p className="mt-3 max-w-3xl text-zinc-600">
-          Use this liability waiver template as a starting point for explaining
-          the general risks of physical training and recording that a client is
-          choosing to participate voluntarily.
+          Use this liability waiver template to explain the risks associated with
+          physical training and confirm that clients understand their
+          responsibility when participating in exercise.
         </p>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
@@ -160,48 +125,55 @@ export default function PersonalTrainerWaiverFormUKPage() {
               </h2>
 
               <p className="mt-3 text-sm leading-7 text-zinc-600">
-                A liability waiver helps trainers explain the general risks
-                involved in exercise and confirm that a client understands those
-                risks before taking part.
+                Liability waivers help trainers explain that physical exercise
+                involves inherent risks and that clients participate voluntarily.
               </p>
 
               <div className="mt-5 grid gap-3">
-                <BulletCard
-                  title="What this template covers"
-                  items={[
-                    "General exercise risk acknowledgement",
-                    "Voluntary participation wording",
-                    "Client responsibility for health disclosure",
-                    "Following trainer instructions",
-                    "Basic liability-related wording",
-                  ]}
-                />
+                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+                  <p className="text-sm font-semibold text-zinc-900">
+                    What this waiver covers
+                  </p>
+                  <ul className="mt-2 space-y-2 text-sm text-zinc-600">
+                    <li>• Acknowledgement of exercise risks</li>
+                    <li>• Client responsibility for health disclosure</li>
+                    <li>• Voluntary participation wording</li>
+                    <li>• Liability limitation wording</li>
+                  </ul>
+                </div>
 
-                <BulletCard
-                  title="Who typically uses this template"
-                  items={[
-                    "Independent personal trainers",
-                    "Online fitness coaches",
-                    "Mobile and home-visit trainers",
-                    "Small studios and PT businesses",
-                  ]}
-                />
+                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+                  <p className="text-sm font-semibold text-zinc-900">
+                    Who typically uses this
+                  </p>
+                  <ul className="mt-2 space-y-2 text-sm text-zinc-600">
+                    <li>• Independent personal trainers</li>
+                    <li>• Online coaching businesses</li>
+                    <li>• Fitness studios</li>
+                    <li>• Freelance PTs</li>
+                  </ul>
+                </div>
 
-                <BulletCard
-                  title="Important context"
-                  items={[
-                    "A waiver is usually one part of the onboarding process",
-                    "It often sits alongside a contract and PAR-Q form",
-                    "Many trainers prefer using it within a complete onboarding pack",
-                  ]}
-                />
+                <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+                  <p className="text-sm font-semibold text-zinc-900">
+                    Important context
+                  </p>
+                  <ul className="mt-2 space-y-2 text-sm text-zinc-600">
+                    <li>• Waivers are usually part of a wider onboarding process</li>
+                    <li>• Trainers often pair them with a contract and PAR-Q</li>
+                    <li>• Consistent wording across documents can reduce confusion</li>
+                  </ul>
+                </div>
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <PrimaryLink href="/client-onboarding-pack">
                   View full onboarding pack
                 </PrimaryLink>
-                <SecondaryLink href="/">Back to home</SecondaryLink>
+
+                <SecondaryLink href="/">
+                  Back to home
+                </SecondaryLink>
               </div>
             </div>
           </div>
@@ -212,63 +184,49 @@ export default function PersonalTrainerWaiverFormUKPage() {
         </div>
 
         <section className="mx-auto mt-12 max-w-4xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-  <h2 className="text-xl font-semibold text-zinc-900">
-    Where this template fits in a trainer’s onboarding process
-  </h2>
+          <h2 className="text-xl font-semibold text-zinc-900">
+            Where this waiver fits in a trainer’s onboarding process
+          </h2>
 
-  <p className="mt-3 text-sm leading-7 text-zinc-600">
-    A liability waiver can be useful on its own, but many trainers do not rely
-    on it alone. It is often used alongside health screening before training
-    begins and a training agreement that sets out the service, expectations,
-    and policies more clearly.
-  </p>
+          <p className="mt-3 text-sm leading-7 text-zinc-600">
+            A liability waiver is usually used to confirm that the client
+            understands the inherent risks of physical exercise and chooses to
+            participate voluntarily.
+          </p>
 
-  <p className="mt-3 text-sm leading-7 text-zinc-600">
-    Used together, these documents help confirm that the client has disclosed
-    relevant health information, understands the risks of exercise, and has
-    agreed to the basic structure of the training relationship.
-  </p>
+          <p className="mt-3 text-sm leading-7 text-zinc-600">
+            In practice, many trainers use this alongside a training agreement
+            that sets out services and policies, and a PAR-Q form that helps
+            identify whether any medical guidance may be needed before training
+            begins.
+          </p>
 
-  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-      <p className="text-sm font-semibold text-zinc-900">
-        Often used alongside
-      </p>
-      <ul className="mt-2 space-y-2 text-sm text-zinc-600">
-        <li>• Personal Training Agreement</li>
-        <li>• PAR-Q Health Questionnaire</li>
-        <li>• Clear onboarding policies for sessions and participation</li>
-      </ul>
-    </div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+              <p className="text-sm font-semibold text-zinc-900">
+                Often used alongside
+              </p>
 
-    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-      <p className="text-sm font-semibold text-zinc-900">
-        Why some trainers start with the full pack
-      </p>
-      <p className="mt-2 text-sm text-zinc-600">
-        Many trainers prefer starting with a structured onboarding pack so
-        service terms, health screening, and liability wording all work
-        together from the beginning.
-      </p>
-    </div>
-  </div>
+              <ul className="mt-2 space-y-2 text-sm text-zinc-600">
+                <li>• Personal Training Agreement</li>
+                <li>• PAR-Q Health Questionnaire</li>
+                <li>• Clear onboarding policies for sessions and participation</li>
+              </ul>
+            </div>
 
-  <div className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
-    <h3 className="text-base font-semibold text-zinc-900">
-      Complete Personal Trainer Client Onboarding Pack
-    </h3>
-    <p className="mt-2 text-sm text-zinc-600">
-      If you want your waiver, agreement, and PAR-Q to work together as a
-      clean onboarding system, you can start with the full onboarding pack.
-    </p>
+            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+              <p className="text-sm font-semibold text-zinc-900">
+                Why some trainers start with the full pack
+              </p>
 
-    <div className="mt-4">
-      <PrimaryLink href="/client-onboarding-pack">
-        Start building your onboarding pack
-      </PrimaryLink>
-    </div>
-  </div>
-</section>
+              <p className="mt-2 text-sm text-zinc-600">
+                Many trainers prefer starting with a structured onboarding pack
+                so their agreement, health screening, and liability wording all
+                work together from the beginning.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="mx-auto mt-12 max-w-4xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-zinc-900">
@@ -276,42 +234,42 @@ export default function PersonalTrainerWaiverFormUKPage() {
           </h2>
 
           <p className="mt-2 text-sm text-zinc-600">
-            Explore the other documents commonly used alongside a liability
-            waiver.
+            Explore the other documents commonly used when onboarding personal
+            training clients.
           </p>
 
           <div className="mt-5 grid gap-2 sm:grid-cols-2">
             <Link
               href="/personal-trainer-contract-template-uk"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Personal Trainer Contract Template →
             </Link>
 
             <Link
               href="/personal-trainer-par-q-form-uk"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               PAR-Q Form Template →
             </Link>
 
             <Link
               href="/personal-trainer-terms-and-conditions-uk"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
-              Terms &amp; Conditions Template →
+              Terms & Conditions Template →
             </Link>
 
             <Link
               href="/personal-trainer-cancellation-policy-template"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Cancellation Policy Template →
             </Link>
 
             <Link
               href="/client-onboarding-pack"
-              className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-zinc-800 sm:col-span-2"
+              className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-zinc-800 sm:col-span-2"
             >
               View Complete Client Onboarding Pack →
             </Link>

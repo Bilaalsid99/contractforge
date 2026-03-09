@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 
@@ -138,18 +136,7 @@ Date: _________________________________`;
 
 export default function PersonalTrainerParQFormUKPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <header className="border-b border-zinc-200 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-          <Link href="/" className="text-sm font-bold text-zinc-900">
-            ContractForge
-          </Link>
-          <PrimaryLink href="/client-onboarding-pack">
-            View full pack
-          </PrimaryLink>
-        </div>
-      </header>
-
+    <div className="bg-white">
       <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-wrap items-center gap-2">
           <Badge>UK template</Badge>
@@ -167,11 +154,8 @@ export default function PersonalTrainerParQFormUKPage() {
         </p>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-
           <div>
-
             <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-
               <h2 className="text-lg font-semibold text-zinc-900">
                 Template overview
               </h2>
@@ -183,7 +167,6 @@ export default function PersonalTrainerParQFormUKPage() {
               </p>
 
               <div className="mt-5 grid gap-3">
-
                 <BulletCard
                   title="What this form covers"
                   items={[
@@ -212,99 +195,67 @@ export default function PersonalTrainerParQFormUKPage() {
                     "They are often used alongside contracts and waivers",
                   ]}
                 />
-
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <PrimaryLink href="/client-onboarding-pack">
                   View full onboarding pack
                 </PrimaryLink>
-
-                <SecondaryLink href="/">
-                  Back to home
-                </SecondaryLink>
+                <SecondaryLink href="/">Back to home</SecondaryLink>
               </div>
-
             </div>
-
           </div>
 
           <div>
             <TemplateBlock text={parqTemplate} />
           </div>
-
         </div>
 
         <section className="mx-auto mt-12 max-w-4xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-semibold text-zinc-900">
+            Where this form fits in a trainer’s onboarding process
+          </h2>
 
-  <h2 className="text-xl font-semibold text-zinc-900">
-    Where this form fits in a trainer’s onboarding process
-  </h2>
+          <p className="mt-3 text-sm leading-7 text-zinc-600">
+            A PAR-Q form is usually completed before training begins to
+            identify potential health risks and determine whether any medical
+            guidance may be needed before exercise.
+          </p>
 
-  <p className="mt-3 text-sm leading-7 text-zinc-600">
-    A PAR-Q form is usually completed before training begins to identify
-    potential health risks and determine whether any medical guidance may
-    be needed before exercise.
-  </p>
+          <p className="mt-3 text-sm leading-7 text-zinc-600">
+            Many trainers use this alongside a training agreement that outlines
+            the service and policies, and a liability waiver confirming that
+            the client understands the risks associated with physical activity.
+          </p>
 
-  <p className="mt-3 text-sm leading-7 text-zinc-600">
-    Many trainers use this alongside a training agreement that outlines the
-    service and policies, and a liability waiver confirming that the client
-    understands the risks associated with physical activity.
-  </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+              <p className="text-sm font-semibold text-zinc-900">
+                Often used alongside
+              </p>
 
-  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <ul className="mt-2 space-y-2 text-sm text-zinc-600">
+                <li>• Personal Training Agreement</li>
+                <li>• Liability Waiver</li>
+                <li>• Clear onboarding policies for sessions and participation</li>
+              </ul>
+            </div>
 
-    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-      <p className="text-sm font-semibold text-zinc-900">
-        Often used alongside
-      </p>
+            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+              <p className="text-sm font-semibold text-zinc-900">
+                Why some trainers start with the full pack
+              </p>
 
-      <ul className="mt-2 space-y-2 text-sm text-zinc-600">
-        <li>• Personal Training Agreement</li>
-        <li>• Liability Waiver</li>
-        <li>• Clear onboarding policies for sessions and participation</li>
-      </ul>
-    </div>
-
-    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-      <p className="text-sm font-semibold text-zinc-900">
-        Why some trainers start with the full pack
-      </p>
-
-      <p className="mt-2 text-sm text-zinc-600">
-        Many trainers prefer starting with a structured onboarding pack so
-        health screening, service terms, and liability wording all work
-        together from the beginning.
-      </p>
-    </div>
-
-  </div>
-
-  <div className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
-
-    <h3 className="text-base font-semibold text-zinc-900">
-      Complete Personal Trainer Client Onboarding Pack
-    </h3>
-
-    <p className="mt-2 text-sm text-zinc-600">
-      If you want your PAR-Q, agreement, and liability waiver to work
-      together as a clean onboarding system, you can start with the full
-      onboarding pack.
-    </p>
-
-    <div className="mt-4">
-      <PrimaryLink href="/client-onboarding-pack">
-        Start building your onboarding pack
-      </PrimaryLink>
-    </div>
-
-  </div>
-
-</section>
+              <p className="mt-2 text-sm text-zinc-600">
+                Many trainers prefer starting with a structured onboarding pack
+                so health screening, service terms, and liability wording all
+                work together from the beginning.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="mx-auto mt-12 max-w-4xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-
           <h2 className="text-lg font-semibold text-zinc-900">
             Related personal trainer templates
           </h2>
@@ -315,44 +266,41 @@ export default function PersonalTrainerParQFormUKPage() {
           </p>
 
           <div className="mt-5 grid gap-2 sm:grid-cols-2">
-
             <Link
               href="/personal-trainer-contract-template-uk"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Personal Trainer Contract Template →
             </Link>
 
             <Link
               href="/personal-trainer-waiver-form-uk"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Liability Waiver Template →
             </Link>
 
             <Link
               href="/personal-trainer-terms-and-conditions-uk"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
-              Terms & Conditions Template →
+              Terms &amp; Conditions Template →
             </Link>
 
             <Link
               href="/personal-trainer-cancellation-policy-template"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Cancellation Policy Template →
             </Link>
 
             <Link
               href="/client-onboarding-pack"
-              className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-zinc-800 sm:col-span-2"
+              className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-zinc-800 sm:col-span-2"
             >
               View Complete Client Onboarding Pack →
             </Link>
-
           </div>
-
         </section>
 
         <p className="mx-auto mt-10 max-w-3xl text-center text-xs text-zinc-500">
@@ -360,7 +308,6 @@ export default function PersonalTrainerParQFormUKPage() {
           and drafting support. For unusual or high-risk situations, consult a
           solicitor.
         </p>
-
       </main>
     </div>
   );

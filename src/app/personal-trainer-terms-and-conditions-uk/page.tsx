@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 
@@ -11,7 +9,13 @@ function Badge({ children }: { children: React.ReactNode }) {
   );
 }
 
-function PrimaryLink({ href, children }: { href: string; children: React.ReactNode }) {
+function PrimaryLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
     <Link
       href={href}
@@ -22,7 +26,13 @@ function PrimaryLink({ href, children }: { href: string; children: React.ReactNo
   );
 }
 
-function SecondaryLink({ href, children }: { href: string; children: React.ReactNode }) {
+function SecondaryLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
     <Link
       href={href}
@@ -99,16 +109,7 @@ These terms should be read alongside any related client contract, PAR-Q form, li
 
 export default function PersonalTrainerTermsAndConditionsUKPage() {
   return (
-    <div className="min-h-screen bg-white">
-      <header className="border-b border-zinc-200 bg-white">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
-          <Link href="/" className="text-sm font-bold text-zinc-900">
-            ContractForge
-          </Link>
-          <PrimaryLink href="/client-onboarding-pack">View full pack</PrimaryLink>
-        </div>
-      </header>
-
+    <div className="bg-white">
       <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="flex flex-wrap items-center gap-2">
           <Badge>UK template</Badge>
@@ -121,43 +122,61 @@ export default function PersonalTrainerTermsAndConditionsUKPage() {
         </h1>
 
         <p className="mt-3 max-w-3xl text-zinc-600">
-          Use this terms and conditions template as a starting point to set out your business rules around bookings, payments, cancellations, client responsibilities, and participation in training.
+          Use this terms and conditions template as a starting point to set out
+          your business rules around bookings, payments, cancellations, client
+          responsibilities, and participation in training.
         </p>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
           <div>
             <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-              <h2 className="text-lg font-semibold text-zinc-900">What these terms cover</h2>
+              <h2 className="text-lg font-semibold text-zinc-900">
+                What these terms cover
+              </h2>
 
               <p className="mt-3 text-sm leading-7 text-zinc-600">
-                Terms and conditions help personal trainers explain the general business rules that apply when working with clients. They often cover bookings, payments, lateness, cancellations, conduct, and general participation terms.
+                Terms and conditions help personal trainers explain the general
+                business rules that apply when working with clients. They often
+                cover bookings, payments, lateness, cancellations, conduct, and
+                general participation terms.
               </p>
 
               <div className="mt-5 grid gap-3">
                 <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <p className="text-sm font-semibold text-zinc-900">Common purpose</p>
+                  <p className="text-sm font-semibold text-zinc-900">
+                    Common purpose
+                  </p>
                   <p className="mt-1 text-sm text-zinc-600">
-                    To give clients a clearer view of how your services operate and what rules apply before training begins.
+                    To give clients a clearer view of how your services operate
+                    and what rules apply before training begins.
                   </p>
                 </div>
 
                 <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <p className="text-sm font-semibold text-zinc-900">What they usually include</p>
+                  <p className="text-sm font-semibold text-zinc-900">
+                    What they usually include
+                  </p>
                   <p className="mt-1 text-sm text-zinc-600">
-                    Services, bookings, payment terms, cancellations, lateness, client responsibilities, and general business conditions.
+                    Services, bookings, payment terms, cancellations, lateness,
+                    client responsibilities, and general business conditions.
                   </p>
                 </div>
 
                 <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <p className="text-sm font-semibold text-zinc-900">Important</p>
+                  <p className="text-sm font-semibold text-zinc-900">
+                    Important
+                  </p>
                   <p className="mt-1 text-sm text-zinc-600">
-                    Terms and conditions are usually used alongside a contract, PAR-Q, liability waiver, and cancellation policy.
+                    Terms and conditions are usually used alongside a contract,
+                    PAR-Q, liability waiver, and cancellation policy.
                   </p>
                 </div>
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <PrimaryLink href="/client-onboarding-pack">View full onboarding pack</PrimaryLink>
+                <PrimaryLink href="/client-onboarding-pack">
+                  View full onboarding pack
+                </PrimaryLink>
                 <SecondaryLink href="/">Back to home</SecondaryLink>
               </div>
             </div>
@@ -169,73 +188,49 @@ export default function PersonalTrainerTermsAndConditionsUKPage() {
         </div>
 
         <section className="mx-auto mt-12 max-w-4xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-semibold text-zinc-900">
+            Where these terms fit in a trainer’s onboarding process
+          </h2>
 
-  <h2 className="text-xl font-semibold text-zinc-900">
-    Where these terms fit in a trainer’s onboarding process
-  </h2>
+          <p className="mt-3 text-sm leading-7 text-zinc-600">
+            Terms and conditions can be used on their own, but many trainers
+            include them within a broader training agreement so the service
+            rules, payment expectations, and cancellation policies are clearly
+            documented in one place.
+          </p>
 
-  <p className="mt-3 text-sm leading-7 text-zinc-600">
-    Terms and conditions can be used on their own, but many trainers include
-    them within a broader training agreement so the service rules, payment
-    expectations, and cancellation policies are clearly documented in one
-    place.
-  </p>
+          <p className="mt-3 text-sm leading-7 text-zinc-600">
+            This agreement is usually supported by health screening before
+            training begins and liability wording confirming that the client
+            understands the risks associated with exercise.
+          </p>
 
-  <p className="mt-3 text-sm leading-7 text-zinc-600">
-    This agreement is usually supported by health screening before training
-    begins and liability wording confirming that the client understands the
-    risks associated with exercise.
-  </p>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+              <p className="text-sm font-semibold text-zinc-900">
+                Often used alongside
+              </p>
 
-  <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              <ul className="mt-2 space-y-2 text-sm text-zinc-600">
+                <li>• Personal Training Agreement</li>
+                <li>• PAR-Q Health Questionnaire</li>
+                <li>• Liability Waiver</li>
+              </ul>
+            </div>
 
-    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-      <p className="text-sm font-semibold text-zinc-900">
-        Often used alongside
-      </p>
+            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+              <p className="text-sm font-semibold text-zinc-900">
+                Why some trainers start with the full pack
+              </p>
 
-      <ul className="mt-2 space-y-2 text-sm text-zinc-600">
-        <li>• Personal Training Agreement</li>
-        <li>• PAR-Q Health Questionnaire</li>
-        <li>• Liability Waiver</li>
-      </ul>
-    </div>
-
-    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-      <p className="text-sm font-semibold text-zinc-900">
-        Why some trainers start with the full pack
-      </p>
-
-      <p className="mt-2 text-sm text-zinc-600">
-        Many trainers prefer starting with a structured onboarding pack so
-        service terms, health screening, and liability wording all work
-        together from the beginning.
-      </p>
-    </div>
-
-  </div>
-
-  <div className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
-
-    <h3 className="text-base font-semibold text-zinc-900">
-      Complete Personal Trainer Client Onboarding Pack
-    </h3>
-
-    <p className="mt-2 text-sm text-zinc-600">
-      If you want the agreement, PAR-Q, and liability waiver to work together
-      as a clean onboarding system, you can start with the full onboarding
-      pack.
-    </p>
-
-    <div className="mt-4">
-      <PrimaryLink href="/client-onboarding-pack">
-        Start building your onboarding pack
-      </PrimaryLink>
-    </div>
-
-  </div>
-
-</section>
+              <p className="mt-2 text-sm text-zinc-600">
+                Many trainers prefer starting with a structured onboarding pack
+                so service terms, health screening, and liability wording all
+                work together from the beginning.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="mx-auto mt-12 max-w-4xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-zinc-900">
@@ -243,41 +238,42 @@ export default function PersonalTrainerTermsAndConditionsUKPage() {
           </h2>
 
           <p className="mt-2 text-sm text-zinc-600">
-            Explore other documents commonly used during personal trainer onboarding.
+            Explore other documents commonly used during personal trainer
+            onboarding.
           </p>
 
           <div className="mt-5 grid gap-2 sm:grid-cols-2">
             <Link
               href="/personal-trainer-contract-template-uk"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Personal Trainer Contract Template →
             </Link>
 
             <Link
               href="/personal-trainer-par-q-form-uk"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               PAR-Q Form Template →
             </Link>
 
             <Link
               href="/personal-trainer-waiver-form-uk"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Liability Waiver Template →
             </Link>
 
             <Link
               href="/personal-trainer-cancellation-policy-template"
-              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 hover:bg-zinc-100"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Cancellation Policy Template →
             </Link>
 
             <Link
               href="/client-onboarding-pack"
-              className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white hover:bg-zinc-800 sm:col-span-2"
+              className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-zinc-800 sm:col-span-2"
             >
               View Complete Client Onboarding Pack →
             </Link>
@@ -285,7 +281,9 @@ export default function PersonalTrainerTermsAndConditionsUKPage() {
         </section>
 
         <p className="mx-auto mt-10 max-w-3xl text-center text-xs text-zinc-500">
-          Not legal advice. This template is provided for general information and drafting support. For unusual or high-risk situations, consult a solicitor.
+          Not legal advice. This template is provided for general information
+          and drafting support. For unusual or high-risk situations, consult a
+          solicitor.
         </p>
       </main>
     </div>
