@@ -274,7 +274,6 @@ export default function GeneratePage() {
   const [loading, setLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
-  // later replace this with real paid-state verification
   const [isUnlocked] = useState(false);
 
   const [form, setForm] = useState<FormState>({
@@ -370,20 +369,20 @@ export default function GeneratePage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50">
-      <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-zinc-900 text-white">
-              <span className="text-sm font-black">CF</span>
-            </div>
-            <div className="leading-tight">
-              <p className="text-sm font-bold text-zinc-900">ContractForge</p>
-              <p className="text-xs text-zinc-500">Generator</p>
-            </div>
-          </Link>
+    <main className="bg-zinc-50">
+      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+        <div className="mb-6 flex flex-col gap-3 rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold text-zinc-900">
+              ContractForge Generator
+            </p>
+            <p className="mt-1 text-sm text-zinc-600">
+              Build your onboarding pack, preview the documents, then unlock
+              export.
+            </p>
+          </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href="/client-onboarding-pack"
               className="text-sm font-semibold text-zinc-700 hover:text-zinc-900"
@@ -400,244 +399,244 @@ export default function GeneratePage() {
             </button>
           </div>
         </div>
-      </header>
 
-      <main className="mx-auto grid max-w-7xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-[420px_minmax(0,1fr)]">
-        <section className="space-y-5">
-          <SectionCard
-            title="Build your onboarding pack"
-            desc="Answer these once and preview the structure before purchase."
-          >
-            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-              <p className="text-sm font-semibold text-zinc-900">
-                Your pack includes
-              </p>
-              <div className="mt-3 space-y-2 text-sm text-zinc-700">
-                <div className="flex items-center gap-2">
-                  <span>✓</span>
-                  <span>Personal Training Agreement</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span>✓</span>
-                  <span>PAR-Q Health Questionnaire</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span>✓</span>
-                  <span>Liability Waiver</span>
-                </div>
-              </div>
-            </div>
-          </SectionCard>
-
-          <SectionCard
-            title="Trainer details"
-            desc="Basic identity details used across the pack."
-          >
-            <Field
-              label="Trainer name"
-              value={form.trainerName}
-              onChange={(value) => setForm((s) => ({ ...s, trainerName: value }))}
-              placeholder="e.g. Alex Smith"
-            />
-
-            <Field
-              label="Business / trading name"
-              value={form.businessName}
-              onChange={(value) => setForm((s) => ({ ...s, businessName: value }))}
-              placeholder="e.g. Alex's Fitness Coaching"
-            />
-          </SectionCard>
-
-          <SectionCard
-            title="Training setup"
-            desc="How the service is delivered."
-          >
-            <SelectField
-              label="Training location"
-              value={form.trainingLocation}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, trainingLocation: value }))
-              }
-              options={["Gym", "Client home", "Outdoors", "Online", "Mixed"]}
-            />
-
-            <SelectField
-              label="Session duration"
-              value={form.sessionDuration}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, sessionDuration: value }))
-              }
-              options={["45 minutes", "60 minutes", "90 minutes"]}
-            />
-
-            <SelectField
-              label="Online coaching"
-              value={form.onlineCoaching}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, onlineCoaching: value }))
-              }
-              options={["No", "Yes"]}
-            />
-
-            <SelectField
-              label="Group training"
-              value={form.groupTraining}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, groupTraining: value }))
-              }
-              options={["No", "Yes"]}
-            />
-          </SectionCard>
-
-          <SectionCard
-            title="Payments and cancellations"
-            desc="Core commercial terms carried into the agreement."
-          >
-            <SelectField
-              label="Payment structure"
-              value={form.paymentStructure}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, paymentStructure: value }))
-              }
-              options={["Single sessions", "Block packages", "Monthly coaching"]}
-            />
-
-            <SelectField
-              label="Payment timing"
-              value={form.paymentTiming}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, paymentTiming: value }))
-              }
-              options={["Pay in advance", "Pay on booking", "Monthly in advance"]}
-            />
-
-            <SelectField
-              label="Cancellation notice"
-              value={form.cancellationNotice}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, cancellationNotice: value }))
-              }
-              options={["12 hours", "24 hours", "48 hours"]}
-            />
-
-            <Field
-              label="Late cancellation rule"
-              value={form.lateCancellationRule}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, lateCancellationRule: value }))
-              }
-            />
-
-            <Field
-              label="Late arrival rule"
-              value={form.lateArrivalRule}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, lateArrivalRule: value }))
-              }
-            />
-          </SectionCard>
-
-          <SectionCard
-            title="Health and liability"
-            desc="These details shape the screening and risk wording."
-          >
-            <Field
-              label="Medical clearance approach"
-              value={form.medicalClearanceApproach}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, medicalClearanceApproach: value }))
-              }
-            />
-
-            <Field
-              label="Emergency contact requirement"
-              value={form.emergencyContactRequirement}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, emergencyContactRequirement: value }))
-              }
-            />
-
-            <Field
-              label="Liability wording"
-              value={form.liabilityWording}
-              onChange={(value) =>
-                setForm((s) => ({ ...s, liabilityWording: value }))
-              }
-            />
-          </SectionCard>
-        </section>
-
-        <section className="space-y-4">
-          <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm">
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <div>
+        <div className="grid gap-6 lg:grid-cols-[420px_minmax(0,1fr)]">
+          <section className="space-y-5">
+            <SectionCard
+              title="Build your onboarding pack"
+              desc="Answer these once and preview the structure before purchase."
+            >
+              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
                 <p className="text-sm font-semibold text-zinc-900">
-                  Preview your onboarding pack
+                  Your pack includes
                 </p>
-                <p className="mt-1 text-sm text-zinc-600">
-                  Review the structure first. Full documents and export unlock
-                  after payment.
-                </p>
+                <div className="mt-3 space-y-2 text-sm text-zinc-700">
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
+                    <span>Personal Training Agreement</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
+                    <span>PAR-Q Health Questionnaire</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
+                    <span>Liability Waiver</span>
+                  </div>
+                </div>
+              </div>
+            </SectionCard>
+
+            <SectionCard
+              title="Trainer details"
+              desc="Basic identity details used across the pack."
+            >
+              <Field
+                label="Trainer name"
+                value={form.trainerName}
+                onChange={(value) => setForm((s) => ({ ...s, trainerName: value }))}
+                placeholder="e.g. Alex Smith"
+              />
+
+              <Field
+                label="Business / trading name"
+                value={form.businessName}
+                onChange={(value) => setForm((s) => ({ ...s, businessName: value }))}
+                placeholder="e.g. Alex's Fitness Coaching"
+              />
+            </SectionCard>
+
+            <SectionCard
+              title="Training setup"
+              desc="How the service is delivered."
+            >
+              <SelectField
+                label="Training location"
+                value={form.trainingLocation}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, trainingLocation: value }))
+                }
+                options={["Gym", "Client home", "Outdoors", "Online", "Mixed"]}
+              />
+
+              <SelectField
+                label="Session duration"
+                value={form.sessionDuration}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, sessionDuration: value }))
+                }
+                options={["45 minutes", "60 minutes", "90 minutes"]}
+              />
+
+              <SelectField
+                label="Online coaching"
+                value={form.onlineCoaching}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, onlineCoaching: value }))
+                }
+                options={["No", "Yes"]}
+              />
+
+              <SelectField
+                label="Group training"
+                value={form.groupTraining}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, groupTraining: value }))
+                }
+                options={["No", "Yes"]}
+              />
+            </SectionCard>
+
+            <SectionCard
+              title="Payments and cancellations"
+              desc="Core commercial terms carried into the agreement."
+            >
+              <SelectField
+                label="Payment structure"
+                value={form.paymentStructure}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, paymentStructure: value }))
+                }
+                options={["Single sessions", "Block packages", "Monthly coaching"]}
+              />
+
+              <SelectField
+                label="Payment timing"
+                value={form.paymentTiming}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, paymentTiming: value }))
+                }
+                options={["Pay in advance", "Pay on booking", "Monthly in advance"]}
+              />
+
+              <SelectField
+                label="Cancellation notice"
+                value={form.cancellationNotice}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, cancellationNotice: value }))
+                }
+                options={["12 hours", "24 hours", "48 hours"]}
+              />
+
+              <Field
+                label="Late cancellation rule"
+                value={form.lateCancellationRule}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, lateCancellationRule: value }))
+                }
+              />
+
+              <Field
+                label="Late arrival rule"
+                value={form.lateArrivalRule}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, lateArrivalRule: value }))
+                }
+              />
+            </SectionCard>
+
+            <SectionCard
+              title="Health and liability"
+              desc="These details shape the screening and risk wording."
+            >
+              <Field
+                label="Medical clearance approach"
+                value={form.medicalClearanceApproach}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, medicalClearanceApproach: value }))
+                }
+              />
+
+              <Field
+                label="Emergency contact requirement"
+                value={form.emergencyContactRequirement}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, emergencyContactRequirement: value }))
+                }
+              />
+
+              <Field
+                label="Liability wording"
+                value={form.liabilityWording}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, liabilityWording: value }))
+                }
+              />
+            </SectionCard>
+          </section>
+
+          <section className="space-y-4">
+            <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-zinc-900">
+                    Preview your onboarding pack
+                  </p>
+                  <p className="mt-1 text-sm text-zinc-600">
+                    Review the structure first. Full documents and export unlock
+                    after payment.
+                  </p>
+                </div>
+
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={copyCurrentDocument}
+                    disabled={!isUnlocked}
+                    className="rounded-2xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 disabled:cursor-not-allowed disabled:text-zinc-400"
+                  >
+                    Copy current document
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleCheckout}
+                    disabled={loading}
+                    className="rounded-2xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-zinc-400"
+                  >
+                    {loading ? "Redirecting..." : "Unlock export (£39)"}
+                  </button>
+                </div>
               </div>
 
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  onClick={copyCurrentDocument}
-                  disabled={!isUnlocked}
-                  className="rounded-2xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 disabled:cursor-not-allowed disabled:text-zinc-400"
-                >
-                  Copy current document
-                </button>
-                <button
-                  type="button"
-                  onClick={handleCheckout}
-                  disabled={loading}
-                  className="rounded-2xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-zinc-400"
-                >
-                  {loading ? "Redirecting..." : "Unlock export (£39)"}
-                </button>
+              {checkoutError && (
+                <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                  {checkoutError}
+                </div>
+              )}
+
+              <div className="mt-4 flex flex-wrap gap-2">
+                {[
+                  ["agreement", "Agreement"],
+                  ["parq", "PAR-Q"],
+                  ["waiver", "Waiver"],
+                ].map(([key, label]) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => setActiveDoc(key as DocKey)}
+                    className={classNames(
+                      "rounded-2xl px-4 py-2 text-sm font-semibold transition",
+                      activeDoc === key
+                        ? "bg-zinc-900 text-white"
+                        : "border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50"
+                    )}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
             </div>
 
-            {checkoutError && (
-              <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-                {checkoutError}
-              </div>
-            )}
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              {[
-                ["agreement", "Agreement"],
-                ["parq", "PAR-Q"],
-                ["waiver", "Waiver"],
-              ].map(([key, label]) => (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => setActiveDoc(key as DocKey)}
-                  className={classNames(
-                    "rounded-2xl px-4 py-2 text-sm font-semibold transition",
-                    activeDoc === key
-                      ? "bg-zinc-900 text-white"
-                      : "border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50"
-                  )}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <PreviewPanel
-            title={activeTitle}
-            fullText={activeContent}
-            isUnlocked={isUnlocked}
-            onUnlock={handleCheckout}
-            loading={loading}
-          />
-        </section>
-      </main>
-    </div>
+            <PreviewPanel
+              title={activeTitle}
+              fullText={activeContent}
+              isUnlocked={isUnlocked}
+              onUnlock={handleCheckout}
+              loading={loading}
+            />
+          </section>
+        </div>
+      </div>
+    </main>
   );
 }

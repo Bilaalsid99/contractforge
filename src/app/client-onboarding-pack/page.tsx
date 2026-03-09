@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Link from "next/link";
 
@@ -131,40 +129,7 @@ export default function ClientOnboardingPackPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
-      <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-xl bg-zinc-900 text-white">
-              <span className="text-sm font-black">CF</span>
-            </div>
-            <div className="leading-tight">
-              <p className="text-sm font-bold text-zinc-900">ContractForge</p>
-              <p className="text-xs text-zinc-500">
-                Personal Trainer Onboarding (UK)
-              </p>
-            </div>
-          </Link>
-
-          <nav className="hidden items-center gap-6 sm:flex">
-            <Link
-              href="/#templates"
-              className="text-sm font-semibold text-zinc-700 hover:text-zinc-900"
-            >
-              Free templates
-            </Link>
-            <Link
-              href="/"
-              className="text-sm font-semibold text-zinc-700 hover:text-zinc-900"
-            >
-              Home
-            </Link>
-          </nav>
-
-          <PrimaryLink href="/generate">Start building</PrimaryLink>
-        </div>
-      </header>
-
+    <main className="bg-white">
       <section className="mx-auto max-w-6xl px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-20">
         <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
           <Badge>£39 one-time purchase</Badge>
@@ -252,7 +217,8 @@ export default function ClientOnboardingPackPage() {
             </div>
 
             <p className="mt-5 text-xs text-zinc-500">
-              The agreement already includes payment terms and cancellation rules, so your onboarding stays simple and consistent.
+              The agreement already includes payment terms and cancellation
+              rules, so your onboarding stays simple and consistent.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -423,20 +389,6 @@ export default function ClientOnboardingPackPage() {
           </div>
         </div>
       </section>
-
-      <footer className="border-t border-zinc-200 bg-white">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-10 text-sm text-zinc-600 sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <p>© {new Date().getFullYear()} ContractForge</p>
-          <div className="flex gap-4">
-            <Link href="/#templates" className="font-semibold hover:text-zinc-900">
-              Free templates
-            </Link>
-            <Link href="/" className="font-semibold hover:text-zinc-900">
-              Home
-            </Link>
-          </div>
-        </div>
-      </footer>
-    </div>
+    </main>
   );
 }
