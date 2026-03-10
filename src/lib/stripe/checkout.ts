@@ -15,7 +15,7 @@ function getOrigin(req: Request) {
 export async function createCheckoutSession(opts: { req: Request }) {
   const origin = getOrigin(opts.req);
 
-  const successUrl = `${origin}/success?session_id={CHECKOUT_SESSION_ID}`;
+  const successUrl = `${origin}/api/checkout/success?session_id={CHECKOUT_SESSION_ID}`;
   const cancelUrl = `${origin}/generate?cancelled=1`;
 
   return await stripe.checkout.sessions.create({

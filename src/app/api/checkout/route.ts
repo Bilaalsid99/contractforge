@@ -3,6 +3,12 @@ import { createCheckoutSession } from "@/lib/stripe/checkout";
 
 export async function POST(req: Request) {
   try {
+    const body = (await req.json()) as { product?: string };
+
+    if (body.product !== "pt-client-onboarding-pack") {
+      return NextResponse.json({ error: "Invalid product." }, { status: 400 });
+    }
+
     const session = await createCheckoutSession({ req });
 
     if (!session.url) {
