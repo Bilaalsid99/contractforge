@@ -1,16 +1,18 @@
 export default function TermsPage() {
   return (
     <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 sm:py-16">
-      <h1 className="text-3xl font-bold tracking-tight text-zinc-900">
-        Terms of Use
-      </h1>
+      <div className="max-w-3xl">
+        <h1 className="text-3xl font-bold tracking-tight text-zinc-900">
+          Terms of Use
+        </h1>
 
-      <p className="mt-4 text-sm text-zinc-600">
-        These terms govern your use of the ContractForge website and any
-        templates or onboarding tools provided through the service.
-      </p>
+        <p className="mt-4 text-sm leading-6 text-zinc-600">
+          These terms govern your use of the ContractForge website and the
+          document templates and generator tools provided through the service.
+        </p>
+      </div>
 
-      <section className="mt-10 space-y-6 text-sm leading-6 text-zinc-700">
+      <section className="mt-10 space-y-8 text-sm leading-6 text-zinc-700">
         <div>
           <h2 className="text-base font-semibold text-zinc-900">
             Use of the website
@@ -24,16 +26,16 @@ export default function TermsPage() {
 
         <div>
           <h2 className="text-base font-semibold text-zinc-900">
-            Templates and documents
+            Templates and generator
           </h2>
           <p className="mt-2">
-            ContractForge provides template documents and onboarding tools
-            intended to help personal trainers structure their client
-            onboarding process.
+            ContractForge provides document templates and a generator designed
+            to help personal trainers structure their client onboarding
+            documentation.
           </p>
           <p className="mt-2">
-            These documents are general templates and may require adjustment
-            depending on your business practices or jurisdiction.
+            The generator allows users to customise documents using their own
+            information and business details.
           </p>
         </div>
 
@@ -42,39 +44,42 @@ export default function TermsPage() {
             Not legal advice
           </h2>
           <p className="mt-2">
-            The content provided by ContractForge does not constitute legal
-            advice. If you require legal guidance or have complex or
-            high-risk situations, you should consult a qualified solicitor
-            or legal professional.
+            The templates and materials provided by ContractForge are for
+            general informational purposes only and do not constitute legal
+            advice.
+          </p>
+          <p className="mt-2">
+            If you require legal guidance or have complex situations, you should
+            consult a qualified solicitor or legal professional.
           </p>
         </div>
 
         <div>
           <h2 className="text-base font-semibold text-zinc-900">
-            Licence to use templates
+            Licence to use documents
           </h2>
           <p className="mt-2">
-            When you purchase or access templates through ContractForge,
-            you receive a licence to use the generated documents for your
-            own personal training or coaching business.
+            When you purchase the Client Onboarding Pack, you are granted a
+            licence to use the generated documents for your own personal
+            training or coaching business.
           </p>
           <p className="mt-2">
-            Templates may not be resold, redistributed, or republished as
-            standalone products.
+            Documents and templates may not be resold, redistributed,
+            republished, or offered as standalone products.
           </p>
         </div>
 
         <div>
           <h2 className="text-base font-semibold text-zinc-900">
-            Digital products
+            Digital product delivery
           </h2>
           <p className="mt-2">
-            The onboarding pack and generated documents are digital
-            products delivered immediately after purchase.
+            The Client Onboarding Pack is a digital product. Access to the
+            document generator is provided after a verified purchase.
           </p>
           <p className="mt-2">
-            Because access is provided instantly, refunds may not be
-            available once the product has been accessed.
+            Because the product provides immediate digital access, refunds may
+            not be available once the product has been accessed.
           </p>
         </div>
 
@@ -83,14 +88,12 @@ export default function TermsPage() {
             Limitation of liability
           </h2>
           <p className="mt-2">
-            ContractForge is not responsible for how templates are used
-            within your business or for any legal outcomes arising from
-            their use.
+            ContractForge is not responsible for how templates are used within
+            your business or for any legal outcomes arising from their use.
           </p>
           <p className="mt-2">
-            You remain responsible for ensuring that your client agreements
-            and onboarding processes comply with applicable laws and
-            regulations.
+            You remain responsible for ensuring that your client agreements and
+            onboarding processes comply with applicable laws and regulations.
           </p>
         </div>
 
@@ -99,9 +102,9 @@ export default function TermsPage() {
             Changes to these terms
           </h2>
           <p className="mt-2">
-            These terms may be updated from time to time. Continued use of
-            the website after changes are made constitutes acceptance of
-            the updated terms.
+            These terms may be updated from time to time. Continued use of the
+            website after updates are published constitutes acceptance of the
+            revised terms.
           </p>
         </div>
       </section>

@@ -29,7 +29,7 @@ export async function sendRestoreAccessEmail(params: {
           Open my onboarding pack
         </a>
       </p>
-      <p>Keep this email so you can restore access later on any device.</p>
+      <p>This restore link can be used to regain access for the next 30 days.</p>
       <p>Your pack includes:</p>
       <ul>
         <li>Personal Training Agreement</li>
@@ -46,6 +46,6 @@ Your personal trainer onboarding pack is ready.
 Open your onboarding pack:
 ${params.restoreUrl}
 
-Keep this email so you can restore access later on any device.`,
+This restore link can be used to regain access for the next 30 days.`,
   });
 }

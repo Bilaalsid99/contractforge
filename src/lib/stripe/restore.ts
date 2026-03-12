@@ -12,10 +12,22 @@ type RestorePayload = {
   product: "pt-client-onboarding-pack";
   sessionId: string;
   email: string;
+  exp: number;
 };
 
-export function createRestoreToken(payload: RestorePayload) {
-  const body = Buffer.from(JSON.stringify(payload), "utf8").toString("base64url");
+const RESTORE_TOKEN_TTL_SECONDS = 60 * 60 * 24 * 30;
+
+export function createRestoreToken(payload: {
+  product: "pt-client-onboarding-pack";
+  sessionId: string;
+  email: string;
+}) {
+  const fullPayload: RestorePayload = {
+    ...payload,
+    exp: Math.floor(Date.now() / 1000) + RESTORE_TOKEN_TTL_SECONDS,
+  };
+
+  const body = Buffer.from(JSON.stringify(fullPayload), "utf8").toString("base64url");
   const sig = crypto.createHmac("sha256", secret).update(body).digest("base64url");
   return `${body}.${sig}`;
 }
@@ -42,8 +54,14 @@ export function verifyRestoreToken(token?: string | null): RestorePayload | null
     if (
       parsed.product !== "pt-client-onboarding-pack" ||
       !parsed.sessionId ||
-      !parsed.email
+      !parsed.email ||
+      !parsed.exp
     ) {
+      return null;
+    }
+
+    const now = Math.floor(Date.now() / 1000);
+    if (parsed.exp < now) {
       return null;
     }
 

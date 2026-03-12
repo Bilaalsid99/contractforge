@@ -188,8 +188,7 @@ export function HomePreviewBuilder() {
           </p>
 
           <p className="mt-2 text-sm text-zinc-500">
-            Your generator answers stay in your browser and are not stored as
-            server-side drafts.
+            Build your documents in minutes.
           </p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
