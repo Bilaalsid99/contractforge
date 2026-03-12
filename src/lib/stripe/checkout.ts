@@ -18,17 +18,17 @@ export async function createCheckoutSession(opts: { req: Request }) {
   const successUrl = `${origin}/api/checkout/success?session_id={CHECKOUT_SESSION_ID}`;
   const cancelUrl = `${origin}/generate?cancelled=1`;
 
+  const priceId = process.env.STRIPE_PRICE_ID;
+
+  if (!priceId) {
+    throw new Error("Missing STRIPE_PRICE_ID");
+  }
+
   return await stripe.checkout.sessions.create({
     mode: "payment",
     line_items: [
       {
-        price_data: {
-          currency: "gbp",
-          product_data: {
-            name: "Personal Trainer Client Onboarding Pack",
-          },
-          unit_amount: 3900,
-        },
+        price: priceId,
         quantity: 1,
       },
     ],
