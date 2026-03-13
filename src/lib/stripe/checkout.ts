@@ -1,8 +1,13 @@
 import { stripe } from "./client";
 
-function getOrigin(req: Request) {
+function getBaseUrl(req: Request) {
+  const envBaseUrl = process.env.BASE_URL?.trim();
+  if (envBaseUrl) {
+    return envBaseUrl.replace(/\/+$/, "");
+  }
+
   const h = req.headers;
-  const proto = h.get("x-forwarded-proto") ?? "https";
+  const proto = h.get("x-forwarded-proto") ?? "http";
   const host = h.get("x-forwarded-host") ?? h.get("host");
 
   if (!host) {
@@ -13,12 +18,12 @@ function getOrigin(req: Request) {
 }
 
 export async function createCheckoutSession(opts: { req: Request }) {
-  const origin = getOrigin(opts.req);
+  const baseUrl = getBaseUrl(opts.req);
 
-  const successUrl = `${origin}/api/checkout/success?session_id={CHECKOUT_SESSION_ID}`;
-  const cancelUrl = `${origin}/generate?cancelled=1`;
+  const successUrl = `${baseUrl}/api/checkout/success?session_id={CHECKOUT_SESSION_ID}`;
+  const cancelUrl = `${baseUrl}/generate?cancelled=1`;
 
-  const priceId = process.env.STRIPE_PRICE_ID;
+  const priceId = process.env.STRIPE_PRICE_ID?.trim();
 
   if (!priceId) {
     throw new Error("Missing STRIPE_PRICE_ID");
