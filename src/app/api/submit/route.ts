@@ -6,12 +6,7 @@ export const runtime = "nodejs";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-type TemplateId =
-  | "contract"
-  | "parq"
-  | "waiver"
-  | "terms"
-  | "client-agreement";
+type TemplateId = "contract" | "parq" | "waiver" | "terms" | "client-agreement";
 
 const TEMPLATE_MAP: Record<
   TemplateId,
@@ -20,28 +15,28 @@ const TEMPLATE_MAP: Record<
   contract: {
     envKey: "TEMPLATE_FORCE_COPY_URL_CONTRACT",
     name: "Personal Trainer Contract Template (UK)",
-    subject: "Your Personal Trainer Contract Template (UK)",
+    subject: "Your Personal Trainer Contract Template (UK)"
   },
   parq: {
     envKey: "TEMPLATE_FORCE_COPY_URL_PARQ",
     name: "Personal Trainer PAR-Q Form (UK)",
-    subject: "Your Personal Trainer PAR-Q Form (UK)",
+    subject: "Your Personal Trainer PAR-Q Form (UK)"
   },
   waiver: {
     envKey: "TEMPLATE_FORCE_COPY_URL_WAIVER",
     name: "Personal Trainer Liability Waiver (UK)",
-    subject: "Your Personal Trainer Liability Waiver (UK)",
+    subject: "Your Personal Trainer Liability Waiver (UK)"
   },
   terms: {
     envKey: "TEMPLATE_FORCE_COPY_URL_TERMS",
     name: "Personal Trainer Terms & Conditions (UK)",
-    subject: "Your Personal Trainer Terms & Conditions (UK)",
+    subject: "Your Personal Trainer Terms & Conditions (UK)"
   },
   "client-agreement": {
     envKey: "TEMPLATE_FORCE_COPY_URL_CLIENT_AGREEMENT",
     name: "Personal Trainer Client Agreement (UK)",
-    subject: "Your Personal Trainer Client Agreement (UK)",
-  },
+    subject: "Your Personal Trainer Client Agreement (UK)"
+  }
 };
 
 function isValidEmail(email: string) {
@@ -59,7 +54,7 @@ export async function POST(req: Request) {
       bucket: "template-submit",
       ip,
       limit: 10,
-      windowSeconds: 60,
+      windowSeconds: 60
     });
 
     const body = (await req.json()) as {
@@ -78,9 +73,7 @@ export async function POST(req: Request) {
     }
 
     const id =
-      typeof body.templateId === "string"
-        ? body.templateId.trim()
-        : "";
+      typeof body.templateId === "string" ? body.templateId.trim() : "";
 
     if (!id || !(id in TEMPLATE_MAP)) {
       return NextResponse.json(
@@ -94,37 +87,35 @@ export async function POST(req: Request) {
 
     const apiKey = process.env.RESEND_API_KEY?.trim();
     if (!apiKey) {
-      console.error("SUBMIT_ERROR", { error: "Missing RESEND_API_KEY" });
+      console.error("SUBMIT_ERROR", { error: "Missing API key" });
       return NextResponse.json(
-        { success: false, error: "Missing RESEND_API_KEY" },
+        { success: false, error: "Missing API Key" },
         { status: 500 }
       );
     }
 
     const templateUrl = process.env[cfg.envKey]?.trim();
     if (!templateUrl) {
-      console.error("SUBMIT_ERROR", { error: `Missing ${cfg.envKey}` });
+      console.error("SUBMIT_ERROR", { error: `Missing Template API Key` });
       return NextResponse.json(
-        { success: false, error: `Missing ${cfg.envKey}` },
+        { success: false, error: `Missing Template API Key` },
         { status: 500 }
       );
     }
 
     const from = (
-      process.env.LEADS_FROM_EMAIL ||
-      "PT Templates <owner@siddiqholdings.com>"
+      process.env.LEADS_FROM_EMAIL || "PT Templates <owner@siddiqholdings.com>"
     ).trim();
 
     const notifyTo = (
-      process.env.LEADS_NOTIFY_EMAIL ||
-      "owner@siddiqholdings.com"
+      process.env.LEADS_NOTIFY_EMAIL || "owner@siddiqholdings.com"
     ).trim();
 
-    console.log("NEW_LEAD", {
-      email: cleanEmail,
-      templateId,
-      ip,
-    });
+    // console.log("NEW_LEAD", {
+    //   email: cleanEmail,
+    //   templateId,
+    //   ip,
+    // });
 
     const ownerResult = await resend.emails.send({
       from,
@@ -141,7 +132,7 @@ export async function POST(req: Request) {
 
 Email: ${cleanEmail}
 Template: ${cfg.name}
-Template link: ${templateUrl}`,
+Template link: ${templateUrl}`
     });
 
     if ((ownerResult as { error?: unknown })?.error) {
@@ -202,7 +193,7 @@ If you have any questions, simply reply to this email.
   <p style="margin-top: 24px; font-size: 14px; color: #777;">
     — PT Templates UK
   </p>
-</div>`,
+</div>`
     });
 
     if ((userResult as { error?: unknown })?.error) {
@@ -217,8 +208,7 @@ If you have any questions, simply reply to this email.
   } catch (err) {
     console.error("SUBMIT_ERROR:", err);
 
-    const message =
-      err instanceof Error ? err.message : "Server error";
+    const message = err instanceof Error ? err.message : "Server error";
 
     return NextResponse.json(
       { success: false, error: message },
