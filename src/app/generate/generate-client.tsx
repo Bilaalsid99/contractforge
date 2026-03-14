@@ -257,7 +257,7 @@ function PreviewPanel({
                     disabled={loading}
                     className="rounded-2xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-zinc-400"
                   >
-                    {loading ? "Redirecting..." : "Unlock export (£39)"}
+                    {loading ? "Redirecting..." : "Unlock export (£29.95)"}
                   </button>
                 </div>
               </div>
@@ -401,7 +401,7 @@ export default function GenerateClient({
                 ? "Export unlocked"
                 : loading
                   ? "Redirecting..."
-                  : "Unlock export (£39)"}
+                  : "Unlock export (£29.95)"}
             </button>
           </div>
         </div>
@@ -603,7 +603,7 @@ export default function GenerateClient({
                       ? "Export unlocked"
                       : loading
                         ? "Redirecting..."
-                        : "Unlock export (£39)"}
+                        : "Unlock export (£29.95)"}
                   </button>
                 </div>
               </div>

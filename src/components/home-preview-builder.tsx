@@ -184,7 +184,7 @@ export function HomePreviewBuilder() {
           </div>
 
           <p className="mt-3 text-sm text-zinc-500">
-            One-time £39. Instant access after checkout. No subscription.
+            One-time £29.95. Instant access after checkout. No subscription.
           </p>
 
           <p className="mt-2 text-sm text-zinc-500">

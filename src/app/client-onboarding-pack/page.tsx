@@ -132,7 +132,7 @@ export default function ClientOnboardingPackPage() {
     <main className="bg-white">
       <section className="mx-auto max-w-6xl px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-20">
         <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
-          <Badge>£39 one-time purchase</Badge>
+          <Badge>£29.95 one-time purchase</Badge>
           <Badge>Preview before paying</Badge>
           <Badge>Reusable for future clients</Badge>
           <Badge>UK-focused wording</Badge>
@@ -238,7 +238,7 @@ export default function ClientOnboardingPackPage() {
           <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
             <p className="text-sm font-semibold text-zinc-500">One-time price</p>
             <p className="mt-2 text-4xl font-bold tracking-tight text-zinc-900">
-              £39
+              £29.95
             </p>
             <p className="mt-2 text-sm text-zinc-600">
               Start building first, preview the pack, then pay once to unlock
@@ -309,7 +309,7 @@ export default function ClientOnboardingPackPage() {
               you pay.
             </Card>
 
-            <Card title="3. Unlock export for £39">
+            <Card title="3. Unlock export for £29.95">
               Pay once to unlock the full pack and reuse the structure for
               future clients.
             </Card>
@@ -376,7 +376,7 @@ export default function ClientOnboardingPackPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-600">
             Complete the guided setup, preview your onboarding documents, and
-            unlock export for a one-time £39 payment.
+            unlock export for a one-time £29.95 payment.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
