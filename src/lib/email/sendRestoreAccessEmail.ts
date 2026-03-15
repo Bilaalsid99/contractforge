@@ -20,14 +20,14 @@ export async function sendRestoreAccessEmail(params: {
   await resend.emails.send({
     from,
     to,
-    subject: "Your Personal Trainer Client Onboarding Pack",
+    subject: "Your Personal Trainer Client Onboarding Pack is ready",
     html: `
       <p>Thanks for your purchase.</p>
 
-      <p>Your Personal Trainer Client Onboarding Pack is ready.</p>
+      <p>Your <strong>Personal Trainer Client Onboarding Pack</strong> is ready.</p>
 
       <p>
-        <a href="${params.restoreUrl}" style="display:inline-block;padding:12px 18px;background:#111;color:#fff;border-radius:8px;text-decoration:none;">
+        <a href="${params.restoreUrl}" style="display:inline-block;padding:12px 18px;background:#111;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">
           Open my onboarding pack
         </a>
       </p>
@@ -42,7 +42,12 @@ export async function sendRestoreAccessEmail(params: {
         <li>Liability Waiver</li>
       </ul>
 
-      <p><strong>Supporting onboarding files:</strong></p>
+      <p><strong>Supporting onboarding templates:</strong></p>
+
+      <p>
+      These templates open as editable Google Docs so you can make your own copy
+      and customise them for your business.
+      </p>
 
       <ul>
         <li>
@@ -75,15 +80,17 @@ Your Personal Trainer Client Onboarding Pack is ready.
 Open your onboarding pack:
 ${params.restoreUrl}
 
-This link restores access for the next 30 days.
+This link restores access to the generator and your documents for the next 30 days.
 
 Your pack includes:
 
-Personal Training Agreement
-PAR-Q Health Questionnaire
-Liability Waiver
+• Personal Training Agreement
+• PAR-Q Health Questionnaire
+• Liability Waiver
 
-Supporting onboarding files:
+Supporting onboarding templates:
+
+These templates open as editable Google Docs so you can make your own copy and customise them for your business.
 
 Client Onboarding Guide for Personal Trainers
 https://docs.google.com/document/u/6/d/1iit8DSCG9uDKrQLW-m2PEQa3nswzx6eeSFShY7YxvhY/copy
