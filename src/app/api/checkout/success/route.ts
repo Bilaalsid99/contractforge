@@ -30,7 +30,7 @@ export async function GET(req: Request) {
 
     const purchasedPriceId = lineItems.data[0]?.price?.id;
 
-    if (purchasedPriceId !== process.env.STRIPE_PRICE_ID) {
+    if (!purchasedPriceId || purchasedPriceId !== process.env.STRIPE_PRICE_ID) {
       return NextResponse.redirect(new URL("/generate", origin));
     }
 
@@ -60,7 +60,9 @@ export async function GET(req: Request) {
         });
 
         const baseUrl = process.env.BASE_URL || origin;
-        const restoreUrl = `${baseUrl}/restore?token=${encodeURIComponent(restoreToken)}`;
+        const restoreUrl = `${baseUrl}/restore?token=${encodeURIComponent(
+          restoreToken
+        )}`;
 
         await sendRestoreAccessEmail({
           to: customerEmail,

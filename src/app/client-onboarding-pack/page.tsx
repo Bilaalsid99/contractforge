@@ -128,6 +128,20 @@ export default function ClientOnboardingPackPage() {
     "Group training",
   ];
 
+  const bonusForms = [
+    "Emergency & Health Information Form",
+    "Incident / Injury Report Form",
+    "Client Onboarding Guide for Personal Trainers",
+  ];
+
+ const workflowSteps = [
+  "Send the PAR-Q Health Questionnaire before training begins.",
+  "Ask the client to review and sign the Personal Training Agreement. This document includes payment terms, cancellation rules, and general training expectations.",
+  "Have the client sign the Liability Waiver before participating in training sessions.",
+  "Keep the Emergency & Health Information Form on file for client safety.",
+  "Use the Incident / Injury Report Form if something happens during a session.",
+];
+
   return (
     <main className="bg-white">
       <section className="mx-auto max-w-6xl px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-20">
@@ -141,16 +155,19 @@ export default function ClientOnboardingPackPage() {
         <SectionTitle
           kicker="Personal Trainer Client Onboarding Pack"
           title="Build your personal trainer client onboarding pack in minutes"
-          desc="Answer a guided setup and generate a structured onboarding pack covering agreements, health screening, and liability."
+          desc="Answer a guided setup and preview a structured onboarding pack covering agreements, health screening, liability, and key trainer safety forms."
         />
 
         <div className="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
             <p className="text-sm font-semibold text-zinc-900">
-              What the onboarding pack generates
+              What the onboarding pack includes
             </p>
             <p className="mt-2 text-sm leading-7 text-zinc-600">
-              Designed to reduce cognitive overload. Instead of handing you a stack of disconnected templates, the system organises the key onboarding protections into three clear client-facing documents.
+              Designed to reduce cognitive overload. Instead of handing you a
+              stack of disconnected templates, the pack gives you the core
+              documents many trainers need to onboard clients with clearer
+              expectations and safer structure.
             </p>
 
             <div className="mt-5 grid gap-4">
@@ -180,40 +197,54 @@ export default function ClientOnboardingPackPage() {
                 <CheckList items={agreementCoverage} />
               </div>
 
-              <div className="rounded-2xl border border-zinc-200 bg-white p-5">
-                <div className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-lg">
-                    📋
-                  </span>
-                  <div>
-                    <p className="text-base font-semibold text-zinc-900">
-                      PAR-Q Health Questionnaire
-                    </p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-zinc-200 bg-white p-5">
+                  <div className="flex items-start gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-lg">
+                      📋
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-zinc-900">
+                        PAR-Q Health Questionnaire
+                      </p>
+                    </div>
                   </div>
+
+                  <p className="mt-3 text-sm text-zinc-600">
+                    Health screening completed before training begins.
+                  </p>
                 </div>
 
-                <p className="mt-3 text-sm text-zinc-600">
-                  Health screening completed before training begins.
-                </p>
-              </div>
-
-              <div className="rounded-2xl border border-zinc-200 bg-white p-5">
-                <div className="flex items-start gap-3">
-                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-lg">
-                    ⚖️
-                  </span>
-                  <div>
-                    <p className="text-base font-semibold text-zinc-900">
-                      Liability Waiver
-                    </p>
+                <div className="rounded-2xl border border-zinc-200 bg-white p-5">
+                  <div className="flex items-start gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-lg">
+                      ⚖️
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-zinc-900">
+                        Liability Waiver
+                      </p>
+                    </div>
                   </div>
-                </div>
 
-                <p className="mt-3 text-sm text-zinc-600">
-                  Risk acknowledgement and injury disclaimer signed before
-                  participation.
-                </p>
+                  <p className="mt-3 text-sm text-zinc-600">
+                    Risk acknowledgement and injury disclaimer signed before
+                    participation.
+                  </p>
+                </div>
               </div>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-zinc-200 bg-white p-5">
+              <p className="text-sm font-semibold text-zinc-900">
+                Bonus trainer forms included
+              </p>
+              <p className="mt-2 text-sm leading-7 text-zinc-600">
+                You will also receive a small set of supporting documents to
+                help you keep onboarding organised and respond properly if an
+                issue happens during training.
+              </p>
+              <CheckList items={bonusForms} />
             </div>
 
             <p className="mt-5 text-xs text-zinc-500">
@@ -259,7 +290,7 @@ export default function ClientOnboardingPackPage() {
 
             <div className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
               <p className="text-sm font-semibold text-zinc-900">
-                Your onboarding pack will generate:
+                Your pack includes:
               </p>
               <div className="mt-3 space-y-2 text-sm text-zinc-700">
                 <div className="flex items-center gap-2">
@@ -273,6 +304,14 @@ export default function ClientOnboardingPackPage() {
                 <div className="flex items-center gap-2">
                   <span>✓</span>
                   <span>Liability Waiver</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>Emergency &amp; Health Information Form</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>Incident / Injury Report Form</span>
                 </div>
               </div>
             </div>
@@ -294,8 +333,8 @@ export default function ClientOnboardingPackPage() {
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
             kicker="Why this is simpler"
-            title="The system covers the key areas without making onboarding feel messy"
-            desc="The goal is not to give you more documents. The goal is to remove uncertainty and give your clients a clearer onboarding flow."
+            title="The pack covers the key onboarding areas without making things feel messy"
+            desc="The goal is not to give you more paperwork. The goal is to give you a calmer, clearer client onboarding process that is easier to use from the start."
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -320,17 +359,41 @@ export default function ClientOnboardingPackPage() {
       <section className="border-t border-zinc-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
+            kicker="How personal trainers use this pack"
+            title="A simple client onboarding workflow"
+            desc="Most trainers use these documents in the same general order so clients understand the process clearly from the beginning."
+          />
+
+          <div className="mx-auto mt-8 max-w-4xl space-y-4">
+            {workflowSteps.map((step, index) => (
+              <div
+                key={step}
+                className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 shadow-sm"
+              >
+                <p className="text-sm font-semibold text-zinc-900">
+                  Step {index + 1}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-zinc-600">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-zinc-200 bg-zinc-50">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+          <SectionTitle
             kicker="What the guided setup covers"
             title="Answer these once, then preview the full pack"
             desc="Your answers shape the wording across the agreement, PAR-Q, and waiver."
           />
 
-          <div className="mx-auto mt-8 max-w-4xl rounded-3xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
+          <div className="mx-auto mt-8 max-w-4xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
             <div className="grid gap-2 sm:grid-cols-2">
               {generatorQuestions.map((item) => (
                 <div
                   key={item}
-                  className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm font-medium text-zinc-800"
+                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-medium text-zinc-800"
                 >
                   {item}
                 </div>
@@ -344,29 +407,39 @@ export default function ClientOnboardingPackPage() {
         </div>
       </section>
 
-      <section className="border-t border-zinc-200 bg-zinc-50">
-        <div className="mx-auto max-w-5xl px-4 py-14 text-center sm:px-6">
+      <section className="border-t border-zinc-200 bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">
           <SectionTitle
-            kicker="Client onboarding flow"
-            title="A calmer structure for both you and your clients"
-            desc="The pack is organised around the actual order a trainer would usually onboard a client."
+            kicker="What you receive"
+            title="A structured onboarding pack, not a pile of random templates"
+            desc="The pack is designed to help personal trainers move from first enquiry to first session with clearer expectations, safer screening, and better documentation."
           />
 
-          <div className="mt-8 space-y-4 text-sm text-zinc-700">
-            <div className="rounded-xl border border-zinc-200 bg-white p-4">
-              1. Client signs the personal training agreement
-            </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-4">
-              2. Client completes the PAR-Q health questionnaire
-            </div>
-            <div className="rounded-xl border border-zinc-200 bg-white p-4">
-              3. Client signs the liability waiver before training begins
-            </div>
+          <div className="mt-8 grid gap-4 md:grid-cols-2">
+            <Card title="Core onboarding documents">
+              <CheckList
+                items={[
+                  "Personal Training Agreement",
+                  "PAR-Q Health Questionnaire",
+                  "Liability Waiver",
+                ]}
+              />
+            </Card>
+
+            <Card title="Supporting trainer forms">
+              <CheckList
+                items={[
+                  "Emergency & Health Information Form",
+                  "Incident / Injury Report Form",
+                  "Client Onboarding Guide for Personal Trainers",
+                ]}
+              />
+            </Card>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-zinc-200 bg-white">
+      <section className="border-t border-zinc-200 bg-zinc-50">
         <div className="mx-auto max-w-4xl px-4 py-14 text-center sm:px-6">
           <p className="text-sm font-semibold tracking-wide text-zinc-500">
             Ready to build?

@@ -28,6 +28,12 @@ function classNames(...xs: Array<string | false | undefined | null>) {
   return xs.filter(Boolean).join(" ");
 }
 
+const inputClassName =
+  "w-full rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none transition focus:border-zinc-400 focus:ring-2 focus:ring-zinc-100";
+
+const selectClassName =
+  "w-full min-h-[48px] appearance-none rounded-2xl border border-zinc-200 bg-white px-4 pr-10 py-3 text-[15px] text-zinc-900 outline-none transition focus:border-zinc-400 focus:ring-2 focus:ring-zinc-100";
+
 function Field({
   label,
   value,
@@ -48,7 +54,7 @@ function Field({
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none transition focus:border-zinc-400"
+        className={inputClassName}
       />
     </label>
   );
@@ -70,17 +76,35 @@ function SelectField({
       <span className="mb-2 block text-sm font-semibold text-zinc-900">
         {label}
       </span>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-900 outline-none transition focus:border-zinc-400"
-      >
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+      <div className="relative">
+        <select
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className={selectClassName}
+        >
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+
+        <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-zinc-500">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="h-4 w-4"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.512a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
+      </div>
     </label>
   );
 }
@@ -146,6 +170,7 @@ Date: [Date]`;
 function buildParq(form: FormState) {
   return `PAR-Q HEALTH QUESTIONNAIRE
 
+Trainer: ${form.trainerName || "[Trainer name]"}
 Trainer / Business: ${form.businessName || "[Business name]"}
 
 Client name: [Client full name]
@@ -213,14 +238,10 @@ function PreviewPanel({
   title,
   fullText,
   isUnlocked,
-  onUnlock,
-  loading,
 }: {
   title: string;
   fullText: string;
   isUnlocked: boolean;
-  onUnlock: () => void;
-  loading: boolean;
 }) {
   const previewText = useMemo(() => getPreviewText(fullText), [fullText]);
 
@@ -248,18 +269,9 @@ function PreviewPanel({
                 </p>
                 <p className="mt-1 text-sm text-zinc-600">
                   You can review the structure and wording style first. Unlock
-                  the full pack to view complete documents and export.
+                  the full pack to access complete documents, export, and the
+                  supporting onboarding files.
                 </p>
-                <div className="mt-4">
-                  <button
-                    type="button"
-                    onClick={onUnlock}
-                    disabled={loading}
-                    className="rounded-2xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-zinc-400"
-                  >
-                    {loading ? "Redirecting..." : "Unlock export (£29.95)"}
-                  </button>
-                </div>
               </div>
             </div>
           </>
@@ -391,18 +403,6 @@ export default function GenerateClient({
             >
               Back to product page
             </Link>
-            <button
-              type="button"
-              onClick={handleCheckout}
-              disabled={loading || isUnlocked}
-              className="rounded-2xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-zinc-400"
-            >
-              {isUnlocked
-                ? "Export unlocked"
-                : loading
-                  ? "Redirecting..."
-                  : "Unlock export (£29.95)"}
-            </button>
           </div>
         </div>
 
@@ -429,6 +429,18 @@ export default function GenerateClient({
                     <span>✓</span>
                     <span>Liability Waiver</span>
                   </div>
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
+                    <span>Emergency &amp; Health Information Form</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
+                    <span>Incident / Injury Report Form</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
+                    <span>Client Onboarding Guide for Personal Trainers</span>
+                  </div>
                 </div>
               </div>
             </SectionCard>
@@ -440,14 +452,18 @@ export default function GenerateClient({
               <Field
                 label="Trainer name"
                 value={form.trainerName}
-                onChange={(value) => setForm((s) => ({ ...s, trainerName: value }))}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, trainerName: value }))
+                }
                 placeholder="e.g. Alex Smith"
               />
 
               <Field
                 label="Business / trading name"
                 value={form.businessName}
-                onChange={(value) => setForm((s) => ({ ...s, businessName: value }))}
+                onChange={(value) =>
+                  setForm((s) => ({ ...s, businessName: value }))
+                }
                 placeholder="e.g. Alex's Fitness Coaching"
               />
             </SectionCard>
@@ -542,31 +558,44 @@ export default function GenerateClient({
             </SectionCard>
 
             <SectionCard
-              title="Health and liability"
+              title="Health, screening and liability"
               desc="These details shape the screening and risk wording."
             >
-              <Field
+              <SelectField
                 label="Medical clearance approach"
                 value={form.medicalClearanceApproach}
                 onChange={(value) =>
                   setForm((s) => ({ ...s, medicalClearanceApproach: value }))
                 }
+                options={[
+                  "Medical clearance may be requested where appropriate",
+                  "Medical clearance required where relevant conditions are disclosed",
+                  "Client responsible for confirming suitability before training",
+                ]}
               />
 
-              <Field
+              <SelectField
                 label="Emergency contact requirement"
                 value={form.emergencyContactRequirement}
                 onChange={(value) =>
                   setForm((s) => ({ ...s, emergencyContactRequirement: value }))
                 }
+                options={[
+                  "Emergency contact details required before training begins",
+                  "Emergency contact details requested but optional",
+                ]}
               />
 
-              <Field
+              <SelectField
                 label="Liability wording"
                 value={form.liabilityWording}
                 onChange={(value) =>
                   setForm((s) => ({ ...s, liabilityWording: value }))
                 }
+                options={[
+                  "The trainer is not responsible for injuries arising from undisclosed health conditions or failure to follow guidance",
+                  "Training involves inherent risk and the client agrees to follow instructions and disclose relevant information",
+                ]}
               />
             </SectionCard>
           </section>
@@ -641,8 +670,6 @@ export default function GenerateClient({
               title={activeTitle}
               fullText={activeContent}
               isUnlocked={isUnlocked}
-              onUnlock={handleCheckout}
-              loading={loading}
             />
           </section>
         </div>
