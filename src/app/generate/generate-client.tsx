@@ -24,6 +24,15 @@ type DocKey = "agreement" | "parq" | "waiver";
 
 const STORAGE_KEY = "contractforge:generator:v1";
 
+const SUPPORTING_LINKS = {
+  guide:
+    "https://docs.google.com/document/u/6/d/1iit8DSCG9uDKrQLW-m2PEQa3nswzx6eeSFShY7YxvhY/copy",
+  emergency:
+    "https://docs.google.com/document/u/6/d/1AHtCwbRAN39V9mGEeHwuLEJytRnl4VMTOOZKBrzaaVk/copy",
+  incident:
+    "https://docs.google.com/document/u/6/d/1_NwmIbY12KAQ_WdzQQmESZOrQnWY2urVxSJc3i6QLb4/copy",
+};
+
 function classNames(...xs: Array<string | false | undefined | null>) {
   return xs.filter(Boolean).join(" ");
 }
@@ -601,6 +610,72 @@ export default function GenerateClient({
           </section>
 
           <section className="space-y-4">
+            {isUnlocked && (
+              <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm">
+                <p className="text-sm font-semibold text-zinc-900">
+                  Your onboarding pack is unlocked
+                </p>
+                <p className="mt-1 text-sm text-zinc-600">
+                  You can now copy your generated documents and access the
+                  supporting templates included in your pack.
+                </p>
+
+                <div className="mt-4 space-y-2 text-sm text-zinc-700">
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
+                    <span>Personal Training Agreement</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
+                    <span>PAR-Q Health Questionnaire</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
+                    <span>Liability Waiver</span>
+                  </div>
+                </div>
+
+                <div className="mt-5">
+                  <p className="text-sm font-semibold text-zinc-900">
+                    Supporting onboarding templates
+                  </p>
+                  <p className="mt-1 text-sm text-zinc-600">
+                    These open as editable Google Docs so you can make your own
+                    copy.
+                  </p>
+
+                  <div className="mt-3 flex flex-col gap-2 text-sm">
+                    <a
+                      href={SUPPORTING_LINKS.guide}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
+                    >
+                      Client Onboarding Guide for Personal Trainers
+                    </a>
+
+                    <a
+                      href={SUPPORTING_LINKS.emergency}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
+                    >
+                      Emergency &amp; Health Information Form
+                    </a>
+
+                    <a
+                      href={SUPPORTING_LINKS.incident}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
+                    >
+                      Incident / Injury Report Form
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
