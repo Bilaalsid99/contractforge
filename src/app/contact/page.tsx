@@ -23,8 +23,8 @@ export default function ContactPage() {
             support@contractforge.co.uk
           </p>
           <p className="mt-2 text-xs leading-5 text-zinc-500">
-            Please contact us from, or mention, the email address used at
-            checkout where possible.
+            Where possible, please contact us from the email address used at
+            checkout or mention it in your message.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export default function ContactPage() {
           <li>Checkout or payment confirmation issues</li>
           <li>Problems accessing the generator after purchase</li>
           <li>Restore-access requests after losing access on a device</li>
-          <li>General support about using the generated documents</li>
+          <li>General support with using the generated documents and supporting templates</li>
         </ul>
       </div>
     </div>

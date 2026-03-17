@@ -25,6 +25,8 @@ type DocKey = "agreement" | "parq" | "waiver";
 const STORAGE_KEY = "contractforge:generator:v1";
 
 const SUPPORTING_LINKS = {
+  intake:
+    "https://docs.google.com/document/d/1EPyDfkQibmTjuWJxcQupMZgpSmyDr1Lhyc_kncUIEos/copy",
   guide:
     "https://docs.google.com/document/u/6/d/1iit8DSCG9uDKrQLW-m2PEQa3nswzx6eeSFShY7YxvhY/copy",
   emergency:
@@ -440,6 +442,10 @@ export default function GenerateClient({
                   </div>
                   <div className="flex items-center gap-2">
                     <span>✓</span>
+                    <span>Client Intake / Consultation Form</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span>✓</span>
                     <span>Emergency &amp; Health Information Form</span>
                   </div>
                   <div className="flex items-center gap-2">
@@ -448,7 +454,7 @@ export default function GenerateClient({
                   </div>
                   <div className="flex items-center gap-2">
                     <span>✓</span>
-                    <span>Client Onboarding Guide for Personal Trainers</span>
+                    <span>Quick-start onboarding guide</span>
                   </div>
                 </div>
               </div>
@@ -641,36 +647,45 @@ export default function GenerateClient({
                   </p>
                   <p className="mt-1 text-sm text-zinc-600">
                     These open as editable Google Docs so you can make your own
-                    copy.
+                    copy and use them during onboarding.
                   </p>
 
                   <div className="mt-3 flex flex-col gap-2 text-sm">
                     <a
-                      href={SUPPORTING_LINKS.guide}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
-                    >
-                      Client Onboarding Guide for Personal Trainers
-                    </a>
+  href={SUPPORTING_LINKS.intake}
+  target="_blank"
+  rel="noreferrer"
+  className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
+>
+  Client Intake / Consultation Form
+</a>
 
-                    <a
-                      href={SUPPORTING_LINKS.emergency}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
-                    >
-                      Emergency &amp; Health Information Form
-                    </a>
+<a
+  href={SUPPORTING_LINKS.emergency}
+  target="_blank"
+  rel="noreferrer"
+  className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
+>
+  Emergency &amp; Health Information Form
+</a>
 
-                    <a
-                      href={SUPPORTING_LINKS.incident}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
-                    >
-                      Incident / Injury Report Form
-                    </a>
+<a
+  href={SUPPORTING_LINKS.incident}
+  target="_blank"
+  rel="noreferrer"
+  className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
+>
+  Incident / Injury Report Form
+</a>
+
+<a
+  href={SUPPORTING_LINKS.guide}
+  target="_blank"
+  rel="noreferrer"
+  className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
+>
+  Quick-start onboarding guide
+</a>
                   </div>
                 </div>
               </div>
@@ -683,8 +698,8 @@ export default function GenerateClient({
                     Preview your onboarding pack
                   </p>
                   <p className="mt-1 text-sm text-zinc-600">
-                    Review the structure first. Full documents and export unlock
-                    after payment.
+                    Review the structure first. Full documents and supporting
+                    templates unlock after payment.
                   </p>
                 </div>
 

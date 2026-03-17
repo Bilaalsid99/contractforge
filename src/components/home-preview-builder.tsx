@@ -99,10 +99,10 @@ Sessions must be booked in advance. The Client must provide at least ${hours} ho
 The Client understands that physical training carries inherent risks and agrees to participate voluntarily.
 
 5. Preview Note
-This is a limited preview only. The full onboarding system also includes:
+This is a limited preview only. The full onboarding pack also includes:
 • PAR-Q Health Questionnaire
 • Liability Waiver
-• Matching details across the full onboarding pack`;
+• Supporting onboarding forms for intake, client safety, and record-keeping`;
 }
 
 function DocumentPreview({ text }: { text: string }) {
@@ -134,8 +134,9 @@ function DocumentPreview({ text }: { text: string }) {
           What the full onboarding pack includes
         </p>
         <p className="mt-1 text-sm text-zinc-600">
-          Personal Training Agreement, PAR-Q Health Questionnaire, and Liability
-          Waiver designed to work together as one onboarding system.
+          Personal Training Agreement, PAR-Q Health Questionnaire, Liability
+          Waiver, and supporting onboarding forms designed to work together as
+          one onboarding pack.
         </p>
       </div>
     </div>
@@ -170,8 +171,9 @@ export function HomePreviewBuilder() {
           </h1>
 
           <p className="mt-5 max-w-2xl text-base text-zinc-600 sm:text-lg">
-            Generate a cleaner onboarding setup with a connected agreement,
-            PAR-Q, and waiver built for UK personal trainers.
+            Generate a cleaner onboarding setup with connected agreements,
+            health screening, and supporting forms built for UK personal
+            trainers.
           </p>
 
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -197,8 +199,9 @@ export function HomePreviewBuilder() {
                 What’s included
               </p>
               <p className="mt-1 text-sm text-zinc-600">
-                Personal Training Agreement, PAR-Q Health Questionnaire, and
-                Liability Waiver with matching details across the set.
+                Personal Training Agreement, PAR-Q Health Questionnaire,
+                Liability Waiver, and supporting onboarding forms designed to
+                work together.
               </p>
             </div>
             <div className="rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">

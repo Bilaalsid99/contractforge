@@ -102,9 +102,9 @@ export default function TermsPage() {
             Changes to these terms
           </h2>
           <p className="mt-2">
-            These terms may be updated from time to time. Continued use of the
-            website after updates are published constitutes acceptance of the
-            revised terms.
+              We may update these terms from time to time. Any changes will be
+  published on this page. Continued use of the website after updates are
+  published means you accept the revised terms.
           </p>
         </div>
       </section>

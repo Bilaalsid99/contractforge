@@ -108,7 +108,7 @@ export default function BusinessToolkitPage() {
     "Liability Waiver",
     "Emergency & Health Information Form",
     "Incident / Injury Report Form",
-    "Client Onboarding Guide for Personal Trainers",
+    "Quick-start onboarding guide",
   ];
 
   const intakeItems = [

@@ -112,7 +112,7 @@ export default function HomePage() {
           <SectionTitle
             kicker="Why trainers use it"
             title="A simpler way to get your onboarding in place"
-            desc="Review the structure, explore the free templates, or move straight to the full onboarding pack when you want the documents working together."
+            desc="Review the structure, explore the free templates, or move straight to the full onboarding pack when you want your agreement, screening, and supporting onboarding forms working together."
           />
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
@@ -141,8 +141,8 @@ export default function HomePage() {
                 Unlock the full pack
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Get the connected onboarding documents in one place instead of
-                piecing them together manually.
+                Get the core onboarding documents and supporting trainer forms in
+                one place instead of piecing them together manually.
               </p>
             </div>
           </div>
@@ -208,8 +208,8 @@ export default function HomePage() {
                 3. Unlock the full onboarding pack
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Move forward when you want the complete connected documents in
-                one place.
+                Move forward when you want the complete onboarding pack, including
+                core documents and supporting trainer forms, in one place.
               </p>
             </div>
           </div>
@@ -229,11 +229,6 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <p className="mx-auto mt-8 max-w-3xl text-center text-xs text-zinc-500">
-            Not legal advice. This tool provides structured template wording for
-            personal trainer onboarding documents. For unusual or high-risk
-            situations, consult a solicitor.
-          </p>
         </div>
       </section>
     </div>

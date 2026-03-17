@@ -129,18 +129,20 @@ export default function ClientOnboardingPackPage() {
   ];
 
   const bonusForms = [
+    "Client Intake / Consultation Form",
     "Emergency & Health Information Form",
     "Incident / Injury Report Form",
-    "Client Onboarding Guide for Personal Trainers",
+    "Quick-start onboarding guide",
   ];
 
- const workflowSteps = [
-  "Send the PAR-Q Health Questionnaire before training begins.",
-  "Ask the client to review and sign the Personal Training Agreement. This document includes payment terms, cancellation rules, and general training expectations.",
-  "Have the client sign the Liability Waiver before participating in training sessions.",
-  "Keep the Emergency & Health Information Form on file for client safety.",
-  "Use the Incident / Injury Report Form if something happens during a session.",
-];
+  const workflowSteps = [
+    "Start with the Client Intake / Consultation Form to gather the client's goals, background, and basic onboarding information before formal screening begins.",
+    "Send the PAR-Q Health Questionnaire before training begins.",
+    "Ask the client to review and sign the Personal Training Agreement. This document includes payment terms, cancellation rules, and general training expectations.",
+    "Have the client sign the Liability Waiver before participating in training sessions.",
+    "Keep the Emergency & Health Information Form on file for client safety.",
+    "Use the Incident / Injury Report Form if something happens during a session.",
+  ];
 
   return (
     <main className="bg-white">
@@ -155,7 +157,7 @@ export default function ClientOnboardingPackPage() {
         <SectionTitle
           kicker="Personal Trainer Client Onboarding Pack"
           title="Build your personal trainer client onboarding pack in minutes"
-          desc="Answer a guided setup and preview a structured onboarding pack covering agreements, health screening, liability, and key trainer safety forms."
+          desc="Answer a guided setup and preview a structured onboarding pack covering agreements, health screening, liability, and practical trainer forms used before and during client onboarding."
         />
 
         <div className="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -167,7 +169,7 @@ export default function ClientOnboardingPackPage() {
               Designed to reduce cognitive overload. Instead of handing you a
               stack of disconnected templates, the pack gives you the core
               documents many trainers need to onboard clients with clearer
-              expectations and safer structure.
+              expectations, safer screening, and more organised paperwork.
             </p>
 
             <div className="mt-5 grid gap-4">
@@ -241,8 +243,9 @@ export default function ClientOnboardingPackPage() {
               </p>
               <p className="mt-2 text-sm leading-7 text-zinc-600">
                 You will also receive a small set of supporting documents to
-                help you keep onboarding organised and respond properly if an
-                issue happens during training.
+                help you gather early client information, keep onboarding
+                organised, and respond properly if an issue happens during
+                training.
               </p>
               <CheckList items={bonusForms} />
             </div>
@@ -307,11 +310,19 @@ export default function ClientOnboardingPackPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <span>✓</span>
+                  <span>Client Intake / Consultation Form</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
                   <span>Emergency &amp; Health Information Form</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span>✓</span>
                   <span>Incident / Injury Report Form</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>Quick-start onboarding guide</span>
                 </div>
               </div>
             </div>
@@ -334,7 +345,7 @@ export default function ClientOnboardingPackPage() {
           <SectionTitle
             kicker="Why this is simpler"
             title="The pack covers the key onboarding areas without making things feel messy"
-            desc="The goal is not to give you more paperwork. The goal is to give you a calmer, clearer client onboarding process that is easier to use from the start."
+            desc="The goal is not to give you more paperwork. The goal is to give you a calmer, clearer client onboarding process that is easier to use from first enquiry through to first session."
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -429,9 +440,10 @@ export default function ClientOnboardingPackPage() {
             <Card title="Supporting trainer forms">
               <CheckList
                 items={[
+                  "Client Intake / Consultation Form",
                   "Emergency & Health Information Form",
                   "Incident / Injury Report Form",
-                  "Client Onboarding Guide for Personal Trainers",
+                  "Quick-start onboarding guide",
                 ]}
               />
             </Card>

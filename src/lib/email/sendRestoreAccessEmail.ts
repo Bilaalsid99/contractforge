@@ -52,7 +52,7 @@ export async function sendRestoreAccessEmail(params: {
       <ul>
         <li>
           <a href="https://docs.google.com/document/u/6/d/1iit8DSCG9uDKrQLW-m2PEQa3nswzx6eeSFShY7YxvhY/copy">
-            Client Onboarding Guide for Personal Trainers
+            Quick-start onboarding guide
           </a>
         </li>
 
@@ -92,14 +92,17 @@ Supporting onboarding templates:
 
 These templates open as editable Google Docs so you can make your own copy and customise them for your business.
 
-Client Onboarding Guide for Personal Trainers
-https://docs.google.com/document/u/6/d/1iit8DSCG9uDKrQLW-m2PEQa3nswzx6eeSFShY7YxvhY/copy
+Client Intake / Consultation Form
+https://docs.google.com/document/d/1EPyDfkQibmTjuWJxcQupMZgpSmyDr1Lhyc_kncUIEos/copy
 
 Emergency & Health Information Form
 https://docs.google.com/document/u/6/d/1AHtCwbRAN39V9mGEeHwuLEJytRnl4VMTOOZKBrzaaVk/copy
 
 Incident / Injury Report Form
 https://docs.google.com/document/u/6/d/1_NwmIbY12KAQ_WdzQQmESZOrQnWY2urVxSJc3i6QLb4/copy
+
+Quick-start onboarding guide
+https://docs.google.com/document/u/6/d/1iit8DSCG9uDKrQLW-m2PEQa3nswzx6eeSFShY7YxvhY/copy
 `,
   });
 }
