@@ -1,13 +1,397 @@
+import React from "react";
+import Link from "next/link";
 import { cookies } from "next/headers";
 import { verifyAccessToken } from "@/lib/stripe/access";
-import GenerateClient from "./generate-client";
+import ClientOnboardingBuilder from "@/components/client-onboarding-builder";
 
-export default async function GeneratePage() {
+function Badge({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-medium text-zinc-700 shadow-sm">
+      {children}
+    </span>
+  );
+}
+
+function SectionTitle({
+  kicker,
+  title,
+  desc,
+}: {
+  kicker?: string;
+  title: string;
+  desc?: string;
+}) {
+  return (
+    <div className="mx-auto max-w-3xl text-center">
+      {kicker && (
+        <p className="text-sm font-semibold tracking-wide text-zinc-500">
+          {kicker}
+        </p>
+      )}
+      <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
+        {title}
+      </h1>
+      {desc && <p className="mt-4 text-base text-zinc-600">{desc}</p>}
+    </div>
+  );
+}
+
+function Card({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
+      <p className="text-base font-semibold text-zinc-900">{title}</p>
+      <div className="mt-3 text-sm leading-7 text-zinc-600">{children}</div>
+    </div>
+  );
+}
+
+function PrimaryLink({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`inline-flex items-center justify-center rounded-2xl bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2 ${className}`}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function SecondaryLink({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`inline-flex items-center justify-center rounded-2xl border border-zinc-200 bg-white px-6 py-3 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-50 ${className}`}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function CheckList({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-4 grid gap-2">
+      {items.map((item) => (
+        <li key={item} className="flex items-start gap-3 text-sm text-zinc-700">
+          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-[10px] font-bold text-white">
+            ✓
+          </span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default async function ClientOnboardingPackPage() {
   const cookieStore = await cookies();
   const token = cookieStore.get("contractforge_access")?.value;
   const access = verifyAccessToken(token);
-
   const isUnlocked = access?.product === "pt-client-onboarding-pack";
 
-  return <GenerateClient isUnlocked={isUnlocked} />;
+  const agreementCoverage = [
+    "Services and coaching scope",
+    "Payment terms",
+    "Cancellation policy",
+    "Late arrivals and missed sessions",
+    "Client responsibilities",
+    "General training expectations",
+  ];
+
+  const bonusForms = [
+    "Client Intake / Consultation Form",
+    "Emergency & Health Information Form",
+    "Incident / Injury Report Form",
+    "Quick-start onboarding guide",
+  ];
+
+  const workflowSteps = [
+    "Start with the Client Intake / Consultation Form to gather the client's goals, background, and basic onboarding information before formal screening begins.",
+    "Send the PAR-Q Health Questionnaire before training begins.",
+    "Ask the client to review and sign the Personal Training Agreement. This document includes payment terms, cancellation rules, and general training expectations.",
+    "Have the client sign the Liability Waiver before participating in training sessions.",
+    "Keep the Emergency & Health Information Form on file for client safety.",
+    "Use the Incident / Injury Report Form if something happens during a session.",
+  ];
+
+  return (
+    <main className="bg-white">
+      <section className="mx-auto max-w-6xl px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-20">
+        <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
+          <Badge>£29.95 one-time purchase</Badge>
+          <Badge>Preview before paying</Badge>
+          <Badge>Reusable for future clients</Badge>
+          <Badge>UK-focused wording</Badge>
+        </div>
+
+        <SectionTitle
+          kicker="Personal Trainer Client Onboarding Pack"
+          title="Build your personal trainer client onboarding pack in minutes"
+          desc="Answer a guided setup and preview a structured onboarding pack covering agreements, health screening, liability, and practical trainer forms used before and during client onboarding."
+        />
+
+        <div className="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
+            <p className="text-sm font-semibold text-zinc-900">
+              What the onboarding pack includes
+            </p>
+            <p className="mt-2 text-sm leading-7 text-zinc-600">
+              Designed to reduce cognitive overload. Instead of handing you a
+              stack of disconnected templates, the pack gives you the core
+              documents many trainers need to onboard clients with clearer
+              expectations, safer screening, and more organised paperwork.
+            </p>
+
+            <div className="mt-5 grid gap-4">
+              <div className="rounded-2xl border border-zinc-200 bg-white p-5">
+                <div className="flex items-start gap-3">
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-lg">
+                    📄
+                  </span>
+                  <div className="min-w-0">
+                    <p className="text-base font-semibold text-zinc-900">
+                      Personal Training Agreement
+                    </p>
+                    <p className="mt-1 text-xs font-medium uppercase tracking-wide text-zinc-500">
+                      Core document
+                    </p>
+                  </div>
+                </div>
+
+                <p className="mt-3 text-sm text-zinc-600">
+                  Covers the key areas trainers normally split across contracts,
+                  terms, and cancellation policies.
+                </p>
+
+                <p className="mt-4 text-sm font-semibold text-zinc-900">
+                  Includes:
+                </p>
+                <CheckList items={agreementCoverage} />
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-zinc-200 bg-white p-5">
+                  <div className="flex items-start gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-lg">
+                      📋
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-zinc-900">
+                        PAR-Q Health Questionnaire
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mt-3 text-sm text-zinc-600">
+                    Health screening completed before training begins.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-zinc-200 bg-white p-5">
+                  <div className="flex items-start gap-3">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-zinc-100 text-lg">
+                      ⚖️
+                    </span>
+                    <div>
+                      <p className="text-base font-semibold text-zinc-900">
+                        Liability Waiver
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mt-3 text-sm text-zinc-600">
+                    Risk acknowledgement and injury disclaimer signed before
+                    participation.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 rounded-2xl border border-zinc-200 bg-white p-5">
+              <p className="text-sm font-semibold text-zinc-900">
+                Bonus trainer forms included
+              </p>
+              <p className="mt-2 text-sm leading-7 text-zinc-600">
+                You will also receive a small set of supporting documents to
+                help you gather early client information, keep onboarding
+                organised, and respond properly if an issue happens during
+                training.
+              </p>
+              <CheckList items={bonusForms} />
+            </div>
+
+            <p className="mt-5 text-xs text-zinc-500">
+              The agreement already includes payment terms and cancellation
+              rules, so your onboarding stays simple and consistent.
+            </p>
+
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+              <PrimaryLink href="#builder" className="sm:flex-1">
+                Start building my onboarding pack
+              </PrimaryLink>
+              <SecondaryLink href="/personal-trainer-contract-template-uk">
+                View a free template first
+              </SecondaryLink>
+            </div>
+
+            <p className="mt-3 text-xs text-zinc-500">
+              No subscription. Preview your onboarding pack before purchase.
+            </p>
+          </div>
+
+          <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+            <p className="text-sm font-semibold text-zinc-500">One-time price</p>
+            <p className="mt-2 text-4xl font-bold tracking-tight text-zinc-900">
+              £29.95
+            </p>
+            <p className="mt-2 text-sm text-zinc-600">
+              Start building first, preview the pack, then pay once to unlock
+              export.
+            </p>
+
+            <div className="mt-6 space-y-3 text-sm text-zinc-700">
+              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+                No subscription
+              </div>
+              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+                Preview before purchase
+              </div>
+              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+                Reuse the structure for future clients
+              </div>
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+              <p className="text-sm font-semibold text-zinc-900">
+                Your pack includes:
+              </p>
+              <div className="mt-3 space-y-2 text-sm text-zinc-700">
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>Personal Training Agreement</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>PAR-Q Health Questionnaire</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>Liability Waiver</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>Client Intake / Consultation Form</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>Emergency &amp; Health Information Form</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>Incident / Injury Report Form</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>✓</span>
+                  <span>Quick-start onboarding guide</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <PrimaryLink href="#builder" className="w-full">
+                Start building
+              </PrimaryLink>
+            </div>
+
+            <p className="mt-3 text-xs text-zinc-500">
+              Preview your onboarding pack before purchase.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="builder" className="border-t border-zinc-200 bg-zinc-50">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+          <SectionTitle
+            kicker="Build and preview"
+            title="Start building your onboarding pack"
+            desc="Answer the guided setup, preview the documents, and unlock export when you're ready."
+          />
+
+          <div className="mt-8">
+            <ClientOnboardingBuilder isUnlocked={isUnlocked} />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-zinc-200 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+          <SectionTitle
+            kicker="How personal trainers use this pack"
+            title="A simple client onboarding workflow"
+            desc="Most trainers use these documents in the same general order so clients understand the process clearly from the beginning."
+          />
+
+          <div className="mx-auto mt-8 max-w-4xl space-y-4">
+            {workflowSteps.map((step, index) => (
+              <div
+                key={step}
+                className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5 shadow-sm"
+              >
+                <p className="text-sm font-semibold text-zinc-900">
+                  Step {index + 1}
+                </p>
+                <p className="mt-2 text-sm leading-7 text-zinc-600">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-zinc-200 bg-zinc-50">
+        <div className="mx-auto max-w-4xl px-4 py-14 text-center sm:px-6">
+          <p className="text-sm font-semibold tracking-wide text-zinc-500">
+            Ready to build?
+          </p>
+          <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
+            Start building your onboarding pack now
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-600">
+            Complete the guided setup, preview your onboarding documents, and
+            unlock export for a one-time £29.95 payment.
+          </p>
+
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <PrimaryLink href="#builder">
+              Start building my onboarding pack
+            </PrimaryLink>
+            <SecondaryLink href="/personal-trainer-contract-template-uk">
+              View a free template first
+            </SecondaryLink>
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }

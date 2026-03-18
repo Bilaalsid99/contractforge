@@ -288,7 +288,7 @@ export default function PersonalTrainerContractTemplateUKPage() {
             </Link>
 
             <Link
-              href="/client-onboarding-pack"
+              href="/generate"
               className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-zinc-800 sm:col-span-2"
             >
               View Complete Client Onboarding Pack →
