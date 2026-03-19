@@ -1,3 +1,6 @@
+export const metadata = {
+  title: "Personal Trainer Terms and Conditions Template",
+};
 import React from "react";
 import Link from "next/link";
 

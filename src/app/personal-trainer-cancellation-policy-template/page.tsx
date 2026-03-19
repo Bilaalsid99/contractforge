@@ -1,3 +1,6 @@
+export const metadata = {
+  title: "Personal Trainer Cancellation Policy Template",
+};
 import React from "react";
 import Link from "next/link";
 

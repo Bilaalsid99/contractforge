@@ -1,3 +1,6 @@
+export const metadata = {
+  title: "Liability Waiver Template UK",
+};
 import React from "react";
 import Link from "next/link";
 

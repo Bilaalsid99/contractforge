@@ -1,4 +1,7 @@
 // src/app/page.tsx
+export const metadata = {
+  title: "Generate Now",
+};
 import Link from "next/link";
 import { HomePreviewBuilder } from "@/components/home-preview-builder";
 

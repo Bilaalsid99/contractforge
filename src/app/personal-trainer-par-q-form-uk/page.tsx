@@ -1,3 +1,6 @@
+export const metadata = {
+  title: "PAR-Q Form Template UK",
+};
 import React from "react";
 import Link from "next/link";
 
