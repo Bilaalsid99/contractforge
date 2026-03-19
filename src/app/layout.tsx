@@ -15,9 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ContractForge",
+  title: "Build Now | ContractForge",
   description:
     "UK client onboarding templates and generators for personal trainers.",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
