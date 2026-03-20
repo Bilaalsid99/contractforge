@@ -1,3 +1,8 @@
+export const metadata = {
+  title: "Build Now",
+  description:
+    "Generate your personal trainer contract, PAR-Q, and liability waiver in one simple flow.",
+};
 import React from "react";
 import Link from "next/link";
 import { cookies } from "next/headers";

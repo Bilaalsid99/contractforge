@@ -19,13 +19,13 @@ export function SiteHeader() {
           </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-8">
-          <a
+        <nav className="hidden items-center gap-8 md:flex">
+          <Link
             href="/#templates"
             className="text-sm font-medium text-zinc-600 transition hover:text-zinc-900"
           >
             Templates
-          </a>
+          </Link>
 
           <Link
             href="/generate"

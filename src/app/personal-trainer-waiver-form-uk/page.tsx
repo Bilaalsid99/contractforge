@@ -1,5 +1,7 @@
 export const metadata = {
-  title: "Liability Waiver Template UK",
+  title: "Personal Trainer Liability Waiver Template UK",
+  description:
+    "Free personal trainer liability waiver template for UK coaches. Explain training risks, confirm client responsibility, and support safer onboarding.",
 };
 import React from "react";
 import Link from "next/link";
@@ -170,7 +172,7 @@ export default function PersonalTrainerWaiverFormUKPage() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <PrimaryLink href="/client-onboarding-pack">
+                <PrimaryLink href="/generate">
                   View full onboarding pack
                 </PrimaryLink>
 
@@ -278,12 +280,7 @@ export default function PersonalTrainerWaiverFormUKPage() {
             </Link>
           </div>
         </section>
-
-        <p className="mx-auto mt-10 max-w-3xl text-center text-xs text-zinc-500">
-          Not legal advice. This template is provided for general information
-          and drafting support. For unusual or high-risk situations, consult a
-          solicitor.
-        </p>
+        
       </main>
     </div>
   );

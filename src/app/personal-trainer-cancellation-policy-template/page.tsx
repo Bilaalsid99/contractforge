@@ -1,5 +1,7 @@
 export const metadata = {
-  title: "Personal Trainer Cancellation Policy Template",
+  title: "Personal Trainer Cancellation Policy Template UK",
+  description:
+    "Free personal trainer cancellation policy template for UK coaches. Set clear rules for notice periods, missed sessions, late arrivals, and rescheduling.",
 };
 import React from "react";
 import Link from "next/link";
@@ -183,7 +185,7 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <PrimaryLink href="/client-onboarding-pack">
+                <PrimaryLink href="/generate">
                   View full onboarding pack
                 </PrimaryLink>
                 <SecondaryLink href="/">Back to home</SecondaryLink>

@@ -1,6 +1,8 @@
 // src/app/page.tsx
 export const metadata = {
-  title: "Generate Now",
+  title: "ContractForge",
+  description:
+    "Create your personal trainer client onboarding pack in minutes. Preview the structure, explore the free templates, and generate the full pack in one simple flow.",
 };
 import Link from "next/link";
 import { HomePreviewBuilder } from "@/components/home-preview-builder";
@@ -100,7 +102,7 @@ const pages = [
   {
     title: "Client Onboarding Pack",
     desc: "Start with the full onboarding system for personal trainers.",
-    href: "/client-onboarding-pack",
+    href: "/generate",
     tag: "Full pack",
   },
 ];

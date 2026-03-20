@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: "https://contractforge.co.uk/client-onboarding-pack",
+      url: "https://contractforge.co.uk/generate",
       lastModified: new Date(),
     },
     {
@@ -15,19 +15,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: "https://contractforge.co.uk/par-q-form-template-uk",
+      url: "https://contractforge.co.uk/personal-trainer-par-q-form-uk",
       lastModified: new Date(),
     },
     {
-      url: "https://contractforge.co.uk/liability-waiver-template-uk",
+      url: "https://contractforge.co.uk/personal-trainer-waiver-form-uk",
+      lastModified: new Date(),
+    },
+    {
+      url: "https://contractforge.co.uk/personal-trainer-terms-and-conditions-uk",
       lastModified: new Date(),
     },
     {
       url: "https://contractforge.co.uk/personal-trainer-cancellation-policy-template",
-      lastModified: new Date(),
-    },
-    {
-      url: "https://contractforge.co.uk/personal-trainer-payment-terms-template",
       lastModified: new Date(),
     },
     {

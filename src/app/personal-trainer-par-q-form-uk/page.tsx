@@ -1,5 +1,7 @@
 export const metadata = {
   title: "PAR-Q Form Template UK",
+  description:
+    "Free PAR-Q template for UK personal trainers. Screen client health risks, identify when medical clearance may be needed, and support safer onboarding before training begins.",
 };
 import React from "react";
 import Link from "next/link";
@@ -201,7 +203,7 @@ export default function PersonalTrainerParQFormUKPage() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <PrimaryLink href="/client-onboarding-pack">
+                <PrimaryLink href="/generate">
                   View full onboarding pack
                 </PrimaryLink>
                 <SecondaryLink href="/">Back to home</SecondaryLink>
@@ -305,12 +307,7 @@ export default function PersonalTrainerParQFormUKPage() {
             </Link>
           </div>
         </section>
-
-        <p className="mx-auto mt-10 max-w-3xl text-center text-xs text-zinc-500">
-          Not legal advice. This template is provided for general information
-          and drafting support. For unusual or high-risk situations, consult a
-          solicitor.
-        </p>
+      
       </main>
     </div>
   );

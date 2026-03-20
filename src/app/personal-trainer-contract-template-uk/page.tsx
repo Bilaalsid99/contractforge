@@ -1,5 +1,7 @@
 export const metadata = {
   title: "Personal Trainer Contract Template UK",
+  description:
+    "Free personal trainer contract template for UK coaches. Understand what it covers, why it matters, and how to structure your client agreement properly.",
 };
 import React from "react";
 import Link from "next/link";
@@ -145,9 +147,7 @@ export default function PersonalTrainerContractTemplateUKPage() {
         </h1>
 
         <p className="mt-3 max-w-3xl text-zinc-600">
-          Use this personal trainer contract template as a starting point for
-          setting expectations around coaching services, payments, bookings, and
-          cancellations.
+            A personal trainer contract sets out the agreement between you and your client, including services, payments, bookings, and responsibilities.
         </p>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
@@ -197,7 +197,7 @@ export default function PersonalTrainerContractTemplateUKPage() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <PrimaryLink href="/client-onboarding-pack">
+                <PrimaryLink href="/generate">
                   View full onboarding pack
                 </PrimaryLink>
                 <SecondaryLink href="/">Back to home</SecondaryLink>
@@ -298,12 +298,7 @@ export default function PersonalTrainerContractTemplateUKPage() {
             </Link>
           </div>
         </section>
-
-        <p className="mx-auto mt-10 max-w-3xl text-center text-xs text-zinc-500">
-          Not legal advice. This template is provided for general information
-          and drafting support. For unusual or high-risk situations, consult a
-          solicitor.
-        </p>
+    
       </main>
     </div>
   );

@@ -1,5 +1,7 @@
 export const metadata = {
-  title: "Personal Trainer Terms and Conditions Template",
+  title: "Personal Training Terms and Conditions Template UK",
+  description:
+    "Free personal training terms and conditions template for UK coaches. Set clear rules for bookings, payments, cancellations, and client responsibilities.",
 };
 import React from "react";
 import Link from "next/link";
@@ -177,7 +179,7 @@ export default function PersonalTrainerTermsAndConditionsUKPage() {
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <PrimaryLink href="/client-onboarding-pack">
+                <PrimaryLink href="/generate">
                   View full onboarding pack
                 </PrimaryLink>
                 <SecondaryLink href="/">Back to home</SecondaryLink>
@@ -282,12 +284,7 @@ export default function PersonalTrainerTermsAndConditionsUKPage() {
             </Link>
           </div>
         </section>
-
-        <p className="mx-auto mt-10 max-w-3xl text-center text-xs text-zinc-500">
-          Not legal advice. This template is provided for general information
-          and drafting support. For unusual or high-risk situations, consult a
-          solicitor.
-        </p>
+      
       </main>
     </div>
   );

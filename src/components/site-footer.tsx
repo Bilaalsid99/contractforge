@@ -29,7 +29,10 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="grid gap-10 md:grid-cols-4">
           <div className="md:col-span-2">
-            <Link href="/" className="text-lg font-semibold tracking-tight text-zinc-900">
+            <Link
+              href="/"
+              className="text-lg font-semibold tracking-tight text-zinc-900"
+            >
               ContractForge
             </Link>
 
@@ -44,7 +47,10 @@ export function SiteFooter() {
             <ul className="mt-4 space-y-3 text-sm text-zinc-600">
               {templateLinks.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="transition hover:text-zinc-900">
+                  <Link
+                    href={item.href}
+                    className="transition hover:text-zinc-900"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -62,7 +68,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/client-onboarding-pack"
+                  href="/generate"
                   className="transition hover:text-zinc-900"
                 >
                   Client Onboarding Pack
