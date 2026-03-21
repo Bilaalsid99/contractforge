@@ -22,7 +22,9 @@ export const metadata: Metadata = {
   description:
     "UK client onboarding templates and generators for personal trainers.",
   icons: {
-    icon: "/icon.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/icon.png",
   },
 };
 
