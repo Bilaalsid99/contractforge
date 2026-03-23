@@ -51,7 +51,7 @@ export async function sendRestoreAccessEmail(params: {
 
       <ul>
         <li>
-          <a href="https://docs.google.com/document/u/6/d/1iit8DSCG9uDKrQLW-m2PEQa3nswzx6eeSFShY7YxvhY/copy">
+          <a href="https://docs.google.com/document/d/1WO-IOBYOXwvUSNy6jGvJ9Zney5pnd-UZlXqvx4YnU-Y/copy">
             Quick-start onboarding guide
           </a>
         </li>

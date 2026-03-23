@@ -20,6 +20,7 @@ type FormState = {
 };
 
 type DocKey = "agreement" | "parq" | "waiver";
+type StepKey = "identity" | "service" | "pricing" | "liability";
 
 const STORAGE_KEY = "contractforge:generator:v1";
 
@@ -27,7 +28,7 @@ const SUPPORTING_LINKS = {
   intake:
     "https://docs.google.com/document/d/1EPyDfkQibmTjuWJxcQupMZgpSmyDr1Lhyc_kncUIEos/copy",
   guide:
-    "https://docs.google.com/document/u/6/d/1iit8DSCG9uDKrQLW-m2PEQa3nswzx6eeSFShY7YxvhY/copy",
+    "https://docs.google.com/document/d/1WO-IOBYOXwvUSNy6jGvJ9Zney5pnd-UZlXqvx4YnU-Y/copy",
   emergency:
     "https://docs.google.com/document/u/6/d/1AHtCwbRAN39V9mGEeHwuLEJytRnl4VMTOOZKBrzaaVk/copy",
   incident:
@@ -239,6 +240,17 @@ Client signature: [Client signature]
 Date: [Date]`;
 }
 
+function withPreviewDefaults(form: FormState): FormState {
+  const previewTrainerName = form.trainerName || "Alex Smith";
+  const previewBusinessName = form.businessName || "Alex Smith Coaching";
+
+  return {
+    ...form,
+    trainerName: previewTrainerName,
+    businessName: previewBusinessName,
+  };
+}
+
 function getPreviewText(fullText: string, maxChars = 650) {
   if (fullText.length <= maxChars) return fullText;
   return fullText.slice(0, maxChars).trimEnd();
@@ -297,6 +309,7 @@ export default function ClientOnboardingBuilder({
   isUnlocked: boolean;
 }) {
   const [activeDoc, setActiveDoc] = useState<DocKey>("agreement");
+  const [activeStep, setActiveStep] = useState<StepKey>("identity");
   const [loading, setLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
@@ -320,6 +333,29 @@ export default function ClientOnboardingBuilder({
     groupTraining: "No",
   });
 
+  const steps: Array<{ key: StepKey; title: string; desc: string }> = [
+    {
+      key: "identity",
+      title: "Trainer / Business identity",
+      desc: "Basic identity details used across the pack.",
+    },
+    {
+      key: "service",
+      title: "Service / training details",
+      desc: "How the service is delivered and structured.",
+    },
+    {
+      key: "pricing",
+      title: "Pricing & payment terms",
+      desc: "Commercial terms carried into the agreement.",
+    },
+    {
+      key: "liability",
+      title: "Liability & protection",
+      desc: "Screening, emergency, and risk wording.",
+    },
+  ];
+
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -339,6 +375,8 @@ export default function ClientOnboardingBuilder({
     }
   }, [form]);
 
+  const previewForm = useMemo(() => withPreviewDefaults(form), [form]);
+
   const documents = useMemo(
     () => ({
       agreement: buildAgreement(form),
@@ -348,6 +386,15 @@ export default function ClientOnboardingBuilder({
     [form]
   );
 
+  const previewDocuments = useMemo(
+    () => ({
+      agreement: buildAgreement(previewForm),
+      parq: buildParq(previewForm),
+      waiver: buildWaiver(previewForm),
+    }),
+    [previewForm]
+  );
+
   const activeTitle =
     activeDoc === "agreement"
       ? "Personal Training Agreement"
@@ -355,11 +402,13 @@ export default function ClientOnboardingBuilder({
         ? "PAR-Q Health Questionnaire"
         : "Liability Waiver";
 
-  const activeContent = documents[activeDoc];
+  const activeContent = isUnlocked
+    ? documents[activeDoc]
+    : previewDocuments[activeDoc];
 
   async function copyCurrentDocument() {
     if (!isUnlocked) return;
-    await navigator.clipboard.writeText(activeContent);
+    await navigator.clipboard.writeText(documents[activeDoc]);
   }
 
   async function handleCheckout() {
@@ -396,173 +445,214 @@ export default function ClientOnboardingBuilder({
     <div className="grid gap-6 lg:grid-cols-[420px_minmax(0,1fr)]">
       <section className="space-y-5">
         <SectionCard
-          title="Build your onboarding pack"
-          desc="Answer these once and preview the structure before purchase."
-        >
-          <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-            <p className="text-sm font-semibold text-zinc-900">
-              Includes 3 generated documents plus 4 supporting onboarding files
-            </p>
-            <p className="mt-2 text-sm text-zinc-600">
-              Fill in your setup once, review the previews, then unlock the full
-              pack when you are ready.
-            </p>
+  title="Build your onboarding pack"
+  desc="Fill this once and preview your documents before unlocking."
+>
+  <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+    <p className="text-sm font-semibold text-zinc-900">
+      Agreement, PAR-Q, waiver, and essential onboarding forms
+    </p>
+  </div>
+</SectionCard>
+
+        <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm">
+          <p className="text-sm font-semibold text-zinc-900">Guided setup</p>
+          <p className="mt-1 text-sm text-zinc-600">
+            The builder keeps the process structured by grouping your pack into
+            four clear sections.
+          </p>
+
+          <div className="mt-4 grid gap-2">
+            {steps.map((step, index) => (
+              <button
+                key={step.key}
+                type="button"
+                onClick={() => setActiveStep(step.key)}
+                className={classNames(
+                  "rounded-2xl border px-4 py-3 text-left transition",
+                  activeStep === step.key
+                    ? "border-zinc-900 bg-zinc-900 text-white"
+                    : "border-zinc-200 bg-white text-zinc-900 hover:bg-zinc-50"
+                )}
+              >
+                <p className="text-xs font-semibold uppercase tracking-wide opacity-70">
+                  Step {index + 1}
+                </p>
+                <p className="mt-1 text-sm font-semibold">{step.title}</p>
+                <p
+                  className={classNames(
+                    "mt-1 text-xs",
+                    activeStep === step.key ? "text-zinc-200" : "text-zinc-500"
+                  )}
+                >
+                  {step.desc}
+                </p>
+              </button>
+            ))}
           </div>
-        </SectionCard>
+        </div>
 
-        <SectionCard
-          title="Trainer details"
-          desc="Basic identity details used across the pack."
-        >
-          <Field
-            label="Trainer name"
-            value={form.trainerName}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, trainerName: value }))
-            }
-            placeholder="e.g. Alex Smith"
-          />
+        {activeStep === "identity" && (
+          <SectionCard
+            title="Trainer / Business identity"
+            desc="Basic identity details used across the pack."
+          >
+            <Field
+              label="Trainer name"
+              value={form.trainerName}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, trainerName: value }))
+              }
+              placeholder="e.g. Alex Smith"
+            />
 
-          <Field
-            label="Business / trading name"
-            value={form.businessName}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, businessName: value }))
-            }
-            placeholder="e.g. Alex's Fitness Coaching"
-          />
-        </SectionCard>
+            <Field
+              label="Business / trading name"
+              value={form.businessName}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, businessName: value }))
+              }
+              placeholder="e.g. Alex Smith Coaching"
+            />
+          </SectionCard>
+        )}
 
-        <SectionCard
-          title="Training setup"
-          desc="How the service is delivered."
-        >
-          <SelectField
-            label="Training location"
-            value={form.trainingLocation}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, trainingLocation: value }))
-            }
-            options={["Gym", "Client home", "Outdoors", "Online", "Mixed"]}
-          />
+        {activeStep === "service" && (
+          <SectionCard
+            title="Service / training details"
+            desc="How the service is delivered."
+          >
+            <SelectField
+              label="Training location"
+              value={form.trainingLocation}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, trainingLocation: value }))
+              }
+              options={["Gym", "Client home", "Outdoors", "Online", "Mixed"]}
+            />
 
-          <SelectField
-            label="Session duration"
-            value={form.sessionDuration}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, sessionDuration: value }))
-            }
-            options={["45 minutes", "60 minutes", "90 minutes"]}
-          />
+            <SelectField
+              label="Session duration"
+              value={form.sessionDuration}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, sessionDuration: value }))
+              }
+              options={["45 minutes", "60 minutes", "90 minutes"]}
+            />
 
-          <SelectField
-            label="Online coaching"
-            value={form.onlineCoaching}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, onlineCoaching: value }))
-            }
-            options={["No", "Yes"]}
-          />
+            <SelectField
+              label="Online coaching"
+              value={form.onlineCoaching}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, onlineCoaching: value }))
+              }
+              options={["No", "Yes"]}
+            />
 
-          <SelectField
-            label="Group training"
-            value={form.groupTraining}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, groupTraining: value }))
-            }
-            options={["No", "Yes"]}
-          />
-        </SectionCard>
+            <SelectField
+              label="Group training"
+              value={form.groupTraining}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, groupTraining: value }))
+              }
+              options={["No", "Yes"]}
+            />
+          </SectionCard>
+        )}
 
-        <SectionCard
-          title="Payments and cancellations"
-          desc="Core commercial terms carried into the agreement."
-        >
-          <SelectField
-            label="Payment structure"
-            value={form.paymentStructure}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, paymentStructure: value }))
-            }
-            options={["Single sessions", "Block packages", "Monthly coaching"]}
-          />
+        {activeStep === "pricing" && (
+          <SectionCard
+            title="Pricing & payment terms"
+            desc="Core commercial terms carried into the agreement."
+          >
+            <SelectField
+              label="Payment structure"
+              value={form.paymentStructure}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, paymentStructure: value }))
+              }
+              options={["Single sessions", "Block packages", "Monthly coaching"]}
+            />
 
-          <SelectField
-            label="Payment timing"
-            value={form.paymentTiming}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, paymentTiming: value }))
-            }
-            options={["Pay in advance", "Pay on booking", "Monthly in advance"]}
-          />
+            <SelectField
+              label="Payment timing"
+              value={form.paymentTiming}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, paymentTiming: value }))
+              }
+              options={["Pay in advance", "Pay on booking", "Monthly in advance"]}
+            />
 
-          <SelectField
-            label="Cancellation notice"
-            value={form.cancellationNotice}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, cancellationNotice: value }))
-            }
-            options={["12 hours", "24 hours", "48 hours"]}
-          />
+            <SelectField
+              label="Cancellation notice"
+              value={form.cancellationNotice}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, cancellationNotice: value }))
+              }
+              options={["12 hours", "24 hours", "48 hours"]}
+            />
 
-          <Field
-            label="Late cancellation rule"
-            value={form.lateCancellationRule}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, lateCancellationRule: value }))
-            }
-          />
+            <Field
+              label="Late cancellation rule"
+              value={form.lateCancellationRule}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, lateCancellationRule: value }))
+              }
+            />
 
-          <Field
-            label="Late arrival rule"
-            value={form.lateArrivalRule}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, lateArrivalRule: value }))
-            }
-          />
-        </SectionCard>
+            <Field
+              label="Late arrival rule"
+              value={form.lateArrivalRule}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, lateArrivalRule: value }))
+              }
+            />
+          </SectionCard>
+        )}
 
-        <SectionCard
-          title="Health, screening and liability"
-          desc="These details shape the screening and risk wording."
-        >
-          <SelectField
-            label="Medical clearance approach"
-            value={form.medicalClearanceApproach}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, medicalClearanceApproach: value }))
-            }
-            options={[
-              "Medical clearance may be requested where appropriate",
-              "Medical clearance required where relevant conditions are disclosed",
-              "Client responsible for confirming suitability before training",
-            ]}
-          />
+        {activeStep === "liability" && (
+          <SectionCard
+            title="Liability & protection"
+            desc="These details shape the screening and risk wording."
+          >
+            <SelectField
+              label="Medical clearance approach"
+              value={form.medicalClearanceApproach}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, medicalClearanceApproach: value }))
+              }
+              options={[
+                "Medical clearance may be requested where appropriate",
+                "Medical clearance required where relevant conditions are disclosed",
+                "Client responsible for confirming suitability before training",
+              ]}
+            />
 
-          <SelectField
-            label="Emergency contact requirement"
-            value={form.emergencyContactRequirement}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, emergencyContactRequirement: value }))
-            }
-            options={[
-              "Emergency contact details required before training begins",
-              "Emergency contact details requested but optional",
-            ]}
-          />
+            <SelectField
+              label="Emergency contact requirement"
+              value={form.emergencyContactRequirement}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, emergencyContactRequirement: value }))
+              }
+              options={[
+                "Emergency contact details required before training begins",
+                "Emergency contact details requested but optional",
+              ]}
+            />
 
-          <SelectField
-            label="Liability wording"
-            value={form.liabilityWording}
-            onChange={(value) =>
-              setForm((s) => ({ ...s, liabilityWording: value }))
-            }
-            options={[
-              "The trainer is not responsible for injuries arising from undisclosed health conditions or failure to follow guidance",
-              "Training involves inherent risk and the client agrees to follow instructions and disclose relevant information",
-            ]}
-          />
-        </SectionCard>
+            <SelectField
+              label="Liability wording"
+              value={form.liabilityWording}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, liabilityWording: value }))
+              }
+              options={[
+                "The trainer is not responsible for injuries arising from undisclosed health conditions or failure to follow guidance",
+                "Training involves inherent risk and the client agrees to follow instructions and disclose relevant information",
+              ]}
+            />
+          </SectionCard>
+        )}
       </section>
 
       <section className="space-y-4">
@@ -667,6 +757,26 @@ export default function ClientOnboardingBuilder({
               {checkoutError}
             </div>
           )}
+
+          <div className="mt-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+            <p className="text-sm font-semibold text-zinc-900">
+              Your current setup
+            </p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2">
+              <div className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700">
+                Training location: {form.trainingLocation}
+              </div>
+              <div className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700">
+                Session duration: {form.sessionDuration}
+              </div>
+              <div className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700">
+                Online coaching: {form.onlineCoaching}
+              </div>
+              <div className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700">
+                Group training: {form.groupTraining}
+              </div>
+            </div>
+          </div>
 
           <div className="mt-4 flex flex-wrap gap-2">
             {[
