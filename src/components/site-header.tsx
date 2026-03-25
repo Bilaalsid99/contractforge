@@ -28,7 +28,7 @@ export function SiteHeader() {
           </Link>
 
           <Link
-            href="/generate"
+            href="/client-onboarding-pack"
             className="text-sm font-medium text-zinc-600 transition hover:text-zinc-900"
           >
             Onboarding Pack
@@ -36,7 +36,7 @@ export function SiteHeader() {
         </nav>
 
         <Link
-          href="/generate"
+          href="/client-onboarding-pack"
           className="inline-flex items-center justify-center rounded-2xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800"
         >
           View full pack

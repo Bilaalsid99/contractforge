@@ -102,7 +102,7 @@ const pages = [
   {
     title: "Client Onboarding Pack",
     desc: "Start with the full onboarding system for personal trainers.",
-    href: "/generate",
+    href: "/client-onboarding-pack",
     tag: "Full pack",
   },
 ];
@@ -221,7 +221,7 @@ export default function HomePage() {
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              href="/generate"
+              href="/client-onboarding-pack"
               className="inline-flex items-center justify-center rounded-2xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800"
             >
               Get the Pack

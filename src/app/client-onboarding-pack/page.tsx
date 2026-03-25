@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+  title: "Personal Trainer Client Onboarding Pack (UK)",
+  description:
+    "Preview the Personal Trainer Client Onboarding Pack (UK), including the agreement, PAR-Q, liability waiver, and supporting trainer forms.",
+};
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
@@ -112,20 +119,14 @@ export default function ClientOnboardingPackPage() {
   ];
 
   const generatorQuestions = [
-    "Trainer name",
-    "Business / trading name",
-    "Training location",
-    "Session duration",
-    "Payment structure",
-    "Payment timing",
-    "Cancellation notice",
-    "Late cancellation rule",
-    "Late arrival rule",
+    "Trainer and business details",
+    "Training location and session structure",
+    "Payment setup and timing",
+    "Cancellation and attendance rules",
     "Medical clearance approach",
     "Emergency contact requirement",
     "Liability wording",
-    "Online coaching",
-    "Group training",
+    "Online coaching and group training options",
   ];
 
   const bonusForms = [
@@ -136,9 +137,9 @@ export default function ClientOnboardingPackPage() {
   ];
 
   const workflowSteps = [
-    "Start with the Client Intake / Consultation Form to gather the client's goals, background, and basic onboarding information before formal screening begins.",
+    "Start with the Client Intake / Consultation Form to gather the client's goals, background, and basic onboarding information.",
     "Send the PAR-Q Health Questionnaire before training begins.",
-    "Ask the client to review and sign the Personal Training Agreement. This document includes payment terms, cancellation rules, and general training expectations.",
+    "Ask the client to review and sign the Personal Training Agreement, which includes payment terms, cancellation rules, and training expectations.",
     "Have the client sign the Liability Waiver before participating in training sessions.",
     "Keep the Emergency & Health Information Form on file for client safety.",
     "Use the Incident / Injury Report Form if something happens during a session.",
@@ -156,20 +157,20 @@ export default function ClientOnboardingPackPage() {
 
         <SectionTitle
           kicker="Personal Trainer Client Onboarding Pack"
-          title="Build your personal trainer client onboarding pack in minutes"
-          desc="Answer a guided setup and preview a structured onboarding pack covering agreements, health screening, liability, and practical trainer forms used before and during client onboarding."
+          title="A simpler way to set up your client onboarding"
+          desc="Preview a structured onboarding pack for personal trainers, built to help you handle agreements, health screening, liability, and key supporting forms with less friction."
         />
 
         <div className="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
             <p className="text-sm font-semibold text-zinc-900">
-              What the onboarding pack includes
+              What the pack includes
             </p>
             <p className="mt-2 text-sm leading-7 text-zinc-600">
-              Designed to reduce cognitive overload. Instead of handing you a
-              stack of disconnected templates, the pack gives you the core
-              documents many trainers need to onboard clients with clearer
-              expectations, safer screening, and more organised paperwork.
+              Instead of piecing together disconnected templates, this pack
+              gives you the core documents many trainers need to onboard clients
+              with clearer expectations, safer screening, and more organised
+              paperwork.
             </p>
 
             <div className="mt-5 grid gap-4">
@@ -189,8 +190,8 @@ export default function ClientOnboardingPackPage() {
                 </div>
 
                 <p className="mt-3 text-sm text-zinc-600">
-                  Covers the key areas trainers normally split across contracts,
-                  terms, and cancellation policies.
+                  Covers the areas many trainers normally split across separate
+                  contracts, terms, and cancellation documents.
                 </p>
 
                 <p className="mt-4 text-sm font-semibold text-zinc-900">
@@ -239,20 +240,19 @@ export default function ClientOnboardingPackPage() {
 
             <div className="mt-5 rounded-2xl border border-zinc-200 bg-white p-5">
               <p className="text-sm font-semibold text-zinc-900">
-                Bonus trainer forms included
+                Supporting trainer forms included
               </p>
               <p className="mt-2 text-sm leading-7 text-zinc-600">
-                You will also receive a small set of supporting documents to
-                help you gather early client information, keep onboarding
-                organised, and respond properly if an issue happens during
-                training.
+                You also receive a small set of practical forms to help you
+                gather early client information, keep onboarding organised, and
+                respond properly if an issue happens during training.
               </p>
               <CheckList items={bonusForms} />
             </div>
 
             <p className="mt-5 text-xs text-zinc-500">
               The agreement already includes payment terms and cancellation
-              rules, so your onboarding stays simple and consistent.
+              rules, so your setup stays simpler and more consistent.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -265,7 +265,7 @@ export default function ClientOnboardingPackPage() {
             </div>
 
             <p className="mt-3 text-xs text-zinc-500">
-              No subscription. Preview your onboarding pack before purchase.
+              No subscription. Preview before purchase.
             </p>
           </div>
 
@@ -275,8 +275,8 @@ export default function ClientOnboardingPackPage() {
               £29.95
             </p>
             <p className="mt-2 text-sm text-zinc-600">
-              Start building first, preview the pack, then pay once to unlock
-              export.
+              Start with the guided setup, preview the structure, then pay once
+              to unlock export.
             </p>
 
             <div className="mt-6 space-y-3 text-sm text-zinc-700">
@@ -293,7 +293,7 @@ export default function ClientOnboardingPackPage() {
 
             <div className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
               <p className="text-sm font-semibold text-zinc-900">
-                Your pack includes:
+                Included in the pack:
               </p>
               <div className="mt-3 space-y-2 text-sm text-zinc-700">
                 <div className="flex items-center gap-2">
@@ -326,16 +326,6 @@ export default function ClientOnboardingPackPage() {
                 </div>
               </div>
             </div>
-
-            <div className="mt-6">
-              <PrimaryLink href="/generate" className="w-full">
-                Start building
-              </PrimaryLink>
-            </div>
-
-            <p className="mt-3 text-xs text-zinc-500">
-              Preview your onboarding pack before purchase.
-            </p>
           </div>
         </div>
       </section>
@@ -343,9 +333,9 @@ export default function ClientOnboardingPackPage() {
       <section className="border-t border-zinc-200 bg-zinc-50">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
-            kicker="Why this is simpler"
-            title="The pack covers the key onboarding areas without making things feel messy"
-            desc="The goal is not to give you more paperwork. The goal is to give you a calmer, clearer client onboarding process that is easier to use from first enquiry through to first session."
+            kicker="Why this feels simpler"
+            title="The goal is clearer onboarding, not more paperwork"
+            desc="This pack is designed to help personal trainers move from first enquiry to first session with less friction, clearer expectations, and more organised documentation."
           />
 
           <div className="mt-8 grid gap-4 md:grid-cols-3">
@@ -354,12 +344,12 @@ export default function ClientOnboardingPackPage() {
               and onboarding preferences once.
             </Card>
 
-            <Card title="2. Preview your onboarding pack">
+            <Card title="2. Preview the structure">
               Review how the agreement, PAR-Q, and waiver fit together before
               you pay.
             </Card>
 
-            <Card title="3. Unlock export for £29.95">
+            <Card title="3. Unlock export">
               Pay once to unlock the full pack and reuse the structure for
               future clients.
             </Card>
@@ -370,9 +360,9 @@ export default function ClientOnboardingPackPage() {
       <section className="border-t border-zinc-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
-            kicker="How personal trainers use this pack"
-            title="A simple client onboarding workflow"
-            desc="Most trainers use these documents in the same general order so clients understand the process clearly from the beginning."
+            kicker="How trainers typically use it"
+            title="A simple onboarding workflow"
+            desc="Most personal trainers use these documents in roughly the same order so clients understand the process clearly from the start."
           />
 
           <div className="mx-auto mt-8 max-w-4xl space-y-4">
@@ -395,7 +385,7 @@ export default function ClientOnboardingPackPage() {
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
             kicker="What the guided setup covers"
-            title="Answer these once, then preview the full pack"
+            title="Answer these once, then preview the pack"
             desc="Your answers shape the wording across the agreement, PAR-Q, and waiver."
           />
 
@@ -419,39 +409,6 @@ export default function ClientOnboardingPackPage() {
       </section>
 
       <section className="border-t border-zinc-200 bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6">
-          <SectionTitle
-            kicker="What you receive"
-            title="A structured onboarding pack, not a pile of random templates"
-            desc="The pack is designed to help personal trainers move from first enquiry to first session with clearer expectations, safer screening, and better documentation."
-          />
-
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            <Card title="Core onboarding documents">
-              <CheckList
-                items={[
-                  "Personal Training Agreement",
-                  "PAR-Q Health Questionnaire",
-                  "Liability Waiver",
-                ]}
-              />
-            </Card>
-
-            <Card title="Supporting trainer forms">
-              <CheckList
-                items={[
-                  "Client Intake / Consultation Form",
-                  "Emergency & Health Information Form",
-                  "Incident / Injury Report Form",
-                  "Quick-start onboarding guide",
-                ]}
-              />
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-zinc-200 bg-zinc-50">
         <div className="mx-auto max-w-4xl px-4 py-14 text-center sm:px-6">
           <p className="text-sm font-semibold tracking-wide text-zinc-500">
             Ready to build?
@@ -460,8 +417,8 @@ export default function ClientOnboardingPackPage() {
             Start building your onboarding pack now
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-600">
-            Complete the guided setup, preview your onboarding documents, and
-            unlock export for a one-time £29.95 payment.
+            Complete the guided setup, preview the structure, and unlock export
+            for a one-time £29.95 payment.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
