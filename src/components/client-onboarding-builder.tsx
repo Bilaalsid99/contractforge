@@ -12,27 +12,40 @@ type FormState = {
   cancellationNotice: string;
   lateCancellationRule: string;
   lateArrivalRule: string;
-  medicalClearanceApproach: string;
+  communicationChannel: string;
+  responseBoundary: string;
+  coachingScope: string;
   emergencyContactRequirement: string;
   liabilityWording: string;
   onlineCoaching: string;
   groupTraining: string;
+  sessionExpiry: string;
+  minimumCommitment: string;
+  reschedulingRule: string;
+  trainerCancellationRule: string;
+  environmentResponsibility: string;
+  contentUsage: string;
+  refundRule: string;
 };
 
-type DocKey = "agreement" | "parq" | "waiver";
-type StepKey = "identity" | "service" | "pricing" | "liability";
+type StepKey =
+  | "identity"
+  | "service"
+  | "pricing"
+  | "communication"
+  | "protection";
 
-const STORAGE_KEY = "contractforge:generator:v1";
+const STORAGE_KEY = "contractforge:generator:final-v2";
 
 const SUPPORTING_LINKS = {
+  parq: "https://docs.google.com/document/d/REPLACE_WITH_REAL_PARQ_LINK/copy",
   intake:
     "https://docs.google.com/document/d/1EPyDfkQibmTjuWJxcQupMZgpSmyDr1Lhyc_kncUIEos/copy",
-  guide:
-    "https://docs.google.com/document/d/1WO-IOBYOXwvUSNy6jGvJ9Zney5pnd-UZlXqvx4YnU-Y/copy",
   emergency:
     "https://docs.google.com/document/u/6/d/1AHtCwbRAN39V9mGEeHwuLEJytRnl4VMTOOZKBrzaaVk/copy",
   incident:
     "https://docs.google.com/document/u/6/d/1_NwmIbY12KAQ_WdzQQmESZOrQnWY2urVxSJc3i6QLb4/copy",
+  photoRelease: "/personal-trainer-photo-video-release-form-uk",
 };
 
 function classNames(...xs: Array<string | false | undefined | null>) {
@@ -133,43 +146,165 @@ function SectionCard({
     <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
       <div className="mb-4">
         <p className="text-base font-semibold text-zinc-900">{title}</p>
-        {desc && <p className="mt-1 text-sm text-zinc-600">{desc}</p>}
+        {desc ? <p className="mt-1 text-sm text-zinc-600">{desc}</p> : null}
       </div>
       <div className="space-y-5">{children}</div>
     </div>
   );
 }
 
+function PackIncludes({
+  isUnlocked,
+  contentUsage,
+}: {
+  isUnlocked: boolean;
+  contentUsage: string;
+}) {
+  const items = [
+    {
+      label: "Intake form",
+      href: SUPPORTING_LINKS.intake,
+    },
+    {
+      label: "Agreement",
+      href: null,
+    },
+    {
+      label: "PAR-Q",
+      href: SUPPORTING_LINKS.parq,
+    },
+    {
+      label: "Emergency form",
+      href: SUPPORTING_LINKS.emergency,
+    },
+    {
+      label: "Incident form",
+      href: SUPPORTING_LINKS.incident,
+    },
+  ];
+
+  if (contentUsage === "Yes, with separate consent") {
+    items.push({
+      label: "Photo / video release form",
+      href: SUPPORTING_LINKS.photoRelease,
+    });
+  }
+
+  return (
+    <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
+      <p className="text-sm font-semibold text-zinc-900">
+        Included in your onboarding pack
+      </p>
+
+      <div className="mt-4 space-y-2">
+        {items.map((item) => {
+          if (isUnlocked && item.href) {
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                target={item.href.startsWith("http") ? "_blank" : undefined}
+                rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+                className="flex items-center justify-between rounded-2xl border border-zinc-200 bg-white px-4 py-3 text-sm font-medium text-zinc-900 transition hover:bg-zinc-50"
+              >
+                <span>{item.label}</span>
+                <span className="text-zinc-400">↗</span>
+              </a>
+            );
+          }
+
+          const isCurrent = item.label === "Agreement";
+
+return (
+  <div
+    key={item.label}
+    className={classNames(
+      "rounded-2xl border px-4 py-3 text-sm font-medium",
+      isCurrent
+        ? "border-zinc-900 bg-zinc-900 text-white"
+        : "border-zinc-200 bg-zinc-50 text-zinc-800"
+    )}
+  >
+    {item.label}
+  </div>
+);
+        })}
+      </div>
+    </div>
+  );
+}
+
 function buildAgreement(form: FormState) {
+  const onlineClause =
+    form.onlineCoaching === "Yes"
+      ? `Online coaching may be used where agreed. The client understands that delivery may depend on internet connection, device access, and platform reliability.`
+      : "";
+
+  const groupClause =
+    form.groupTraining === "Yes"
+      ? `The trainer may deliver coaching in a group format where agreed. The client understands that attention may be shared across participants in that setting.`
+      : "";
+
+  const homeClause =
+    form.trainingLocation === "Client home"
+      ? `Where sessions take place at the client's home, the client is expected to provide a reasonably suitable training space in line with the agreed environment responsibilities.`
+      : "";
+
+  const parqClause = `A PAR-Q Health Questionnaire is required and must be completed before training begins.`;
+
+  const contentClause =
+    form.contentUsage === "Yes, with separate consent"
+      ? `Any recording, photography, or content use will only take place with separate consent where required.`
+      : `No recording or client content use is included as part of this coaching setup unless separately agreed.`;
+
   return `PERSONAL TRAINING AGREEMENT
 
 Trainer: ${form.trainerName || "[Trainer name]"}
 Business: ${form.businessName || "[Business name]"}
 
-1. Services
-The Trainer agrees to provide personal training services in a ${form.trainingLocation || "[training location]"} setting. Sessions are scheduled at ${form.sessionDuration || "[session duration]"} per session.
+1. SERVICES
+The Trainer agrees to provide personal training services in a ${form.trainingLocation || "[training location]"} setting.
+Sessions are scheduled at ${form.sessionDuration || "[session duration]"} per session.
+Coaching scope: ${form.coachingScope || "[coaching scope]"}.
 
-2. Payment Terms
+2. PAYMENT TERMS
 The Client agrees to pay according to the selected structure: ${form.paymentStructure || "[payment structure]"}.
 Payment timing: ${form.paymentTiming || "[payment timing]"}.
+Refund rule: ${form.refundRule || "[refund rule]"}.
 
-3. Cancellation Policy
+3. CANCELLATION AND ATTENDANCE
 The Client must give at least ${form.cancellationNotice || "[cancellation notice]"} notice for cancellations.
 Late cancellation rule: ${form.lateCancellationRule || "[late cancellation rule]"}.
 Late arrival rule: ${form.lateArrivalRule || "[late arrival rule]"}.
+Rescheduling: ${form.reschedulingRule || "[rescheduling rule]"}.
+If the Trainer cancels: ${form.trainerCancellationRule || "[trainer cancellation rule]"}.
 
-4. Health and Participation
-The Client confirms that relevant health information will be disclosed before training begins.
-Medical clearance approach: ${form.medicalClearanceApproach || "[medical clearance approach]"}.
+4. COMMUNICATION
+Communication channel: ${form.communicationChannel || "[communication channel]"}.
+Response boundary: ${form.responseBoundary || "[response boundary]"}.
+
+5. HEALTH AND READINESS
+${parqClause}
 Emergency contact requirement: ${form.emergencyContactRequirement || "[emergency contact requirement]"}.
 
-5. Service Format
+6. SERVICE FORMAT
 Online coaching: ${form.onlineCoaching || "[online coaching]"}.
 Group training: ${form.groupTraining || "[group training]"}.
+${onlineClause}
+${groupClause}
+${homeClause}
 
-6. Liability and Responsibilities
-Liability wording: ${form.liabilityWording || "[liability wording]"}.
-The Client understands that participation in exercise involves inherent risk and agrees to follow the Trainer’s reasonable instructions.
+7. ADDITIONAL BOOKING RULES
+Session expiry: ${form.sessionExpiry || "[session expiry]"}.
+Minimum commitment: ${form.minimumCommitment || "[minimum commitment]"}.
+Training environment responsibility: ${form.environmentResponsibility || "[environment responsibility]"}.
+Content usage: ${form.contentUsage || "[content usage]"}.
+${contentClause}
+
+8. RISK ACKNOWLEDGEMENT AND RESPONSIBILITIES
+${form.liabilityWording || "[risk acknowledgement wording]"}.
+The Client understands that participation in personal training, exercise, and related physical activity involves inherent risk, including the possibility of injury or other complications.
+The Client agrees to follow the Trainer’s reasonable instructions, work within their limits, and raise any relevant health or safety concerns before or during training.
 
 Signed:
 
@@ -178,80 +313,15 @@ Client: [Client full name]
 Date: [Date]`;
 }
 
-function buildParq(form: FormState) {
-  return `PAR-Q HEALTH QUESTIONNAIRE
-
-Trainer: ${form.trainerName || "[Trainer name]"}
-Trainer / Business: ${form.businessName || "[Business name]"}
-
-Client name: [Client full name]
-Date of birth: [Date of birth]
-Emergency contact: [Emergency contact details]
-
-Please answer YES or NO to the following:
-
-1. Has your doctor ever said you have a heart condition?
-2. Do you feel pain in your chest during physical activity?
-3. Have you experienced dizziness, fainting, or loss of balance?
-4. Do you have a bone or joint problem that could worsen with exercise?
-5. Are you currently taking medication for blood pressure or a heart condition?
-6. Are there any other health reasons why you should not do physical activity?
-
-Medical clearance approach:
-${form.medicalClearanceApproach || "[medical clearance approach]"}
-
-Emergency contact requirement:
-${form.emergencyContactRequirement || "[emergency contact requirement]"}
-
-Client declaration:
-I confirm that the information I have provided is accurate to the best of my knowledge.
-
-Client signature: [Client signature]
-Date: [Date]`;
-}
-
-function buildWaiver(form: FormState) {
-  return `LIABILITY WAIVER
-
-Trainer: ${form.trainerName || "[Trainer name]"}
-Business: ${form.businessName || "[Business name]"}
-
-I understand that participation in personal training, exercise, and related physical activity involves inherent risks, including the risk of injury, illness, or other complications.
-
-I confirm that:
-- I am voluntarily participating in training activities.
-- I understand the risks involved.
-- I will inform the Trainer of any relevant health issues.
-- I take responsibility for following guidance and working within my limits.
-
-Liability wording:
-${form.liabilityWording || "[liability wording]"}
-
-Training location:
-${form.trainingLocation || "[training location]"}
-
-Online coaching:
-${form.onlineCoaching || "[online coaching]"}
-
-Group training:
-${form.groupTraining || "[group training]"}
-
-Client signature: [Client signature]
-Date: [Date]`;
-}
-
 function withPreviewDefaults(form: FormState): FormState {
-  const previewTrainerName = form.trainerName || "Alex Smith";
-  const previewBusinessName = form.businessName || "Alex Smith Coaching";
-
   return {
     ...form,
-    trainerName: previewTrainerName,
-    businessName: previewBusinessName,
+    trainerName: form.trainerName || "Alex Smith",
+    businessName: form.businessName || "Alex Smith Coaching",
   };
 }
 
-function getPreviewText(fullText: string, maxChars = 650) {
+function getPreviewText(fullText: string, maxChars = 950) {
   if (fullText.length <= maxChars) return fullText;
   return fullText.slice(0, maxChars).trimEnd();
 }
@@ -269,7 +339,12 @@ function PreviewPanel({
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-      <h2 className="text-lg font-bold text-zinc-900">{title}</h2>
+      <div className="flex flex-wrap items-center gap-2">
+        <h2 className="text-lg font-bold text-zinc-900">{title}</h2>
+        <span className="rounded-full bg-zinc-900 px-2.5 py-1 text-[11px] font-semibold text-white">
+          Core document
+        </span>
+      </div>
 
       <div className="relative mt-4">
         <pre
@@ -290,9 +365,8 @@ function PreviewPanel({
                   Preview limited before purchase
                 </p>
                 <p className="mt-1 text-sm text-zinc-600">
-                  You can review the structure and wording style first. Unlock
-                  the full pack to access complete documents, export, and the
-                  supporting onboarding files.
+                  Review the agreement structure first. Unlock the full pack to
+                  access the complete agreement, copy, and the separate forms.
                 </p>
               </div>
             </div>
@@ -308,7 +382,6 @@ export default function ClientOnboardingBuilder({
 }: {
   isUnlocked: boolean;
 }) {
-  const [activeDoc, setActiveDoc] = useState<DocKey>("agreement");
   const [activeStep, setActiveStep] = useState<StepKey>("identity");
   const [loading, setLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
@@ -323,36 +396,49 @@ export default function ClientOnboardingBuilder({
     cancellationNotice: "24 hours",
     lateCancellationRule: "Late cancellations may be charged in full",
     lateArrivalRule: "Sessions still end at the scheduled time",
-    medicalClearanceApproach:
-      "Medical clearance may be requested where appropriate",
+    communicationChannel: "WhatsApp or text",
+    responseBoundary: "Responses during business hours only",
+    coachingScope: "Sessions only",
     emergencyContactRequirement:
       "Emergency contact details required before training begins",
     liabilityWording:
       "The trainer is not responsible for injuries arising from undisclosed health conditions or failure to follow guidance",
     onlineCoaching: "No",
     groupTraining: "No",
+    sessionExpiry: "No expiry",
+    minimumCommitment: "No minimum commitment",
+    reschedulingRule: "Rescheduling is allowed within the notice period",
+    trainerCancellationRule: "Cancelled sessions will be rescheduled",
+    environmentResponsibility: "Not applicable to this coaching setup",
+    contentUsage: "No",
+    refundRule: "Payments are non-refundable once booked",
   });
 
   const steps: Array<{ key: StepKey; title: string; desc: string }> = [
     {
       key: "identity",
-      title: "Trainer / Business identity",
-      desc: "Basic identity details used across the pack.",
+      title: "Identity",
+      desc: "Basic details used across the agreement.",
     },
     {
       key: "service",
-      title: "Service / training details",
-      desc: "How the service is delivered and structured.",
+      title: "Service",
+      desc: "How the coaching is delivered.",
     },
     {
       key: "pricing",
-      title: "Pricing & payment terms",
-      desc: "Commercial terms carried into the agreement.",
+      title: "Pricing",
+      desc: "Payment, cancellation, and attendance terms.",
     },
     {
-      key: "liability",
-      title: "Liability & protection",
-      desc: "Screening, emergency, and risk wording.",
+      key: "communication",
+      title: "Boundaries",
+      desc: "Contact and support expectations.",
+    },
+    {
+      key: "protection",
+      title: "Protection",
+      desc: "Emergency and risk wording.",
     },
   ];
 
@@ -377,38 +463,17 @@ export default function ClientOnboardingBuilder({
 
   const previewForm = useMemo(() => withPreviewDefaults(form), [form]);
 
-  const documents = useMemo(
-    () => ({
-      agreement: buildAgreement(form),
-      parq: buildParq(form),
-      waiver: buildWaiver(form),
-    }),
-    [form]
-  );
-
-  const previewDocuments = useMemo(
-    () => ({
-      agreement: buildAgreement(previewForm),
-      parq: buildParq(previewForm),
-      waiver: buildWaiver(previewForm),
-    }),
+  const fullAgreement = useMemo(() => buildAgreement(form), [form]);
+  const previewAgreement = useMemo(
+    () => buildAgreement(previewForm),
     [previewForm]
   );
 
-  const activeTitle =
-    activeDoc === "agreement"
-      ? "Personal Training Agreement"
-      : activeDoc === "parq"
-        ? "PAR-Q Health Questionnaire"
-        : "Liability Waiver";
-
-  const activeContent = isUnlocked
-    ? documents[activeDoc]
-    : previewDocuments[activeDoc];
+  const activeContent = isUnlocked ? fullAgreement : previewAgreement;
 
   async function copyCurrentDocument() {
     if (!isUnlocked) return;
-    await navigator.clipboard.writeText(documents[activeDoc]);
+    await navigator.clipboard.writeText(fullAgreement);
   }
 
   async function handleCheckout() {
@@ -445,21 +510,21 @@ export default function ClientOnboardingBuilder({
     <div className="grid gap-6 lg:grid-cols-[420px_minmax(0,1fr)]">
       <section className="space-y-5">
         <SectionCard
-  title="Build your onboarding pack"
-  desc="Fill this once and preview your documents before unlocking."
->
-  <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-    <p className="text-sm font-semibold text-zinc-900">
-      Agreement, PAR-Q, waiver, and essential onboarding forms
-    </p>
-  </div>
-</SectionCard>
+          title="Build your agreement"
+          desc="Set how you run your coaching, then preview the agreement before unlocking."
+        >
+          <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+            <p className="text-sm font-medium text-zinc-800">
+              One agreement builder. Separate onboarding forms are included
+              after purchase.
+            </p>
+          </div>
+        </SectionCard>
 
         <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm">
           <p className="text-sm font-semibold text-zinc-900">Guided setup</p>
           <p className="mt-1 text-sm text-zinc-600">
-            The builder keeps the process structured by grouping your pack into
-            four clear sections.
+            Only the decisions that shape the agreement.
           </p>
 
           <div className="mt-4 grid gap-2">
@@ -494,8 +559,8 @@ export default function ClientOnboardingBuilder({
 
         {activeStep === "identity" && (
           <SectionCard
-            title="Trainer / Business identity"
-            desc="Basic identity details used across the pack."
+            title="Identity"
+            desc="Basic details used across the agreement."
           >
             <Field
               label="Trainer name"
@@ -518,10 +583,7 @@ export default function ClientOnboardingBuilder({
         )}
 
         {activeStep === "service" && (
-          <SectionCard
-            title="Service / training details"
-            desc="How the service is delivered."
-          >
+          <SectionCard title="Service" desc="How the coaching is delivered.">
             <SelectField
               label="Training location"
               value={form.trainingLocation}
@@ -538,6 +600,19 @@ export default function ClientOnboardingBuilder({
                 setForm((s) => ({ ...s, sessionDuration: value }))
               }
               options={["45 minutes", "60 minutes", "90 minutes"]}
+            />
+
+            <SelectField
+              label="Coaching scope"
+              value={form.coachingScope}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, coachingScope: value }))
+              }
+              options={[
+                "Sessions only",
+                "Sessions plus basic guidance",
+                "Ongoing coaching support",
+              ]}
             />
 
             <SelectField
@@ -562,8 +637,8 @@ export default function ClientOnboardingBuilder({
 
         {activeStep === "pricing" && (
           <SectionCard
-            title="Pricing & payment terms"
-            desc="Core commercial terms carried into the agreement."
+            title="Pricing"
+            desc="Core payment, cancellation, and attendance terms."
           >
             <SelectField
               label="Payment structure"
@@ -580,7 +655,11 @@ export default function ClientOnboardingBuilder({
               onChange={(value) =>
                 setForm((s) => ({ ...s, paymentTiming: value }))
               }
-              options={["Pay in advance", "Pay on booking", "Monthly in advance"]}
+              options={[
+                "Pay in advance",
+                "Pay on booking",
+                "Monthly in advance",
+              ]}
             />
 
             <SelectField
@@ -592,41 +671,79 @@ export default function ClientOnboardingBuilder({
               options={["12 hours", "24 hours", "48 hours"]}
             />
 
-            <Field
+            <SelectField
               label="Late cancellation rule"
               value={form.lateCancellationRule}
               onChange={(value) =>
                 setForm((s) => ({ ...s, lateCancellationRule: value }))
               }
+              options={[
+                "Late cancellations may be charged in full",
+                "Late cancellations may result in the session being lost",
+                "Late cancellations may be rescheduled at the trainer’s discretion",
+                "Late cancellations may be charged unless exceptional circumstances apply",
+              ]}
             />
 
-            <Field
+            <SelectField
               label="Late arrival rule"
               value={form.lateArrivalRule}
               onChange={(value) =>
                 setForm((s) => ({ ...s, lateArrivalRule: value }))
               }
+              options={[
+                "Sessions still end at the scheduled time",
+                "The remaining session time will be honoured",
+                "The session may be shortened to fit the remaining time",
+                "Late arrival may be treated as a missed session at the trainer’s discretion",
+              ]}
             />
           </SectionCard>
         )}
 
-        {activeStep === "liability" && (
+        {activeStep === "communication" && (
           <SectionCard
-            title="Liability & protection"
-            desc="These details shape the screening and risk wording."
+            title="Boundaries"
+            desc="How contact and support are handled."
           >
             <SelectField
-              label="Medical clearance approach"
-              value={form.medicalClearanceApproach}
+              label="Communication channel"
+              value={form.communicationChannel}
               onChange={(value) =>
-                setForm((s) => ({ ...s, medicalClearanceApproach: value }))
+                setForm((s) => ({ ...s, communicationChannel: value }))
               }
               options={[
-                "Medical clearance may be requested where appropriate",
-                "Medical clearance required where relevant conditions are disclosed",
-                "Client responsible for confirming suitability before training",
+                "WhatsApp or text",
+                "Email only",
+                "Email and WhatsApp",
               ]}
             />
+
+            <SelectField
+              label="Response boundary"
+              value={form.responseBoundary}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, responseBoundary: value }))
+              }
+              options={[
+                "Responses during business hours only",
+                "Responses within 24 hours",
+                "Reasonable responses when available",
+              ]}
+            />
+          </SectionCard>
+        )}
+
+        {activeStep === "protection" && (
+          <SectionCard
+            title="Protection"
+            desc="Emergency and risk wording used inside the agreement."
+          >
+            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+              <p className="text-sm font-medium text-zinc-900">
+                PAR-Q is included as standard before training begins.
+              </p>
+            </div>
 
             <SelectField
               label="Emergency contact requirement"
@@ -641,7 +758,7 @@ export default function ClientOnboardingBuilder({
             />
 
             <SelectField
-              label="Liability wording"
+              label="Risk acknowledgement wording"
               value={form.liabilityWording}
               onChange={(value) =>
                 setForm((s) => ({ ...s, liabilityWording: value }))
@@ -653,78 +770,145 @@ export default function ClientOnboardingBuilder({
             />
           </SectionCard>
         )}
-      </section>
+
+        <details className="group rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
+  <summary className="flex cursor-pointer list-none items-center justify-between text-base font-semibold text-zinc-900 hover:text-zinc-700">
+    <span>Refine agreement (optional)</span>
+
+    <span className="relative ml-4 h-5 w-5 text-zinc-500">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="absolute inset-0 h-5 w-5 group-open:hidden"
+        aria-hidden="true"
+      >
+        <path
+          fillRule="evenodd"
+          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.512a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"
+          clipRule="evenodd"
+        />
+      </svg>
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+        className="absolute inset-0 hidden h-5 w-5 group-open:block"
+        aria-hidden="true"
+      >
+        <path d="M5.75 9.25a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z" />
+      </svg>
+    </span>
+  </summary>
+
+  <p className="mt-2 text-sm text-zinc-600">
+    Add a few tighter rules if needed.
+  </p>
+
+  <div className="mt-5 space-y-5">
+    <SelectField
+      label="Session expiry"
+      value={form.sessionExpiry}
+      onChange={(value) =>
+        setForm((s) => ({ ...s, sessionExpiry: value }))
+      }
+      options={[
+        "No expiry",
+        "Sessions expire after 4 weeks",
+        "Sessions expire after 6 weeks",
+        "Sessions expire after 8 weeks",
+      ]}
+    />
+
+    <SelectField
+      label="Minimum commitment"
+      value={form.minimumCommitment}
+      onChange={(value) =>
+        setForm((s) => ({ ...s, minimumCommitment: value }))
+      }
+      options={[
+        "No minimum commitment",
+        "Minimum 4 sessions",
+        "Minimum 8 sessions",
+        "Minimum 12 weeks",
+      ]}
+    />
+
+    <SelectField
+      label="Rescheduling"
+      value={form.reschedulingRule}
+      onChange={(value) =>
+        setForm((s) => ({ ...s, reschedulingRule: value }))
+      }
+      options={[
+        "Rescheduling is allowed within the notice period",
+        "Rescheduling is not allowed within the notice period",
+        "Rescheduling is at the trainer’s discretion",
+      ]}
+    />
+
+    <SelectField
+      label="If the trainer cancels"
+      value={form.trainerCancellationRule}
+      onChange={(value) =>
+        setForm((s) => ({ ...s, trainerCancellationRule: value }))
+      }
+      options={[
+        "Cancelled sessions will be rescheduled",
+        "Cancelled sessions will be refunded",
+        "Cancelled sessions will be credited toward a future booking",
+        "The full remaining session time will be honoured at the next available opportunity",
+      ]}
+    />
+
+    <SelectField
+      label="Training environment responsibility"
+      value={form.environmentResponsibility}
+      onChange={(value) =>
+        setForm((s) => ({ ...s, environmentResponsibility: value }))
+      }
+      options={[
+        "The client is responsible for providing a suitable training space",
+        "Responsibility for the training environment is shared",
+        "Not applicable to this coaching setup",
+      ]}
+    />
+
+    <SelectField
+      label="Content usage"
+      value={form.contentUsage}
+      onChange={(value) =>
+        setForm((s) => ({ ...s, contentUsage: value }))
+      }
+      options={["No", "Yes, with separate consent"]}
+    />
+
+    <SelectField
+      label="Refund rule"
+      value={form.refundRule}
+      onChange={(value) =>
+        setForm((s) => ({ ...s, refundRule: value }))
+      }
+      options={[
+        "Payments are non-refundable once booked",
+        "Unused sessions are non-refundable",
+        "Refunds may be offered at the trainer’s discretion",
+      ]}
+    />
+  </div>
+</details>
+</section>
 
       <section className="space-y-4">
-        {isUnlocked && (
-          <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm">
-            <p className="text-sm font-semibold text-zinc-900">
-              Your onboarding pack is unlocked
-            </p>
-            <p className="mt-1 text-sm text-zinc-600">
-              You can now copy your generated documents and access the supporting
-              templates included in your pack.
-            </p>
-
-            <div className="mt-5">
+        <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="max-w-xl">
               <p className="text-sm font-semibold text-zinc-900">
-                Supporting onboarding templates
+                Preview your agreement
               </p>
               <p className="mt-1 text-sm text-zinc-600">
-                These open as editable Google Docs so you can make your own copy
-                and use them during onboarding.
-              </p>
-
-              <div className="mt-3 flex flex-col gap-2 text-sm">
-                <a
-                  href={SUPPORTING_LINKS.intake}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
-                >
-                  Client Intake / Consultation Form
-                </a>
-
-                <a
-                  href={SUPPORTING_LINKS.emergency}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
-                >
-                  Emergency &amp; Health Information Form
-                </a>
-
-                <a
-                  href={SUPPORTING_LINKS.incident}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
-                >
-                  Incident / Injury Report Form
-                </a>
-
-                <a
-                  href={SUPPORTING_LINKS.guide}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="font-medium text-zinc-900 underline underline-offset-4 hover:text-zinc-700"
-                >
-                  Quick-start onboarding guide
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div className="rounded-3xl border border-zinc-200 bg-white p-4 shadow-sm">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm font-semibold text-zinc-900">
-                Preview your onboarding pack
-              </p>
-              <p className="mt-1 text-sm text-zinc-600">
-                Review the structure first. Full documents and supporting
-                templates unlock after payment.
+                Review the structure first. Unlock the full pack when ready.
               </p>
             </div>
 
@@ -733,18 +917,18 @@ export default function ClientOnboardingBuilder({
                 type="button"
                 onClick={copyCurrentDocument}
                 disabled={!isUnlocked}
-                className="rounded-2xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 disabled:cursor-not-allowed disabled:text-zinc-400"
+                className="rounded-2xl border border-zinc-200 bg-white px-4 py-2 text-sm font-semibold text-zinc-900 transition disabled:cursor-not-allowed disabled:text-zinc-400"
               >
-                Copy current document
+                Copy agreement
               </button>
               <button
                 type="button"
                 onClick={handleCheckout}
                 disabled={loading || isUnlocked}
-                className="rounded-2xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:bg-zinc-400"
+                className="rounded-2xl bg-zinc-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:bg-zinc-400"
               >
                 {isUnlocked
-                  ? "Export unlocked"
+                  ? "Unlocked"
                   : loading
                     ? "Redirecting..."
                     : "Unlock export (£29.95)"}
@@ -752,57 +936,22 @@ export default function ClientOnboardingBuilder({
             </div>
           </div>
 
-          {checkoutError && (
+          {checkoutError ? (
             <div className="mt-4 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
               {checkoutError}
             </div>
-          )}
+          ) : null}
 
-          <div className="mt-4 rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-            <p className="text-sm font-semibold text-zinc-900">
-              Your current setup
-            </p>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              <div className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700">
-                Training location: {form.trainingLocation}
-              </div>
-              <div className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700">
-                Session duration: {form.sessionDuration}
-              </div>
-              <div className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700">
-                Online coaching: {form.onlineCoaching}
-              </div>
-              <div className="rounded-xl border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700">
-                Group training: {form.groupTraining}
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-2">
-            {[
-              ["agreement", "Agreement"],
-              ["parq", "PAR-Q"],
-              ["waiver", "Waiver"],
-            ].map(([key, label]) => (
-              <button
-                key={key}
-                type="button"
-                onClick={() => setActiveDoc(key as DocKey)}
-                className={classNames(
-                  "rounded-2xl px-4 py-2 text-sm font-semibold transition",
-                  activeDoc === key
-                    ? "bg-zinc-900 text-white"
-                    : "border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50"
-                )}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
+          
         </div>
 
+        <PackIncludes
+          isUnlocked={isUnlocked}
+          contentUsage={form.contentUsage}
+        />
+
         <PreviewPanel
-          title={activeTitle}
+          title="Personal Training Agreement"
           fullText={activeContent}
           isUnlocked={isUnlocked}
         />

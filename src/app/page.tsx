@@ -4,6 +4,7 @@ export const metadata = {
   description:
     "Create your personal trainer client onboarding pack in minutes. Preview the structure, explore the free templates, and generate the full pack in one simple flow.",
 };
+
 import Link from "next/link";
 import { HomePreviewBuilder } from "@/components/home-preview-builder";
 
@@ -68,7 +69,7 @@ function Card({
   );
 }
 
-const pages = [
+const corePages = [
   {
     title: "Personal Trainer Contract Template (UK)",
     desc: "A free contract template covering coaching scope, bookings, and cancellations.",
@@ -104,6 +105,27 @@ const pages = [
     desc: "Start with the full onboarding system for personal trainers.",
     href: "/client-onboarding-pack",
     tag: "Full pack",
+  },
+];
+
+const supportingPages = [
+  {
+    title: "GDPR Privacy Notice (UK)",
+    desc: "A free privacy notice template explaining how trainer client data is collected, used, and stored.",
+    href: "/personal-trainer-gdpr-privacy-notice-uk",
+    tag: "Free",
+  },
+  {
+    title: "Photo & Video Release Form (UK)",
+    desc: "A free consent form template for client images, recordings, and content use.",
+    href: "/personal-trainer-photo-video-release-form-uk",
+    tag: "Free",
+  },
+  {
+    title: "Home Visit Personal Training Waiver (UK)",
+    desc: "A free supporting waiver template for trainers delivering sessions in a client’s home.",
+    href: "/home-visit-personal-training-waiver-uk",
+    tag: "Free",
   },
 ];
 
@@ -166,7 +188,7 @@ export default function HomePage() {
           />
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {pages.map((p) => (
+            {corePages.map((p) => (
               <Card
                 key={p.href}
                 title={p.title}
@@ -175,6 +197,33 @@ export default function HomePage() {
                 tag={p.tag}
               />
             ))}
+          </div>
+
+          <div className="mt-14">
+            <div className="mx-auto max-w-3xl text-center">
+              <p className="text-sm font-semibold tracking-wide text-zinc-500">
+                Additional templates
+              </p>
+              <h3 className="mt-2 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
+                Supporting onboarding templates
+              </h3>
+              <p className="mt-4 text-base text-zinc-600">
+                Additional template pages some trainers use alongside the core
+                onboarding documents.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {supportingPages.map((p) => (
+                <Card
+                  key={p.href}
+                  title={p.title}
+                  desc={p.desc}
+                  href={p.href}
+                  tag={p.tag}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -213,8 +262,9 @@ export default function HomePage() {
                 3. Unlock the full onboarding pack
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Move forward when you want the complete onboarding pack, including
-                core documents and supporting trainer forms, in one place.
+                Move forward when you want the complete onboarding pack,
+                including core documents and supporting trainer forms, in one
+                place.
               </p>
             </div>
           </div>
@@ -233,7 +283,6 @@ export default function HomePage() {
               Start with a free template
             </Link>
           </div>
-
         </div>
       </section>
     </div>
