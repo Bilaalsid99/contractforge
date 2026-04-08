@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Personal Trainer Client Onboarding Pack (UK)",
   description:
-    "Preview the Personal Trainer Client Onboarding Pack (UK), built around one core agreement, a separate PAR-Q health questionnaire, and practical supporting forms.",
+    "Preview the Personal Trainer Client Onboarding Pack (UK), built around one core agreement, a standard PAR-Q, and practical supporting forms.",
 };
 
 function Badge({ children }: { children: React.ReactNode }) {
@@ -121,12 +121,14 @@ export default function ClientOnboardingPackPage() {
 
   const generatorQuestions = [
     "Trainer and business details",
-    "Training location and session structure",
-    "Payment setup and timing",
+    "Training location",
+    "Session duration",
+    "Coaching scope",
+    "Payment structure and timing",
     "Cancellation and attendance rules",
-    "Communication channel and response boundary",
-    "Medical clearance approach",
+    "Communication boundaries",
     "Emergency contact requirement",
+    "Risk acknowledgement wording",
     "Online coaching and group training options",
   ];
 
@@ -138,24 +140,17 @@ export default function ClientOnboardingPackPage() {
     "Training environment responsibility",
   ];
 
-  const bonusForms = [
+  const packItems = [
     "PAR-Q Health Questionnaire",
     "Client Intake / Consultation Form",
     "Emergency & Health Information Form",
     "Incident / Injury Report Form",
   ];
 
-  const workflowSteps = [
-    "Send the Client Intake / Consultation Form first to gather goals and basic client information.",
-    "Ask the client to review and sign the Personal Training Agreement before training begins.",
-    "Send the PAR-Q Health Questionnaire before training begins.",
-    "Keep the Emergency & Health Information Form on file where relevant.",
-    "Use the Incident / Injury Report Form if something happens during a session.",
-  ];
+  const workflowSteps = ["Send intake", "Send agreement", "Complete screening"];
 
   return (
     <main className="bg-white">
-      {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-20">
         <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
           <Badge>£29.95 one-time purchase</Badge>
@@ -167,40 +162,37 @@ export default function ClientOnboardingPackPage() {
         <SectionTitle
           kicker="Personal Trainer Client Onboarding Pack"
           title="A simpler way to set up your client onboarding"
-          desc="Built around one strong agreement, with the right forms used only when needed."
+          desc="Built around one strong agreement, with a standard PAR-Q and supporting forms included in the pack."
         />
 
         <div className="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          {/* LEFT */}
           <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
             <p className="text-sm font-semibold text-zinc-900">
-              What this actually gives you
+              What this gives you
             </p>
             <p className="mt-2 text-sm leading-7 text-zinc-600">
-              Instead of juggling multiple templates, you set up one agreement
-              properly, then use simple supporting forms where needed.
+              Set up your agreement properly once, then use the included forms
+              when onboarding a new client.
             </p>
 
-            {/* AGREEMENT */}
             <div className="mt-5 rounded-2xl border border-zinc-200 bg-white p-5">
               <p className="text-base font-semibold text-zinc-900">
                 Personal Training Agreement
               </p>
               <p className="mt-3 text-sm text-zinc-600">
-                Your core document. This is what sets expectations and protects
-                your setup.
+                Your core document. This is what sets expectations and supports
+                your coaching setup.
               </p>
 
               <CheckList items={agreementCoverage} />
             </div>
 
-            {/* FORMS */}
             <div className="mt-5 rounded-2xl border border-zinc-200 bg-white p-5">
               <p className="text-sm font-semibold text-zinc-900">
-                Supporting forms (used when needed)
+                Included in the pack
               </p>
 
-              <CheckList items={bonusForms} />
+              <CheckList items={packItems} />
             </div>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -213,13 +205,12 @@ export default function ClientOnboardingPackPage() {
             </div>
           </div>
 
-          {/* RIGHT */}
           <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
             <p className="text-sm font-semibold text-zinc-500">One-time price</p>
             <p className="mt-2 text-4xl font-bold text-zinc-900">£29.95</p>
 
             <p className="mt-2 text-sm text-zinc-600">
-              Build → preview → unlock.
+              Build, preview, then unlock.
             </p>
 
             <div className="mt-6 space-y-3 text-sm text-zinc-700">
@@ -229,48 +220,53 @@ export default function ClientOnboardingPackPage() {
               <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
                 Reusable for future clients
               </div>
+              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+                Agreement-first setup
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
       <section className="border-t border-zinc-200 bg-zinc-50">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
             kicker="How it works"
             title="Simple onboarding flow"
+            desc="Keep the setup light and move forward quickly."
           />
 
-          <div className="mx-auto mt-8 max-w-4xl space-y-4">
+          <div className="mx-auto mt-8 grid max-w-4xl gap-4 sm:grid-cols-3">
             {workflowSteps.map((step, index) => (
               <div
                 key={step}
-                className="rounded-2xl border border-zinc-200 bg-white p-5"
+                className="rounded-2xl border border-zinc-200 bg-white p-5 text-center"
               >
-                <p className="text-sm font-semibold text-zinc-900">
+                <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
                   Step {index + 1}
                 </p>
-                <p className="mt-2 text-sm text-zinc-600">{step}</p>
+                <p className="mt-2 text-sm font-semibold text-zinc-900">
+                  {step}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* BUILDER */}
       <section className="border-t border-zinc-200 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
             kicker="What you set up"
-            title="Answer once, reuse forever"
+            title="Answer once, reuse for future clients"
+            desc="The builder stays focused on the agreement itself."
           />
 
           <div className="mt-8 grid gap-2 sm:grid-cols-2">
             {generatorQuestions.map((item) => (
               <div
                 key={item}
-                className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm"
+                className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-800"
               >
                 {item}
               </div>
@@ -285,7 +281,7 @@ export default function ClientOnboardingPackPage() {
               {optionalRefinements.map((item) => (
                 <div
                   key={item}
-                  className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm"
+                  className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-800"
                 >
                   {item}
                 </div>
@@ -299,7 +295,6 @@ export default function ClientOnboardingPackPage() {
         </div>
       </section>
 
-      {/* CTA */}
       <section className="border-t border-zinc-200 bg-zinc-50">
         <div className="mx-auto max-w-4xl px-4 py-14 text-center sm:px-6">
           <h2 className="text-3xl font-bold text-zinc-900">
@@ -307,13 +302,11 @@ export default function ClientOnboardingPackPage() {
           </h2>
 
           <p className="mt-4 text-zinc-600">
-            Set it up once. Use it for every client.
+            Set it up once. Reuse it for future clients.
           </p>
 
           <div className="mt-8">
-            <PrimaryLink href="/generate">
-              Start building now
-            </PrimaryLink>
+            <PrimaryLink href="/generate">Start building now</PrimaryLink>
           </div>
         </div>
       </section>

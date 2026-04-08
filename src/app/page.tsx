@@ -2,7 +2,7 @@
 export const metadata = {
   title: "ContractForge",
   description:
-    "Create your personal trainer client onboarding pack in minutes. Preview the structure, explore the free templates, and generate the full pack in one simple flow.",
+    "Create your personal trainer client onboarding pack in minutes. Preview your agreement, explore the free templates, and unlock the full pack in one simple flow.",
 };
 
 import Link from "next/link";
@@ -102,7 +102,7 @@ const corePages = [
   },
   {
     title: "Client Onboarding Pack",
-    desc: "Start with the full onboarding system for personal trainers.",
+    desc: "See the full pack built around one agreement and the supporting forms that go with it.",
     href: "/client-onboarding-pack",
     tag: "Full pack",
   },
@@ -139,17 +139,16 @@ export default function HomePage() {
           <SectionTitle
             kicker="Why trainers use it"
             title="A simpler way to get your onboarding in place"
-            desc="Review the structure, explore the free templates, or move straight to the full onboarding pack when you want your agreement, screening, and supporting onboarding forms working together."
+            desc="Preview the agreement structure, explore the free templates, or move straight to the full pack when you want your agreement and supporting forms working together."
           />
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold text-zinc-900">
-                See the structure first
+                Preview the agreement first
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Add a few details and preview part of the agreement before you
-                buy.
+                Add a few details and see part of the agreement before you pay.
               </p>
             </div>
 
@@ -158,8 +157,8 @@ export default function HomePage() {
                 Explore the free templates
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Review the individual pages first if you want to compare wording
-                and document structure.
+                Review the template pages first if you want to compare wording
+                and structure.
               </p>
             </div>
 
@@ -168,8 +167,8 @@ export default function HomePage() {
                 Unlock the full pack
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Get the core onboarding documents and supporting trainer forms in
-                one place instead of piecing them together manually.
+                Get the agreement, PAR-Q, and supporting forms together instead
+                of piecing everything together manually.
               </p>
             </div>
           </div>
@@ -184,7 +183,7 @@ export default function HomePage() {
           <SectionTitle
             kicker="Free templates"
             title="Explore the documents first"
-            desc="Use the free template pages to review each part of the onboarding process before moving to the full pack."
+            desc="Use the free template pages to review key parts of the onboarding process before moving to the full pack."
           />
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -205,10 +204,10 @@ export default function HomePage() {
                 Additional templates
               </p>
               <h3 className="mt-2 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
-                Supporting onboarding templates
+                Supporting template pages
               </h3>
               <p className="mt-4 text-base text-zinc-600">
-                Additional template pages some trainers use alongside the core
+                Extra template pages some trainers may use alongside the main
                 onboarding documents.
               </p>
             </div>
@@ -233,7 +232,7 @@ export default function HomePage() {
           <SectionTitle
             kicker="How it works"
             title="Preview first, then get the pack"
-            desc="Get a feel for the structure, then continue when you want the full onboarding system."
+            desc="Keep it simple: review the agreement structure first, then continue when you want the full pack."
           />
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
@@ -252,19 +251,17 @@ export default function HomePage() {
                 2. View a limited preview
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                See how your details can appear inside the agreement without
-                revealing the full pack.
+                See how your details can appear inside the agreement before
+                unlocking the full pack.
               </p>
             </div>
 
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold text-zinc-900">
-                3. Unlock the full onboarding pack
+                3. Unlock the full pack
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Move forward when you want the complete onboarding pack,
-                including core documents and supporting trainer forms, in one
-                place.
+                Get the agreement, PAR-Q, and supporting forms in one place.
               </p>
             </div>
           </div>
