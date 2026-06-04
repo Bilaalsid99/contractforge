@@ -20,11 +20,11 @@ export async function sendRestoreAccessEmail(params: {
   await resend.emails.send({
     from,
     to,
-    subject: "Your Personal Trainer Client Onboarding Pack is ready",
+    subject: "Your ContractForge UK Personal Trainer Onboarding Pack is ready",
     html: `
-      <p>Thanks for your purchase.</p>
+      <p>Thanks for your purchase from ContractForge.</p>
 
-      <p>Your <strong>Personal Trainer Client Onboarding Pack</strong> is ready.</p>
+      <p>Your <strong>UK Personal Trainer Client Onboarding Pack</strong> is ready.</p>
 
       <p>
         <a href="${params.restoreUrl}" style="display:inline-block;padding:12px 18px;background:#111;color:#fff;border-radius:8px;text-decoration:none;font-weight:600;">
@@ -32,77 +32,42 @@ export async function sendRestoreAccessEmail(params: {
         </a>
       </p>
 
-      <p>This link restores access to the generator and your documents for the next 30 days.</p>
+      <p>This link restores access to your agreement and supporting onboarding documents for the next 30 days.</p>
 
       <p><strong>Your pack includes:</strong></p>
 
       <ul>
-        <li>Personal Training Agreement</li>
-        <li>PAR-Q Health Questionnaire</li>
-        <li>Liability Waiver</li>
-      </ul>
-
-      <p><strong>Supporting onboarding templates:</strong></p>
-
-      <p>
-      These templates open as editable Google Docs so you can make your own copy
-      and customise them for your business.
-      </p>
-
-      <ul>
-        <li>
-          <a href="https://docs.google.com/document/d/1WO-IOBYOXwvUSNy6jGvJ9Zney5pnd-UZlXqvx4YnU-Y/copy">
-            Quick-start onboarding guide
-          </a>
-        </li>
-
-        <li>
-          <a href="https://docs.google.com/document/u/6/d/1AHtCwbRAN39V9mGEeHwuLEJytRnl4VMTOOZKBrzaaVk/copy">
-            Emergency & Health Information Form
-          </a>
-        </li>
-
-        <li>
-          <a href="https://docs.google.com/document/u/6/d/1_NwmIbY12KAQ_WdzQQmESZOrQnWY2urVxSJc3i6QLb4/copy">
-            Incident / Injury Report Form
-          </a>
-        </li>
+        <li>Client intake form</li>
+        <li>Personal trainer agreement</li>
+        <li>PAR-Q health questionnaire</li>
+        <li>Emergency form</li>
+        <li>Incident form</li>
       </ul>
 
       <p>If the button above does not work, copy this link into your browser:</p>
 
       <p>${params.restoreUrl}</p>
-    `,
-    text: `Thanks for your purchase.
 
-Your Personal Trainer Client Onboarding Pack is ready.
+      <p>ContractForge provides document templates and onboarding resources. It is not legal advice, a CRM, dashboard, or client management system.</p>
+    `,
+    text: `Thanks for your purchase from ContractForge.
+
+Your UK Personal Trainer Client Onboarding Pack is ready.
 
 Open your onboarding pack:
 ${params.restoreUrl}
 
-This link restores access to the generator and your documents for the next 30 days.
+This link restores access to your agreement and supporting onboarding documents for the next 30 days.
 
 Your pack includes:
 
-• Personal Training Agreement
-• PAR-Q Health Questionnaire
-• Liability Waiver
+• Client intake form
+• Personal trainer agreement
+• PAR-Q health questionnaire
+• Emergency form
+• Incident form
 
-Supporting onboarding templates:
-
-These templates open as editable Google Docs so you can make your own copy and customise them for your business.
-
-Client Intake / Consultation Form
-https://docs.google.com/document/d/1EPyDfkQibmTjuWJxcQupMZgpSmyDr1Lhyc_kncUIEos/copy
-
-Emergency & Health Information Form
-https://docs.google.com/document/u/6/d/1AHtCwbRAN39V9mGEeHwuLEJytRnl4VMTOOZKBrzaaVk/copy
-
-Incident / Injury Report Form
-https://docs.google.com/document/u/6/d/1_NwmIbY12KAQ_WdzQQmESZOrQnWY2urVxSJc3i6QLb4/copy
-
-Quick-start onboarding guide
-https://docs.google.com/document/u/6/d/1iit8DSCG9uDKrQLW-m2PEQa3nswzx6eeSFShY7YxvhY/copy
+ContractForge provides document templates and onboarding resources. It is not legal advice, a CRM, dashboard, or client management system.
 `,
   });
 }

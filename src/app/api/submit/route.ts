@@ -91,11 +91,11 @@ export async function POST(req: Request) {
     }
 
     const from = (
-      process.env.LEADS_FROM_EMAIL || "PT Templates <hello@contractforge.co.uk>"
+      process.env.LEADS_FROM_EMAIL || "ContractForge <hello@clientkit.co.uk>"
     ).trim();
 
     const notifyTo = (
-      process.env.LEADS_NOTIFY_EMAIL || "hello@contractforge.co.uk"
+      process.env.LEADS_NOTIFY_EMAIL || "<hello@clientkit.co.uk>"
     ).trim();
 
     const ownerResult = await resend.emails.send({
