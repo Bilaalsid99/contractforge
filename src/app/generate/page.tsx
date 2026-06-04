@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
 import React from "react";
 import Link from "next/link";
-
-export const metadata: Metadata = {
-  title: "Build Your Personal Trainer Onboarding Pack",
-  description:
-    "Use the guided builder to create your personal trainer agreement and preview the connected onboarding pack.",
-};
-
 import { cookies } from "next/headers";
+
 import { verifyAccessToken } from "@/lib/stripe/access";
 import ClientOnboardingBuilder from "@/components/client-onboarding-builder";
+
+export const metadata: Metadata = {
+  title: "Build Your Personal Trainer Agreement UK | ContractForge",
+  description:
+    "Start with your core UK personal trainer agreement, then unlock the full connected client onboarding pack with PAR-Q and supporting forms.",
+};
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
@@ -36,9 +36,11 @@ function SectionTitle({
           {kicker}
         </p>
       )}
-      <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
+
+      <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
         {title}
-      </h1>
+      </h2>
+
       {desc && <p className="mt-4 text-base text-zinc-600">{desc}</p>}
     </div>
   );
@@ -92,55 +94,86 @@ export default async function GeneratePage() {
     <main className="bg-white">
       <section className="mx-auto max-w-5xl px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-20">
         <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
-          <Badge>Preview before paying</Badge>
-          <Badge>One-time purchase</Badge>
+          <Badge>Step 1 of the pack</Badge>
+          <Badge>Build before paying</Badge>
+          <Badge>£29.95 one-time purchase</Badge>
           <Badge>UK-focused wording</Badge>
         </div>
 
-        <SectionTitle
-          kicker="Personal Trainer Agreement Builder"
-          title="Build your personal trainer agreement"
-          desc="Complete the guided setup below to generate your agreement and preview the connected onboarding pack. Unlock export and the full pack after purchase."
-        />
-
-        <div className="mx-auto mt-8 max-w-3xl rounded-3xl border border-zinc-200 bg-zinc-50 p-6 text-center shadow-sm">
-          <p className="text-sm leading-7 text-zinc-600">
-            This builder is designed for speed and clarity. Start with the core
-            agreement, review the structure, and unlock the full connected pack
-            when you are ready.
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold tracking-wide text-zinc-500">
+            Personal Trainer Agreement Builder
           </p>
 
-          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <PrimaryLink href="#builder">Start building</PrimaryLink>
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-zinc-900 sm:text-5xl">
+            Start by building your personal trainer agreement
+          </h1>
+
+          <p className="mt-5 text-base leading-7 text-zinc-600 sm:text-lg">
+            This is step 1 of the Personal Trainer Client Onboarding Pack. Build
+            your core agreement first, then unlock the connected PAR-Q and
+            supporting forms after purchase.
+          </p>
+
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <PrimaryLink href="#builder">Start Building Your Agreement</PrimaryLink>
+
             <SecondaryLink href="/client-onboarding-pack">
-              See everything included
+              View the Client Onboarding Pack
             </SecondaryLink>
           </div>
+        </div>
+
+        <div className="mx-auto mt-8 max-w-3xl rounded-3xl border border-zinc-200 bg-zinc-50 p-6 text-center shadow-sm">
+          <p className="text-sm font-semibold text-zinc-900">
+            Agreement first. Connected pack after.
+          </p>
+
+          <p className="mt-3 text-sm leading-7 text-zinc-600">
+            The builder focuses on the agreement because that is the centre of
+            the pack. Once your agreement is ready, the full onboarding pack
+            gives you the connected client intake form, PAR-Q / health and emergency details, and incident/injury report around the agreement.
+          </p>
         </div>
       </section>
 
       <section id="builder" className="border-t border-zinc-200 bg-zinc-50">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
           <SectionTitle
-            kicker="Build and preview"
-            title="Start your guided setup"
-            desc="Fill in your details, preview your agreement, and unlock export when you are ready."
+            kicker="Step 1: Build the agreement"
+            title="Answer the key setup questions"
+            desc="Fill in your trainer details, payment terms, cancellation rules, communication boundaries and risk acknowledgement wording. Then preview the agreement before unlocking the full connected pack."
           />
 
           <div className="mt-8">
             <ClientOnboardingBuilder isUnlocked={isUnlocked} />
           </div>
 
+          <div className="mx-auto mt-8 max-w-3xl rounded-3xl border border-zinc-200 bg-white p-6 text-center shadow-sm">
+            <p className="text-sm font-semibold text-zinc-900">
+              What unlocks after purchase?
+            </p>
+
+            <p className="mt-3 text-sm leading-7 text-zinc-600">
+              Unlock export for your agreement plus the connected onboarding documents: client intake, PAR-Q / health and emergency details, and an incident/injury report for records if needed.
+            </p>
+
+            <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
+              <PrimaryLink href="/client-onboarding-pack">
+                View the Client Onboarding Pack
+              </PrimaryLink>
+
+              <SecondaryLink href="#builder">
+                Continue Building Agreement
+              </SecondaryLink>
+            </div>
+          </div>
+
           <div className="mx-auto mt-8 max-w-3xl text-center">
             <p className="text-sm text-zinc-500">
-              Need the full product breakdown first? View the{" "}
-              <Link
-                href="/client-onboarding-pack"
-                className="font-semibold text-zinc-900 underline underline-offset-4"
-              >
-                Personal Trainer Client Onboarding Pack
-              </Link>
-              .
+              ContractForge is not legal advice, a CRM, a dashboard, a client
+              portal, or an ongoing client management system. It is a practical
+              agreement-first onboarding document pack for UK personal trainers.
             </p>
           </div>
         </div>

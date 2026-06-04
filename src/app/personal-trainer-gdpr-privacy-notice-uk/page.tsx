@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "Personal Trainer GDPR Privacy Notice (UK)",
+  title: "Personal Trainer GDPR Privacy Notice UK | ContractForge",
   description:
-    "Free GDPR privacy notice template for UK personal trainers. Review a simple client privacy notice and see how it fits into a complete onboarding pack.",
+    "Free GDPR privacy notice template for UK personal trainers. Preview a supporting privacy document that can sit alongside your agreement and onboarding forms.",
 };
 
 import React from "react";
@@ -12,25 +12,6 @@ function Badge({ children }: { children: React.ReactNode }) {
     <span className="inline-flex items-center rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs font-medium text-zinc-700 shadow-sm">
       {children}
     </span>
-  );
-}
-
-function BulletCard({
-  title,
-  items,
-}: {
-  title: string;
-  items: string[];
-}) {
-  return (
-    <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
-      <h2 className="text-sm font-semibold text-zinc-900">{title}</h2>
-      <ul className="mt-3 space-y-2 text-sm leading-6 text-zinc-700">
-        {items.map((item) => (
-          <li key={item}>- {item}</li>
-        ))}
-      </ul>
-    </div>
   );
 }
 
@@ -61,7 +42,7 @@ function SecondaryLink({
   return (
     <Link
       href={href}
-      className="inline-flex items-center justify-center rounded-2xl border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-800 shadow-sm transition hover:bg-zinc-50"
+      className="inline-flex items-center justify-center rounded-2xl border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-50"
     >
       {children}
     </Link>
@@ -70,86 +51,141 @@ function SecondaryLink({
 
 function TemplateBlock({ children }: { children: React.ReactNode }) {
   return (
-    <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-      <div className="rounded-2xl bg-zinc-50 p-5 text-sm leading-7 text-zinc-800">
-        <pre className="whitespace-pre-wrap font-sans">{children}</pre>
+    <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-4 shadow-sm sm:p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p className="text-sm font-semibold text-zinc-900">Free template</p>
+          <p className="mt-1 text-xs text-zinc-500">
+            Copy and adapt this structure for your coaching business.
+          </p>
+        </div>
+        <Badge>Copy-ready</Badge>
       </div>
+
+      <div className="mt-4 rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
+        <pre className="whitespace-pre-wrap font-sans text-sm leading-7 text-zinc-800">
+          {children}
+        </pre>
+      </div>
+    </div>
+  );
+}
+
+function BulletCard({
+  title,
+  items,
+}: {
+  title: string;
+  items: string[];
+}) {
+  return (
+    <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+      <p className="text-sm font-semibold text-zinc-900">{title}</p>
+      <ul className="mt-3 space-y-2 text-sm text-zinc-600">
+        {items.map((item) => (
+          <li key={item}>• {item}</li>
+        ))}
+      </ul>
     </div>
   );
 }
 
 export default function PersonalTrainerGdprPrivacyNoticeUkPage() {
   return (
-    <main className="bg-zinc-50">
-      <section className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
-        <div className="flex flex-wrap gap-3">
+    <div className="bg-white">
+      <main className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
+        <div className="flex flex-wrap items-center gap-2">
           <Badge>UK template</Badge>
           <Badge>Privacy notice</Badge>
-          <Badge>Free to review</Badge>
+          <Badge>Free preview</Badge>
         </div>
 
-        <h1 className="mt-6 max-w-3xl text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl">
+        <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
           Personal Trainer GDPR Privacy Notice (UK)
         </h1>
 
-        <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-600">
+        <p className="mt-3 max-w-3xl text-zinc-600">
           A GDPR privacy notice explains how a personal trainer collects, uses,
-          stores, and protects client information. It is often shared during
-          onboarding so clients understand what happens to their data.
+          stores, and protects client information during enquiries, onboarding,
+          and training.
         </p>
 
-        <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_1.05fr]">
-          <div className="space-y-5">
+        <div className="mt-5 max-w-3xl rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+          <p className="text-sm font-semibold text-zinc-900">
+            This free template is a supporting privacy document for client
+            onboarding.
+          </p>
+          <p className="mt-2 text-sm leading-7 text-zinc-600">
+            It should sit alongside your agreement, client intake, PAR-Q /
+            health and emergency details, and any consent forms so clients
+            understand how their information is handled before training begins.
+          </p>
+        </div>
+
+        <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
+          <div>
             <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-zinc-900">
                 Template overview
               </h2>
-              <p className="mt-3 text-sm leading-7 text-zinc-700">
+
+              <p className="mt-3 text-sm leading-7 text-zinc-600">
                 This template gives UK personal trainers a simple privacy notice
                 to share with clients before training begins. It helps explain
                 what personal information is collected, why it is needed, and
-                how clients can request changes or ask questions.
+                how clients can ask questions or request changes.
               </p>
-            </div>
 
-            <BulletCard
-              title="What this template covers"
-              items={[
-                "What client data is collected during onboarding",
-                "Why personal and health information may be needed",
-                "How records are stored and kept secure",
-                "How a client can request access, correction, or deletion",
-              ]}
-            />
+              <p className="mt-3 text-sm leading-7 text-zinc-600">
+                A privacy notice is usually a supporting onboarding document. It
+                does not replace the main agreement, but it helps make the data
+                handling side of onboarding clearer.
+              </p>
 
-            <BulletCard
-              title="Who uses this template"
-              items={[
-                "UK personal trainers taking on new clients",
-                "Coaches collecting contact, health, and onboarding details",
-                "Trainers who want a clearer privacy step before first session",
-              ]}
-            />
+              <div className="mt-5 grid gap-3">
+                <BulletCard
+                  title="What this template covers"
+                  items={[
+                    "What client data is collected during onboarding",
+                    "Why contact, health, and emergency information may be needed",
+                    "How records are stored and kept secure",
+                    "How a client can request access, correction, or deletion",
+                  ]}
+                />
 
-            <BulletCard
-              title="Important to know"
-              items={[
-                "This should match how you actually handle client data",
-                "Health information should be treated carefully and only used where relevant",
-                "Clients should be told who to contact with privacy questions",
-              ]}
-            />
+                <BulletCard
+                  title="Who typically uses this template"
+                  items={[
+                    "UK personal trainers taking on new clients",
+                    "Coaches collecting contact, health, and onboarding details",
+                    "Trainers who want a clearer privacy step before the first session",
+                  ]}
+                />
 
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <PrimaryLink href="/generate">
-                Build your onboarding pack
-              </PrimaryLink>
-              <SecondaryLink href="/">Back to home</SecondaryLink>
+                <BulletCard
+                  title="Important to know"
+                  items={[
+                    "This should match how you actually handle client data",
+                    "Health information should be treated carefully and only used where relevant",
+                    "Clients should be told who to contact with privacy questions",
+                  ]}
+                />
+              </div>
+
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <PrimaryLink href="/client-onboarding-pack">
+                  View the Client Onboarding Pack
+                </PrimaryLink>
+                <SecondaryLink href="/generate">
+                  Start Building Your Agreement
+                </SecondaryLink>
+              </div>
             </div>
           </div>
 
-          <TemplateBlock>
-            {`PERSONAL TRAINER GDPR PRIVACY NOTICE (UK)
+          <div>
+            <TemplateBlock>
+              {`PERSONAL TRAINER GDPR PRIVACY NOTICE (UK)
 
 Business name: [Your business name]
 Contact email: [Your email address]
@@ -165,8 +201,9 @@ I may collect the following information:
 - Contact details
 - Emergency contact details
 - Health and medical information relevant to exercise
-- Session, attendance, and onboarding records
+- Client intake, session, attendance, and onboarding records
 - Payment and invoicing information where required
+- Consent records where relevant, such as photo or video consent
 
 3. WHY YOUR INFORMATION IS COLLECTED
 Your information may be used to:
@@ -177,8 +214,8 @@ Your information may be used to:
 - contact you about sessions, bookings, or service updates
 - meet legal, insurance, or professional obligations where required
 
-4. HEALTH INFORMATION
-If you provide health or medical information, it will only be used for purposes connected to your training, safety, and service delivery.
+4. HEALTH AND EMERGENCY INFORMATION
+If you provide health, medical, or emergency contact information, it will only be used for purposes connected to your training, safety, service delivery, or record keeping.
 
 5. HOW YOUR INFORMATION IS STORED
 Your information is stored using reasonable administrative and technical measures designed to keep it secure. Access is limited to information needed for service delivery and record keeping.
@@ -215,92 +252,112 @@ Client name: ______________________
 Signature: ______________________
 
 Date: ______________________`}
-          </TemplateBlock>
+            </TemplateBlock>
+          </div>
         </div>
 
-        <section className="mt-14 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold text-zinc-900">
-            Where this fits in onboarding
+        <section className="mx-auto mt-12 max-w-4xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-xl font-semibold text-zinc-900">
+            Where this template fits in onboarding
           </h2>
-          <p className="mt-3 max-w-3xl text-sm leading-7 text-zinc-700">
+
+          <p className="mt-3 text-sm leading-7 text-zinc-600">
             A privacy notice usually sits alongside the first onboarding steps,
             especially where a trainer collects contact details, health
-            information, or consultation notes. It supports the contract, PAR-Q,
-            and waiver by explaining how client information is handled before
-            training begins.
+            information, emergency details, intake notes, or consent records.
           </p>
 
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
-              <h3 className="text-sm font-semibold text-zinc-900">
-                Often used alongside
-              </h3>
-              <ul className="mt-3 space-y-2 text-sm leading-6 text-zinc-700">
-                <li>- Personal trainer contract</li>
-                <li>- PAR-Q health questionnaire</li>
-                <li>- Liability waiver</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
-              <h3 className="text-sm font-semibold text-zinc-900">
-                Why some trainers include it early
-              </h3>
-              <p className="mt-3 text-sm leading-6 text-zinc-700">
-                It sets a clearer standard for data handling from the beginning
-                of the client relationship, especially when health information
-                is part of the onboarding process.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="mt-10 rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-          <h2 className="text-2xl font-semibold text-zinc-900">
-            Related personal trainer templates
-          </h2>
-          <p className="mt-3 text-sm leading-7 text-zinc-700">
-            Review other UK onboarding documents commonly used alongside a
-            trainer privacy notice.
+          <p className="mt-3 text-sm leading-7 text-zinc-600">
+            It supports the agreement, client intake, PAR-Q / health and
+            emergency details, and any consent forms by explaining how client
+            information is handled before training begins.
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+              <p className="text-sm font-semibold text-zinc-900">
+                Often used alongside
+              </p>
+              <ul className="mt-2 space-y-2 text-sm text-zinc-600">
+                <li>• Personal Training Agreement</li>
+                <li>• Client Intake / Consultation Form</li>
+                <li>• PAR-Q / Health &amp; Emergency Details</li>
+                <li>• Photo &amp; Video Release Form</li>
+              </ul>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+              <p className="text-sm font-semibold text-zinc-900">
+                Why some trainers include it early
+              </p>
+              <p className="mt-2 text-sm leading-7 text-zinc-600">
+                It sets a clearer standard for data handling from the beginning
+                of the client relationship, especially when health, emergency,
+                consent, or intake information forms part of the onboarding
+                process.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <PrimaryLink href="/client-onboarding-pack">
+              View the Client Onboarding Pack
+            </PrimaryLink>
+            <SecondaryLink href="/generate">
+              Start Building Your Agreement
+            </SecondaryLink>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-12 max-w-4xl rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
+          <h2 className="text-lg font-semibold text-zinc-900">
+            Related personal trainer templates
+          </h2>
+
+          <p className="mt-2 text-sm text-zinc-600">
+            Explore other free templates commonly used alongside a personal
+            trainer privacy notice. Each free template is a preview of one part
+            of the wider onboarding setup.
+          </p>
+
+          <div className="mt-5 grid gap-2 sm:grid-cols-2">
             <Link
               href="/personal-trainer-contract-template-uk"
-              className="rounded-2xl border border-zinc-200 px-4 py-3 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Personal Trainer Contract Template →
             </Link>
+
             <Link
               href="/personal-trainer-par-q-form-uk"
-              className="rounded-2xl border border-zinc-200 px-4 py-3 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
-              PAR-Q Form Template →
+              PAR-Q / Health Details Template →
             </Link>
+
             <Link
-              href="/liability-waiver-uk"
-              className="rounded-2xl border border-zinc-200 px-4 py-3 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50"
+              href="/personal-trainer-waiver-form-uk"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
               Liability Waiver Template →
             </Link>
+
             <Link
               href="/personal-trainer-photo-video-release-form-uk"
-              className="rounded-2xl border border-zinc-200 px-4 py-3 text-sm font-medium text-zinc-800 transition hover:bg-zinc-50"
+              className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
-              Photo & Video Release Form →
+              Photo &amp; Video Release Form →
             </Link>
-          </div>
 
-          <div className="mt-5">
             <Link
-              href="/generate"
-              className="inline-flex w-full items-center justify-center rounded-2xl bg-zinc-900 px-5 py-4 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800"
+              href="/client-onboarding-pack"
+              className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-zinc-800 sm:col-span-2"
             >
-              View Complete Client Onboarding Pack →
+              View the Client Onboarding Pack →
             </Link>
           </div>
         </section>
-      </section>
-    </main>
+      </main>
+    </div>
   );
 }

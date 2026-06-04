@@ -37,13 +37,32 @@ export function SiteFooter() {
             </Link>
 
             <p className="mt-4 max-w-xl text-sm leading-6 text-zinc-600">
-              UK personal trainer templates and onboarding documents designed to
-              help you set expectations clearly before coaching starts.
+              UK personal trainer onboarding documents built around one core
+              agreement, with supporting forms for client setup before the first
+              session.
             </p>
+
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/client-onboarding-pack"
+                className="inline-flex items-center justify-center rounded-2xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800"
+              >
+                View the Client Onboarding Pack
+              </Link>
+
+              <Link
+                href="/generate"
+                className="inline-flex items-center justify-center rounded-2xl border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-50"
+              >
+                Start Building Your Agreement
+              </Link>
+            </div>
           </div>
 
           <div>
-            <h2 className="text-sm font-semibold text-zinc-900">Templates</h2>
+            <h2 className="text-sm font-semibold text-zinc-900">
+              Free Templates
+            </h2>
             <ul className="mt-4 space-y-3 text-sm text-zinc-600">
               {templateLinks.map((item) => (
                 <li key={item.href}>
@@ -66,24 +85,37 @@ export function SiteFooter() {
                   Home
                 </Link>
               </li>
+
               <li>
                 <Link
-                  href="/generate"
+                  href="/client-onboarding-pack"
                   className="transition hover:text-zinc-900"
                 >
                   Client Onboarding Pack
                 </Link>
               </li>
+
+              <li>
+                <Link
+                  href="/generate"
+                  className="transition hover:text-zinc-900"
+                >
+                  Start Agreement
+                </Link>
+              </li>
+
               <li>
                 <Link href="/privacy" className="transition hover:text-zinc-900">
                   Privacy Policy
                 </Link>
               </li>
+
               <li>
                 <Link href="/terms" className="transition hover:text-zinc-900">
                   Terms of Use
                 </Link>
               </li>
+
               <li>
                 <Link href="/contact" className="transition hover:text-zinc-900">
                   Contact

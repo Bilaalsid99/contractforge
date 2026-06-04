@@ -14,6 +14,24 @@ type Props = {
   buttonText?: string;
 };
 
+function getErrorMessage(error: unknown) {
+  if (error instanceof Error) return error.message;
+  return "Something went wrong. Please try again.";
+}
+
+function getApiErrorMessage(data: unknown) {
+  if (
+    typeof data === "object" &&
+    data !== null &&
+    "error" in data &&
+    typeof data.error === "string"
+  ) {
+    return data.error;
+  }
+
+  return "Something went wrong. Please try again.";
+}
+
 export function EmailCaptureForm({ templateId, buttonText }: Props) {
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +43,7 @@ export function EmailCaptureForm({ templateId, buttonText }: Props) {
         setLoading(true);
 
         try {
-          const form = e.currentTarget as HTMLFormElement;
+          const form = e.currentTarget;
           const formData = new FormData(form);
           const email = String(formData.get("email") ?? "").trim();
 
@@ -35,23 +53,22 @@ export function EmailCaptureForm({ templateId, buttonText }: Props) {
             body: JSON.stringify({ email, templateId }),
           });
 
-          // Try to parse error message if your API returns JSON { error: "..." }
-          let data: any = null;
+          let data: unknown = null;
+
           try {
             data = await res.json();
-          } catch {}
+          } catch {
+            // API did not return JSON
+          }
 
           if (!res.ok) {
-            const msg =
-              data?.error ||
-              "Something went wrong. Please try again.";
-            throw new Error(msg);
+            throw new Error(getApiErrorMessage(data));
           }
 
           alert("Thanks. We'll email you shortly.");
           form.reset();
-        } catch (error: any) {
-          alert(error?.message || "Something went wrong. Please try again.");
+        } catch (error: unknown) {
+          alert(getErrorMessage(error));
         } finally {
           setLoading(false);
         }

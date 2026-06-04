@@ -40,7 +40,6 @@ export async function sendRestoreAccessEmail(params: {
         <li>Client intake form</li>
         <li>Personal trainer agreement</li>
         <li>PAR-Q health questionnaire</li>
-        <li>Emergency form</li>
         <li>Incident form</li>
       </ul>
 
@@ -63,8 +62,7 @@ Your pack includes:
 
 • Client intake form
 • Personal trainer agreement
-• PAR-Q health questionnaire
-• Emergency form
+• PAR-Q / Health & Emergency Details
 • Incident form
 
 ContractForge provides document templates and onboarding resources. It is not legal advice, a CRM, dashboard, or client management system.

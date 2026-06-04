@@ -16,15 +16,24 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "ContractForge",
+    default: "ContractForge | Personal Trainer Client Onboarding Pack UK",
     template: "%s | ContractForge",
   },
   description:
-    "UK client onboarding templates and generators for personal trainers.",
+    "Build your UK personal trainer agreement first, then unlock the connected client onboarding pack.",
+  metadataBase: new URL("https://contractforge.co.uk"),
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/icon.png",
+  },
+  openGraph: {
+    title: "ContractForge | Personal Trainer Client Onboarding Pack UK",
+    description:
+      "Build your UK personal trainer agreement first, then unlock the connected client onboarding pack.",
+    url: "https://contractforge.co.uk",
+    siteName: "ContractForge",
+    type: "website",
   },
 };
 
@@ -36,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-zinc-50 font-sans text-zinc-900 antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-white font-sans text-zinc-900 antialiased`}
       >
         <div className="flex min-h-screen flex-col">
           <SiteHeader />

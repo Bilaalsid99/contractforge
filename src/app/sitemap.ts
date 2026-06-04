@@ -5,7 +5,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
-    // Core pages (highest priority)
+    // Core pages
     {
       url: baseUrl,
       lastModified: now,
@@ -16,10 +16,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/client-onboarding-pack`,
       lastModified: now,
       changeFrequency: "weekly",
-      priority: 0.9,
+      priority: 0.95,
     },
 
-    // Builder (secondary)
+    // Builder / action step
     {
       url: `${baseUrl}/generate`,
       lastModified: now,
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
 
-    // BOF template pages (SEO drivers)
+    // Main free template previews
     {
       url: `${baseUrl}/personal-trainer-contract-template-uk`,
       lastModified: now,
@@ -38,28 +38,48 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/personal-trainer-par-q-form-uk`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.75,
     },
     {
       url: `${baseUrl}/personal-trainer-waiver-form-uk`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.75,
     },
     {
       url: `${baseUrl}/personal-trainer-terms-and-conditions-uk`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.75,
     },
     {
       url: `${baseUrl}/personal-trainer-cancellation-policy-template`,
       lastModified: now,
       changeFrequency: "monthly",
-      priority: 0.8,
+      priority: 0.75,
     },
 
-    // Supporting / trust pages
+    // Supporting free template previews
+    {
+      url: `${baseUrl}/personal-trainer-gdpr-privacy-notice-uk`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/personal-trainer-photo-video-release-form-uk`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/home-visit-personal-training-waiver-uk`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+
+    // Trust / legal pages
     {
       url: `${baseUrl}/contact`,
       lastModified: now,

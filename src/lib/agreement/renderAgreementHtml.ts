@@ -5,8 +5,8 @@ type RenderMode = "preview" | "full";
 
 /**
  * Renders the agreement as HTML.
- * - full: complete agreement (used for paid PDF + email)
- * - preview: redacts key protection sections so users can't copy the full doc
+ * - full: complete agreement used after unlock
+ * - preview: redacts key protection sections so users can't copy the full agreement
  */
 export function renderAgreementHtml(
   a: AgreementAnswers,
@@ -67,7 +67,7 @@ export function renderAgreementHtml(
 
       <div class="previewBadge">
         <strong>Preview version</strong>
-        <div class="muted">Some protection clauses are hidden until you unlock the full pack.</div>
+        <div class="muted">Some additional clauses are hidden until you unlock export and the connected pack.</div>
       </div>
 
       <div class="meta">
@@ -84,7 +84,7 @@ export function renderAgreementHtml(
 }
 
 /**
- * Redacts the most copyable/high-value legal sections.
+ * Redacts the most copyable/high-value agreement sections.
  * Uses <p> tags instead of <div> so the PDF parser can read them.
  */
 function redactForPreview(fullBodyHtml: string): string {
@@ -104,7 +104,7 @@ function redactForPreview(fullBodyHtml: string): string {
       return `
 ${heading}
 <p class="redacted"><strong>Full clause hidden in preview</strong></p>
-<p class="muted">Unlock the full pack to download the complete legal wording for this section.</p>
+<p class="muted">Unlock export to download the complete agreement wording for this section.</p>
 `.trim();
     });
   }

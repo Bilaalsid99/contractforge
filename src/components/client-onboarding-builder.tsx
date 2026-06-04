@@ -38,11 +38,9 @@ type StepKey =
 const STORAGE_KEY = "contractforge:generator:final-v2";
 
 const SUPPORTING_LINKS = {
-  parq: "https://docs.google.com/document/d/REPLACE_WITH_REAL_PARQ_LINK/copy",
+  parq: "https://docs.google.com/document/d/1db5TIIs6p5UfYt8MsSAFqVXYhCxNpI676ZWwM8PGh8E/copy",
   intake:
     "https://docs.google.com/document/d/1EPyDfkQibmTjuWJxcQupMZgpSmyDr1Lhyc_kncUIEos/copy",
-  emergency:
-    "https://docs.google.com/document/u/6/d/1AHtCwbRAN39V9mGEeHwuLEJytRnl4VMTOOZKBrzaaVk/copy",
   incident:
     "https://docs.google.com/document/u/6/d/1_NwmIbY12KAQ_WdzQQmESZOrQnWY2urVxSJc3i6QLb4/copy",
   photoRelease: "/personal-trainer-photo-video-release-form-uk",
@@ -162,20 +160,16 @@ function PackIncludes({
 }) {
   const items = [
     {
-      label: "Intake form",
-      href: SUPPORTING_LINKS.intake,
-    },
-    {
       label: "Agreement",
       href: null,
     },
     {
-      label: "PAR-Q",
+      label: "PAR-Q / Health & Emergency Details",
       href: SUPPORTING_LINKS.parq,
     },
     {
-      label: "Emergency form",
-      href: SUPPORTING_LINKS.emergency,
+      label: "Intake form",
+      href: SUPPORTING_LINKS.intake,
     },
     {
       label: "Incident form",
@@ -193,7 +187,12 @@ function PackIncludes({
   return (
     <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
       <p className="text-sm font-semibold text-zinc-900">
-        Included in your onboarding pack
+        Connected forms included after unlock
+      </p>
+
+      <p className="mt-1 text-sm text-zinc-600">
+        The agreement is the core document. The supporting forms sit around it
+        when onboarding a client.
       </p>
 
       <div className="mt-4 space-y-2">
@@ -215,19 +214,19 @@ function PackIncludes({
 
           const isCurrent = item.label === "Agreement";
 
-return (
-  <div
-    key={item.label}
-    className={classNames(
-      "rounded-2xl border px-4 py-3 text-sm font-medium",
-      isCurrent
-        ? "border-zinc-900 bg-zinc-900 text-white"
-        : "border-zinc-200 bg-zinc-50 text-zinc-800"
-    )}
-  >
-    {item.label}
-  </div>
-);
+          return (
+            <div
+              key={item.label}
+              className={classNames(
+                "rounded-2xl border px-4 py-3 text-sm font-medium",
+                isCurrent
+                  ? "border-zinc-900 bg-zinc-900 text-white"
+                  : "border-zinc-200 bg-zinc-50 text-zinc-800"
+              )}
+            >
+              {item.label}
+            </div>
+          );
         })}
       </div>
     </div>
@@ -365,8 +364,9 @@ function PreviewPanel({
                   Preview limited before purchase
                 </p>
                 <p className="mt-1 text-sm text-zinc-600">
-                  Review the agreement structure first. Unlock the full pack to
-                  access the complete agreement, copy, and the separate forms.
+                  Review the agreement structure first. Unlock export to access
+                  the complete agreement, copy it, and open the connected
+                  onboarding forms.
                 </p>
               </div>
             </div>
@@ -515,7 +515,7 @@ export default function ClientOnboardingBuilder({
         >
           <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
             <p className="text-sm font-medium text-zinc-800">
-              One agreement builder. Separate onboarding forms are included
+              One agreement builder. Connected onboarding forms are included
               after purchase.
             </p>
           </div>
@@ -772,133 +772,133 @@ export default function ClientOnboardingBuilder({
         )}
 
         <details className="group rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
-  <summary className="flex cursor-pointer list-none items-center justify-between text-base font-semibold text-zinc-900 hover:text-zinc-700">
-    <span>Refine agreement (optional)</span>
+          <summary className="flex cursor-pointer list-none items-center justify-between text-base font-semibold text-zinc-900 hover:text-zinc-700">
+            <span>Refine agreement (optional)</span>
 
-    <span className="relative ml-4 h-5 w-5 text-zinc-500">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className="absolute inset-0 h-5 w-5 group-open:hidden"
-        aria-hidden="true"
-      >
-        <path
-          fillRule="evenodd"
-          d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.512a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"
-          clipRule="evenodd"
-        />
-      </svg>
+            <span className="relative ml-4 h-5 w-5 text-zinc-500">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="absolute inset-0 h-5 w-5 group-open:hidden"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.512a.75.75 0 01-1.08 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
 
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20"
-        fill="currentColor"
-        className="absolute inset-0 hidden h-5 w-5 group-open:block"
-        aria-hidden="true"
-      >
-        <path d="M5.75 9.25a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z" />
-      </svg>
-    </span>
-  </summary>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="absolute inset-0 hidden h-5 w-5 group-open:block"
+                aria-hidden="true"
+              >
+                <path d="M5.75 9.25a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5z" />
+              </svg>
+            </span>
+          </summary>
 
-  <p className="mt-2 text-sm text-zinc-600">
-    Add a few tighter rules if needed.
-  </p>
+          <p className="mt-2 text-sm text-zinc-600">
+            Add a few tighter rules if needed.
+          </p>
 
-  <div className="mt-5 space-y-5">
-    <SelectField
-      label="Session expiry"
-      value={form.sessionExpiry}
-      onChange={(value) =>
-        setForm((s) => ({ ...s, sessionExpiry: value }))
-      }
-      options={[
-        "No expiry",
-        "Sessions expire after 4 weeks",
-        "Sessions expire after 6 weeks",
-        "Sessions expire after 8 weeks",
-      ]}
-    />
+          <div className="mt-5 space-y-5">
+            <SelectField
+              label="Session expiry"
+              value={form.sessionExpiry}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, sessionExpiry: value }))
+              }
+              options={[
+                "No expiry",
+                "Sessions expire after 4 weeks",
+                "Sessions expire after 6 weeks",
+                "Sessions expire after 8 weeks",
+              ]}
+            />
 
-    <SelectField
-      label="Minimum commitment"
-      value={form.minimumCommitment}
-      onChange={(value) =>
-        setForm((s) => ({ ...s, minimumCommitment: value }))
-      }
-      options={[
-        "No minimum commitment",
-        "Minimum 4 sessions",
-        "Minimum 8 sessions",
-        "Minimum 12 weeks",
-      ]}
-    />
+            <SelectField
+              label="Minimum commitment"
+              value={form.minimumCommitment}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, minimumCommitment: value }))
+              }
+              options={[
+                "No minimum commitment",
+                "Minimum 4 sessions",
+                "Minimum 8 sessions",
+                "Minimum 12 weeks",
+              ]}
+            />
 
-    <SelectField
-      label="Rescheduling"
-      value={form.reschedulingRule}
-      onChange={(value) =>
-        setForm((s) => ({ ...s, reschedulingRule: value }))
-      }
-      options={[
-        "Rescheduling is allowed within the notice period",
-        "Rescheduling is not allowed within the notice period",
-        "Rescheduling is at the trainer’s discretion",
-      ]}
-    />
+            <SelectField
+              label="Rescheduling"
+              value={form.reschedulingRule}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, reschedulingRule: value }))
+              }
+              options={[
+                "Rescheduling is allowed within the notice period",
+                "Rescheduling is not allowed within the notice period",
+                "Rescheduling is at the trainer’s discretion",
+              ]}
+            />
 
-    <SelectField
-      label="If the trainer cancels"
-      value={form.trainerCancellationRule}
-      onChange={(value) =>
-        setForm((s) => ({ ...s, trainerCancellationRule: value }))
-      }
-      options={[
-        "Cancelled sessions will be rescheduled",
-        "Cancelled sessions will be refunded",
-        "Cancelled sessions will be credited toward a future booking",
-        "The full remaining session time will be honoured at the next available opportunity",
-      ]}
-    />
+            <SelectField
+              label="If the trainer cancels"
+              value={form.trainerCancellationRule}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, trainerCancellationRule: value }))
+              }
+              options={[
+                "Cancelled sessions will be rescheduled",
+                "Cancelled sessions will be refunded",
+                "Cancelled sessions will be credited toward a future booking",
+                "The full remaining session time will be honoured at the next available opportunity",
+              ]}
+            />
 
-    <SelectField
-      label="Training environment responsibility"
-      value={form.environmentResponsibility}
-      onChange={(value) =>
-        setForm((s) => ({ ...s, environmentResponsibility: value }))
-      }
-      options={[
-        "The client is responsible for providing a suitable training space",
-        "Responsibility for the training environment is shared",
-        "Not applicable to this coaching setup",
-      ]}
-    />
+            <SelectField
+              label="Training environment responsibility"
+              value={form.environmentResponsibility}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, environmentResponsibility: value }))
+              }
+              options={[
+                "The client is responsible for providing a suitable training space",
+                "Responsibility for the training environment is shared",
+                "Not applicable to this coaching setup",
+              ]}
+            />
 
-    <SelectField
-      label="Content usage"
-      value={form.contentUsage}
-      onChange={(value) =>
-        setForm((s) => ({ ...s, contentUsage: value }))
-      }
-      options={["No", "Yes, with separate consent"]}
-    />
+            <SelectField
+              label="Content usage"
+              value={form.contentUsage}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, contentUsage: value }))
+              }
+              options={["No", "Yes, with separate consent"]}
+            />
 
-    <SelectField
-      label="Refund rule"
-      value={form.refundRule}
-      onChange={(value) =>
-        setForm((s) => ({ ...s, refundRule: value }))
-      }
-      options={[
-        "Payments are non-refundable once booked",
-        "Unused sessions are non-refundable",
-        "Refunds may be offered at the trainer’s discretion",
-      ]}
-    />
-  </div>
-</details>
-</section>
+            <SelectField
+              label="Refund rule"
+              value={form.refundRule}
+              onChange={(value) =>
+                setForm((s) => ({ ...s, refundRule: value }))
+              }
+              options={[
+                "Payments are non-refundable once booked",
+                "Unused sessions are non-refundable",
+                "Refunds may be offered at the trainer’s discretion",
+              ]}
+            />
+          </div>
+        </details>
+      </section>
 
       <section className="space-y-4">
         <div className="rounded-3xl border border-zinc-200 bg-white p-5 shadow-sm">
@@ -908,7 +908,8 @@ export default function ClientOnboardingBuilder({
                 Preview your agreement
               </p>
               <p className="mt-1 text-sm text-zinc-600">
-                Review the structure first. Unlock the full pack when ready.
+                Review the structure first. Unlock your agreement and connected
+                forms when ready.
               </p>
             </div>
 
@@ -941,8 +942,6 @@ export default function ClientOnboardingBuilder({
               {checkoutError}
             </div>
           ) : null}
-
-          
         </div>
 
         <PackIncludes

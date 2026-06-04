@@ -1,8 +1,8 @@
 // src/app/page.tsx
 export const metadata = {
-  title: "ContractForge",
+  title: "ContractForge | Personal Trainer Client Onboarding Pack UK",
   description:
-    "Create your personal trainer client onboarding pack in minutes. Preview your agreement, explore the free templates, and unlock the full pack in one simple flow.",
+    "Build your UK personal trainer agreement first, then unlock the connected PAR-Q and supporting forms needed to onboard clients before the first session.",
 };
 
 import Link from "next/link";
@@ -72,58 +72,52 @@ function Card({
 const corePages = [
   {
     title: "Personal Trainer Contract Template (UK)",
-    desc: "A free contract template covering coaching scope, bookings, and cancellations.",
+    desc: "A free agreement preview covering coaching scope, bookings, payments, and cancellations.",
     href: "/personal-trainer-contract-template-uk",
     tag: "Free",
   },
   {
     title: "PAR-Q Form (UK)",
-    desc: "A free health questionnaire template to screen client readiness before training.",
+    desc: "A free health questionnaire preview to support client readiness screening before training.",
     href: "/personal-trainer-par-q-form-uk",
     tag: "Free",
   },
   {
     title: "Liability Waiver (UK)",
-    desc: "A free waiver template covering risk acknowledgement and participation wording.",
+    desc: "A free supporting waiver preview covering risk acknowledgement and participation wording.",
     href: "/personal-trainer-waiver-form-uk",
     tag: "Free",
   },
   {
     title: "Terms & Conditions (UK)",
-    desc: "A free template covering payments, session rules, and client responsibilities.",
+    desc: "A free supporting template covering payments, session rules, and client responsibilities.",
     href: "/personal-trainer-terms-and-conditions-uk",
     tag: "Free",
   },
   {
     title: "Cancellation Policy Template (UK)",
-    desc: "Example wording for notice periods, missed sessions, and cancellation fees.",
+    desc: "A free supporting policy preview for notice periods, missed sessions, and rescheduling.",
     href: "/personal-trainer-cancellation-policy-template",
     tag: "Free",
-  },
-  {
-    title: "Client Onboarding Pack",
-    desc: "See the full pack built around one agreement and the supporting forms that go with it.",
-    href: "/client-onboarding-pack",
-    tag: "Full pack",
   },
 ];
 
 const supportingPages = [
   {
     title: "GDPR Privacy Notice (UK)",
-    desc: "A free privacy notice template explaining how trainer client data is collected, used, and stored.",
+    desc: "A free privacy notice preview explaining how trainer client data is collected, used, and stored.",
     href: "/personal-trainer-gdpr-privacy-notice-uk",
     tag: "Free",
   },
   {
     title: "Photo & Video Release Form (UK)",
-    desc: "A free consent form template for client images, recordings, and content use.",
+    desc: "A free consent form preview for client images, recordings, and content use.",
     href: "/personal-trainer-photo-video-release-form-uk",
     tag: "Free",
   },
   {
     title: "Home Visit Personal Training Waiver (UK)",
-    desc: "A free supporting waiver template for trainers delivering sessions in a client’s home.",
+    desc: "A free supporting waiver preview for trainers delivering sessions in a client’s home.",
     href: "/home-visit-personal-training-waiver-uk",
     tag: "Free",
   },
@@ -137,40 +131,55 @@ export default function HomePage() {
       <section className="border-t border-zinc-200 bg-zinc-50">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
-            kicker="Why trainers use it"
-            title="A simpler way to get your onboarding in place"
-            desc="Preview the agreement structure, explore the free templates, or move straight to the full pack when you want your agreement and supporting forms working together."
+            kicker="Personal Trainer Client Onboarding Pack (UK)"
+            title="Build your agreement first, then unlock the connected pack"
+            desc="ContractForge is built around one core personal training agreement, with the connected PAR-Q and supporting forms needed to onboard clients before the first session."
           />
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold text-zinc-900">
-                Preview the agreement first
+                1. Start with the agreement
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Add a few details and see part of the agreement before you pay.
+                Build the core document that sets services, payment terms,
+                cancellation rules, responsibilities, and expectations.
               </p>
             </div>
 
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold text-zinc-900">
-                Explore the free templates
+                2. Unlock the connected forms
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Review the template pages first if you want to compare wording
-                and structure.
+                Get the client intake form, PAR-Q / health and emergency details, and incident report around the agreement.
               </p>
             </div>
 
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold text-zinc-900">
-                Unlock the full pack
+                3. Reuse for future clients
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Get the agreement, PAR-Q, and supporting forms together instead
-                of piecing everything together manually.
+                Keep your onboarding cleaner instead of piecing together
+                separate templates from different places.
               </p>
             </div>
+          </div>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/client-onboarding-pack"
+              className="inline-flex items-center justify-center rounded-2xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800"
+            >
+              View the Client Onboarding Pack
+            </Link>
+            <Link
+              href="/generate"
+              className="inline-flex items-center justify-center rounded-2xl border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-50"
+            >
+              Start Building Your Agreement
+            </Link>
           </div>
         </div>
       </section>
@@ -181,9 +190,9 @@ export default function HomePage() {
       >
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
-            kicker="Free templates"
-            title="Explore the documents first"
-            desc="Use the free template pages to review key parts of the onboarding process before moving to the full pack."
+            kicker="Free template previews"
+            title="Explore individual parts of the onboarding pack"
+            desc="These free pages preview documents commonly used around personal trainer onboarding. For the cleaner setup, start with the main pack and build the agreement first."
           />
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -198,17 +207,32 @@ export default function HomePage() {
             ))}
           </div>
 
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link
+              href="/client-onboarding-pack"
+              className="inline-flex items-center justify-center rounded-2xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800"
+            >
+              View the Client Onboarding Pack
+            </Link>
+            <Link
+              href="/generate"
+              className="inline-flex items-center justify-center rounded-2xl border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-50"
+            >
+              Start Building Your Agreement
+            </Link>
+          </div>
+
           <div className="mt-14">
             <div className="mx-auto max-w-3xl text-center">
               <p className="text-sm font-semibold tracking-wide text-zinc-500">
-                Additional templates
+                Additional supporting templates
               </p>
               <h3 className="mt-2 text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl">
-                Supporting template pages
+                Extra free previews
               </h3>
               <p className="mt-4 text-base text-zinc-600">
-                Extra template pages some trainers may use alongside the main
-                onboarding documents.
+                These supporting templates may sit alongside the main agreement
+                depending on how you onboard clients.
               </p>
             </div>
 
@@ -231,53 +255,53 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
             kicker="How it works"
-            title="Preview first, then get the pack"
-            desc="Keep it simple: review the agreement structure first, then continue when you want the full pack."
+            title="Agreement first. Supporting forms after."
+            desc="Start by building the core agreement. When you are ready, unlock the full connected onboarding pack for £29.95."
           />
 
           <div className="mt-8 grid gap-4 lg:grid-cols-3">
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold text-zinc-900">
-                1. Enter a few details
+                1. Enter your setup details
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Add your name, business name, session type, and cancellation
-                notice.
+                Add trainer details, session type, payment structure,
+                cancellation notice, and communication boundaries.
               </p>
             </div>
 
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold text-zinc-900">
-                2. View a limited preview
+                2. Preview the agreement
               </p>
               <p className="mt-2 text-sm text-zinc-600">
                 See how your details can appear inside the agreement before
-                unlocking the full pack.
+                unlocking export and the connected pack.
               </p>
             </div>
 
             <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
               <p className="text-sm font-semibold text-zinc-900">
-                3. Unlock the full pack
+                3. Unlock the pack
               </p>
               <p className="mt-2 text-sm text-zinc-600">
-                Get the agreement, PAR-Q, and supporting forms in one place.
+                Get the agreement, client intake form, PAR-Q / health and emergency details, and incident report together.
               </p>
             </div>
           </div>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
-              href="/client-onboarding-pack"
+              href="/generate"
               className="inline-flex items-center justify-center rounded-2xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800"
             >
-              Get the Pack
+              Start Building Your Agreement
             </Link>
             <Link
-              href="/personal-trainer-contract-template-uk"
+              href="/client-onboarding-pack"
               className="inline-flex items-center justify-center rounded-2xl border border-zinc-200 bg-white px-5 py-3 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-50"
             >
-              Start with a free template
+              View the Client Onboarding Pack
             </Link>
           </div>
         </div>

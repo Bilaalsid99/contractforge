@@ -1,8 +1,9 @@
 export const metadata = {
-  title: "Personal Trainer Cancellation Policy Template UK",
+  title: "Personal Trainer Cancellation Policy Template UK | ContractForge",
   description:
-    "Free personal trainer cancellation policy template for UK coaches. Set clear rules for notice periods, missed sessions, late arrivals, and rescheduling.",
+    "Free personal trainer cancellation policy template for UK coaches. Preview one supporting part of the Personal Trainer Client Onboarding Pack and build your agreement first.",
 };
+
 import React from "react";
 import Link from "next/link";
 
@@ -125,7 +126,7 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
         <div className="flex flex-wrap items-center gap-2">
           <Badge>UK template</Badge>
           <Badge>Cancellation policy</Badge>
-          <Badge>Free to review</Badge>
+          <Badge>Free preview</Badge>
         </div>
 
         <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
@@ -138,6 +139,19 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
           and rescheduling.
         </p>
 
+        <div className="mt-5 max-w-3xl rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+          <p className="text-sm font-semibold text-zinc-900">
+            This free template is a supporting part of the Personal Trainer
+            Client Onboarding Pack.
+          </p>
+          <p className="mt-2 text-sm leading-7 text-zinc-600">
+            Cancellation rules usually work best when they sit inside or
+            alongside the main agreement. For a cleaner setup, build your
+            agreement first, then use the connected PAR-Q and supporting forms
+            needed before the first session.
+          </p>
+        </div>
+
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
           <div>
             <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
@@ -148,8 +162,15 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
               <p className="mt-3 text-sm leading-7 text-zinc-600">
                 A cancellation policy helps trainers explain how session changes
                 are handled. Many trainers include cancellation rules directly
-                inside their client contract or terms and conditions, while
+                inside their client agreement or terms and conditions, while
                 others also keep a separate policy for clarity.
+              </p>
+
+              <p className="mt-3 text-sm leading-7 text-zinc-600">
+                This policy should support the wider onboarding setup rather
+                than sit disconnected from it. The same cancellation wording
+                should usually be reflected across the client agreement and any
+                related terms.
               </p>
 
               <div className="mt-5 grid gap-3">
@@ -177,18 +198,20 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
                 <BulletCard
                   title="Important context"
                   items={[
-                    "Cancellation wording often overlaps with contracts and terms",
+                    "Cancellation wording often overlaps with agreements and terms",
                     "Many trainers want the same rules reflected across documents",
-                    "A complete onboarding pack can make those rules easier to keep consistent",
+                    "The full pack keeps the agreement and supporting forms connected",
                   ]}
                 />
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <PrimaryLink href="/generate">
-                  View full onboarding pack
+                <PrimaryLink href="/client-onboarding-pack">
+                  View the Client Onboarding Pack
                 </PrimaryLink>
-                <SecondaryLink href="/">Back to home</SecondaryLink>
+                <SecondaryLink href="/generate">
+                  Start Building Your Agreement
+                </SecondaryLink>
               </div>
             </div>
           </div>
@@ -211,7 +234,7 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
           </p>
 
           <p className="mt-3 text-sm leading-7 text-zinc-600">
-            In practice, cancellation terms often sit within a broader
+            In practice, cancellation terms often sit inside the broader
             agreement, alongside health screening before training begins and
             liability wording that confirms the client understands the risks of
             exercise.
@@ -224,8 +247,9 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
               </p>
               <ul className="mt-2 space-y-2 text-sm text-zinc-600">
                 <li>• Personal Training Agreement</li>
-                <li>• PAR-Q Health Questionnaire</li>
-                <li>• Liability Waiver</li>
+                <li>• PAR-Q / Health & Emergency Details</li>
+                <li>• Client Intake / Consultation Form</li>
+                <li>• Incident / Injury Report Form</li>
               </ul>
             </div>
 
@@ -233,12 +257,21 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
               <p className="text-sm font-semibold text-zinc-900">
                 Why some trainers start with the full pack
               </p>
-              <p className="mt-2 text-sm text-zinc-600">
+              <p className="mt-2 text-sm leading-7 text-zinc-600">
                 Many trainers prefer starting with a structured onboarding pack
-                so the agreement, health screening, and liability wording all
-                work together from the beginning.
+                so the agreement, cancellation rules, health screening, and
+                supporting forms all work together from the beginning.
               </p>
             </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <PrimaryLink href="/client-onboarding-pack">
+              View the Client Onboarding Pack
+            </PrimaryLink>
+            <SecondaryLink href="/generate">
+              Start Building Your Agreement
+            </SecondaryLink>
           </div>
         </section>
 
@@ -249,7 +282,8 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
 
           <p className="mt-2 text-sm text-zinc-600">
             Explore the other documents commonly used alongside a cancellation
-            policy.
+            policy. Each free template is a preview of one part of the wider
+            onboarding setup.
           </p>
 
           <div className="mt-5 grid gap-2 sm:grid-cols-2">
@@ -282,11 +316,11 @@ export default function PersonalTrainerCancellationPolicyTemplatePage() {
             </Link>
 
             <Link
-  href="/generate"
-  className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-zinc-800 sm:col-span-2"
->
-  View Complete Client Onboarding Pack →
-</Link>
+              href="/client-onboarding-pack"
+              className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-zinc-800 sm:col-span-2"
+            >
+              View the Client Onboarding Pack →
+            </Link>
           </div>
         </section>
 

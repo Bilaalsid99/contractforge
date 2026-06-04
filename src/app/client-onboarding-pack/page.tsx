@@ -3,9 +3,9 @@ import React from "react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Personal Trainer Client Onboarding Pack (UK)",
+  title: "Personal Trainer Client Onboarding Pack UK | ContractForge",
   description:
-    "Preview the Personal Trainer Client Onboarding Pack (UK), built around one core agreement, a standard PAR-Q, and practical supporting forms.",
+    "Build your UK personal trainer agreement first, then unlock the connected client intake, PAR-Q, health details and incident report.",
 };
 
 function Badge({ children }: { children: React.ReactNode }) {
@@ -32,25 +32,12 @@ function SectionTitle({
           {kicker}
         </p>
       )}
-      <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
-        {title}
-      </h1>
-      {desc && <p className="mt-4 text-base text-zinc-600">{desc}</p>}
-    </div>
-  );
-}
 
-function Card({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm">
-      <p className="text-base font-semibold text-zinc-900">{title}</p>
-      <div className="mt-3 text-sm leading-7 text-zinc-600">{children}</div>
+      <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
+        {title}
+      </h2>
+
+      {desc && <p className="mt-4 text-base text-zinc-600">{desc}</p>}
     </div>
   );
 }
@@ -115,73 +102,91 @@ export default function ClientOnboardingPackPage() {
     "Cancellation and attendance rules",
     "Communication boundaries",
     "Client responsibilities",
-    "Health and risk acknowledgement",
+    "Health, risk and liability wording",
     "General training expectations",
   ];
 
-  const generatorQuestions = [
-    "Trainer and business details",
-    "Training location",
-    "Session duration",
-    "Coaching scope",
-    "Payment structure and timing",
-    "Cancellation and attendance rules",
-    "Communication boundaries",
-    "Emergency contact requirement",
-    "Risk acknowledgement wording",
-    "Online coaching and group training options",
-  ];
-
-  const optionalRefinements = [
-    "Session expiry",
-    "Minimum commitment",
-    "Rescheduling rules",
-    "Trainer cancellation rule",
-    "Training environment responsibility",
-  ];
-
   const packItems = [
-    "PAR-Q Health Questionnaire",
+    "Personal Training Agreement",
     "Client Intake / Consultation Form",
-    "Emergency & Health Information Form",
+    "PAR-Q / Health & Emergency Details",
     "Incident / Injury Report Form",
   ];
 
-  const workflowSteps = ["Send intake", "Send agreement", "Complete screening"];
+  const workflowSteps = [
+    {
+      title: "Build your agreement",
+      desc: "Start with the core personal training agreement and answer the key setup questions.",
+    },
+    {
+      title: "Unlock the connected forms",
+      desc: "After purchase, access the intake form, PAR-Q / health details and incident report that sit around the agreement.",
+    },
+    {
+      title: "Complete client setup",
+      desc: "Use the agreement to set expectations, the intake form to understand client goals, and the PAR-Q / health details before training begins.",
+    },
+  ];
 
   return (
     <main className="bg-white">
       <section className="mx-auto max-w-6xl px-4 pb-12 pt-16 sm:px-6 sm:pb-16 sm:pt-20">
         <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
           <Badge>£29.95 one-time purchase</Badge>
-          <Badge>Preview before paying</Badge>
-          <Badge>Reusable for future clients</Badge>
+          <Badge>Build before paying</Badge>
+          <Badge>Agreement-first setup</Badge>
           <Badge>UK-focused wording</Badge>
         </div>
 
-        <SectionTitle
-          kicker="Personal Trainer Client Onboarding Pack"
-          title="A simpler way to set up your client onboarding"
-          desc="Built around one strong agreement, with a standard PAR-Q and supporting forms included in the pack."
-        />
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold tracking-wide text-zinc-500">
+            Personal Trainer Client Onboarding Pack (UK)
+          </p>
 
-        <div className="mx-auto mt-8 grid max-w-5xl gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-          <div className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm">
+          <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-zinc-900 sm:text-5xl">
+            Build your agreement first, then unlock the connected onboarding
+            pack
+          </h1>
+
+          <p className="mt-5 text-base leading-7 text-zinc-600 sm:text-lg">
+            Create one core personal training agreement, then get the connected
+            intake form, PAR-Q / health details and supporting records needed to
+            onboard clients clearly.
+          </p>
+
+          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <PrimaryLink href="/generate">
+              Start Building Your Agreement
+            </PrimaryLink>
+
+            <SecondaryLink href="#included">See What’s Included</SecondaryLink>
+          </div>
+        </div>
+
+        <div className="mx-auto mt-10 grid max-w-5xl gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div
+            id="included"
+            className="rounded-3xl border border-zinc-200 bg-zinc-50 p-6 shadow-sm"
+          >
             <p className="text-sm font-semibold text-zinc-900">
               What this gives you
             </p>
+
             <p className="mt-2 text-sm leading-7 text-zinc-600">
-              Set up your agreement properly once, then use the included forms
-              when onboarding a new client.
+              Build one core agreement first. After purchase, unlock the
+              connected onboarding documents that support your client setup.
             </p>
 
             <div className="mt-5 rounded-2xl border border-zinc-200 bg-white p-5">
               <p className="text-base font-semibold text-zinc-900">
                 Personal Training Agreement
               </p>
-              <p className="mt-3 text-sm text-zinc-600">
-                Your core document. This is what sets expectations and supports
-                your coaching setup.
+
+              <p className="mt-3 text-sm leading-7 text-zinc-600">
+                This is the centre of the pack. Your agreement sets the
+                expectations, payment terms, cancellation rules,
+                responsibilities, health disclosure and risk/liability wording
+                before the client starts training.
               </p>
 
               <CheckList items={agreementCoverage} />
@@ -189,7 +194,14 @@ export default function ClientOnboardingPackPage() {
 
             <div className="mt-5 rounded-2xl border border-zinc-200 bg-white p-5">
               <p className="text-sm font-semibold text-zinc-900">
-                Included in the pack
+                Included in the connected pack
+              </p>
+
+              <p className="mt-2 text-sm leading-7 text-zinc-600">
+                The supporting documents sit around the agreement. The intake
+                form helps you understand client goals, the PAR-Q / health
+                details support safer onboarding, and the incident report is
+                ready if a record is ever needed.
               </p>
 
               <CheckList items={packItems} />
@@ -197,116 +209,93 @@ export default function ClientOnboardingPackPage() {
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <PrimaryLink href="/generate" className="sm:flex-1">
-                Start building my agreement
+                Start Building Your Agreement
               </PrimaryLink>
-              <SecondaryLink href="/personal-trainer-contract-template-uk">
-                View a free template first
+
+              <SecondaryLink href="#how-it-works" className="sm:flex-1">
+                How It Works
               </SecondaryLink>
             </div>
           </div>
 
           <div className="rounded-3xl border border-zinc-200 bg-white p-6 shadow-sm">
-            <p className="text-sm font-semibold text-zinc-500">One-time price</p>
+            <p className="text-sm font-semibold text-zinc-500">
+              One-time price
+            </p>
+
             <p className="mt-2 text-4xl font-bold text-zinc-900">£29.95</p>
 
-            <p className="mt-2 text-sm text-zinc-600">
-              Build, preview, then unlock.
+            <p className="mt-2 text-sm leading-7 text-zinc-600">
+              Build your agreement first. Unlock the connected onboarding pack
+              when you’re ready.
             </p>
 
             <div className="mt-6 space-y-3 text-sm text-zinc-700">
               <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
                 No subscription
               </div>
+
               <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
                 Reusable for future clients
               </div>
+
               <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
                 Agreement-first setup
               </div>
+
+              <div className="rounded-2xl border border-zinc-200 bg-zinc-50 px-4 py-3">
+                Supporting forms included
+              </div>
             </div>
+
+            <div className="mt-6">
+              <PrimaryLink href="/generate" className="w-full">
+                Start Building Your Agreement
+              </PrimaryLink>
+            </div>
+
+            <p className="mt-4 text-xs leading-6 text-zinc-500">
+              ContractForge provides practical onboarding document wording and a
+              guided agreement builder. It is not legal advice, a CRM, a client
+              portal, or an ongoing client management system.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-zinc-200 bg-zinc-50">
+      <section id="how-it-works" className="border-t border-zinc-200 bg-zinc-50">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
           <SectionTitle
             kicker="How it works"
-            title="Simple onboarding flow"
-            desc="Keep the setup light and move forward quickly."
+            title="Agreement first. Supporting forms after."
+            desc="Start with the core agreement, then use the connected forms to collect goals, health details and practical onboarding information."
           />
 
-          <div className="mx-auto mt-8 grid max-w-4xl gap-4 sm:grid-cols-3">
+          <div className="mx-auto mt-8 grid max-w-5xl gap-4 sm:grid-cols-3">
             {workflowSteps.map((step, index) => (
               <div
-                key={step}
-                className="rounded-2xl border border-zinc-200 bg-white p-5 text-center"
+                key={step.title}
+                className="rounded-2xl border border-zinc-200 bg-white p-5 text-center shadow-sm"
               >
                 <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
                   Step {index + 1}
                 </p>
+
                 <p className="mt-2 text-sm font-semibold text-zinc-900">
-                  {step}
+                  {step.title}
+                </p>
+
+                <p className="mt-3 text-sm leading-6 text-zinc-600">
+                  {step.desc}
                 </p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      <section className="border-t border-zinc-200 bg-white">
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-          <SectionTitle
-            kicker="What you set up"
-            title="Answer once, reuse for future clients"
-            desc="The builder stays focused on the agreement itself."
-          />
-
-          <div className="mt-8 grid gap-2 sm:grid-cols-2">
-            {generatorQuestions.map((item) => (
-              <div
-                key={item}
-                className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm text-zinc-800"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-            <p className="text-sm font-semibold text-zinc-900">
-              Optional refinements
-            </p>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              {optionalRefinements.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-800"
-                >
-                  {item}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-6">
-            <PrimaryLink href="/generate">Start guided setup</PrimaryLink>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-zinc-200 bg-zinc-50">
-        <div className="mx-auto max-w-4xl px-4 py-14 text-center sm:px-6">
-          <h2 className="text-3xl font-bold text-zinc-900">
-            Start building your agreement
-          </h2>
-
-          <p className="mt-4 text-zinc-600">
-            Set it up once. Reuse it for future clients.
-          </p>
-
-          <div className="mt-8">
-            <PrimaryLink href="/generate">Start building now</PrimaryLink>
+          <div className="mt-8 text-center">
+            <PrimaryLink href="/generate">
+              Start Building Your Agreement
+            </PrimaryLink>
           </div>
         </div>
       </section>

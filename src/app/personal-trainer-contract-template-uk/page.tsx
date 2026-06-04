@@ -1,8 +1,9 @@
 export const metadata = {
-  title: "Personal Trainer Contract Template UK",
+  title: "Free Personal Trainer Contract Template UK | ContractForge",
   description:
-    "Free personal trainer contract template for UK coaches. Understand what it covers, why it matters, and how to structure your client agreement properly.",
+    "Free personal trainer contract template for UK coaches. Preview the core agreement inside the Personal Trainer Client Onboarding Pack and build your agreement first.",
 };
+
 import React from "react";
 import Link from "next/link";
 
@@ -55,7 +56,8 @@ function TemplateBlock({ text }: { text: string }) {
         <div>
           <p className="text-sm font-semibold text-zinc-900">Free template</p>
           <p className="mt-1 text-xs text-zinc-500">
-            Copy and adapt this structure for your coaching business.
+            Copy and adapt this structure, or use the builder for a cleaner
+            agreement-first setup.
           </p>
         </div>
         <Badge>Copy-ready</Badge>
@@ -112,19 +114,22 @@ The Client must provide at least [24] hours' notice to cancel or reschedule a se
 If the Client arrives late, the session may still end at the scheduled time. The full fee may still apply.
 
 6. Health and Readiness
-The Client confirms that they are responsible for disclosing any injury, medical condition, or physical limitation relevant to exercise participation.
+The Client confirms that they are responsible for disclosing any injury, medical condition, medication, or physical limitation relevant to exercise participation.
 
 7. Training Risk
 The Client understands that physical training involves inherent risks, including the risk of injury, and agrees to participate voluntarily.
 
-8. Trainer Responsibilities
+8. Client Responsibilities
+The Client agrees to follow reasonable instructions, work within their personal limits, and stop exercise if they experience pain, dizziness, chest discomfort, unusual breathlessness, or any concerning symptoms.
+
+9. Trainer Responsibilities
 The Trainer agrees to provide services with reasonable care and skill and to act within the scope of their role as a fitness professional.
 
-9. Liability
-Nothing in this agreement limits liability where it cannot lawfully be limited. Subject to that, any limit of liability should be clearly stated in the Trainer's full onboarding documents.
+10. Liability
+Nothing in this agreement limits liability where it cannot lawfully be limited. Subject to that, the Client understands that the Trainer is not responsible for issues arising from undisclosed health information, failure to follow reasonable instructions, or participation outside agreed guidance.
 
-10. General Terms
-This agreement should be read alongside any related health questionnaire, waiver, and terms and conditions used by the Trainer.
+11. Related Onboarding Information
+This agreement should be read alongside any related client intake form, PAR-Q / health and emergency details, and incident report process used by the Trainer.
 
 Signed:
 
@@ -139,7 +144,7 @@ export default function PersonalTrainerContractTemplateUKPage() {
         <div className="flex flex-wrap items-center gap-2">
           <Badge>UK template</Badge>
           <Badge>Personal trainer contract</Badge>
-          <Badge>Free to review</Badge>
+          <Badge>Free preview</Badge>
         </div>
 
         <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-zinc-900 sm:text-4xl">
@@ -147,8 +152,22 @@ export default function PersonalTrainerContractTemplateUKPage() {
         </h1>
 
         <p className="mt-3 max-w-3xl text-zinc-600">
-            A personal trainer contract sets out the agreement between you and your client, including services, payments, bookings, and responsibilities.
+          A personal trainer contract sets out the agreement between you and
+          your client, including services, payments, bookings, cancellations,
+          responsibilities and training risk.
         </p>
+
+        <div className="mt-5 max-w-3xl rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
+          <p className="text-sm font-semibold text-zinc-900">
+            This free template previews the core agreement inside the Personal
+            Trainer Client Onboarding Pack.
+          </p>
+          <p className="mt-2 text-sm leading-7 text-zinc-600">
+            For a cleaner setup, build your agreement first, then unlock the
+            connected client intake, PAR-Q / health and emergency details, and
+            incident report around the agreement.
+          </p>
+        </div>
 
         <div className="mt-8 grid gap-8 lg:grid-cols-[0.92fr_1.08fr]">
           <div>
@@ -161,7 +180,8 @@ export default function PersonalTrainerContractTemplateUKPage() {
                 A personal trainer contract usually sets out the working
                 relationship between trainer and client. This includes the
                 coaching service, payment structure, session booking,
-                cancellation rules, and general training risk.
+                cancellation rules, client responsibilities, and general
+                training risk.
               </p>
 
               <div className="mt-5 grid gap-3">
@@ -172,6 +192,7 @@ export default function PersonalTrainerContractTemplateUKPage() {
                     "Bookings, payments, and cancellations",
                     "Late arrival and rescheduling expectations",
                     "Health disclosure and training risk",
+                    "Client and trainer responsibilities",
                     "General agreement terms",
                   ]}
                 />
@@ -189,18 +210,20 @@ export default function PersonalTrainerContractTemplateUKPage() {
                 <BulletCard
                   title="Important to know"
                   items={[
-                    "A contract is usually one part of a trainer’s onboarding process",
-                    "Many trainers also use a PAR-Q, liability waiver, and terms and conditions",
-                    "A complete onboarding pack can make the documents feel more connected",
+                    "The agreement is usually the centre of a trainer’s onboarding process",
+                    "Many trainers also use a client intake form, PAR-Q / health and emergency details, and an incident report for records if needed",
+                    "The connected pack keeps the agreement and supporting documents aligned",
                   ]}
                 />
               </div>
 
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <PrimaryLink href="/generate">
-                  View full onboarding pack
+                <PrimaryLink href="/client-onboarding-pack">
+                  View the Client Onboarding Pack
                 </PrimaryLink>
-                <SecondaryLink href="/">Back to home</SecondaryLink>
+                <SecondaryLink href="/generate">
+                  Start Building Your Agreement
+                </SecondaryLink>
               </div>
             </div>
           </div>
@@ -221,9 +244,10 @@ export default function PersonalTrainerContractTemplateUKPage() {
           </p>
 
           <p className="mt-3 text-sm leading-7 text-zinc-600">
-            In practice, the contract is often supported by health screening
-            before training begins and liability wording that confirms the
-            client understands the risks of exercise.
+            In practice, the agreement is often supported by client intake
+            details, PAR-Q / health and emergency details, and an incident
+            report for records if needed. The main risk/liability wording should
+            sit inside the agreement.
           </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
@@ -232,22 +256,31 @@ export default function PersonalTrainerContractTemplateUKPage() {
                 Often used alongside
               </p>
               <ul className="mt-2 space-y-2 text-sm text-zinc-600">
-                <li>• PAR-Q Health Questionnaire</li>
-                <li>• Liability Waiver</li>
-                <li>• Consistent onboarding policies across the client journey</li>
+                <li>• Client Intake / Consultation Form</li>
+                <li>• PAR-Q / Health &amp; Emergency Details</li>
+                <li>• Incident / Injury Report Form</li>
               </ul>
             </div>
 
             <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
               <p className="text-sm font-semibold text-zinc-900">
-                Why some trainers start with the full pack
+                Why some trainers start with the connected pack
               </p>
-              <p className="mt-2 text-sm text-zinc-600">
+              <p className="mt-2 text-sm leading-7 text-zinc-600">
                 Many trainers prefer starting with a structured onboarding pack
-                so the agreement, health screening, and liability wording all
-                work together from the beginning.
+                so the agreement, intake details, PAR-Q / health and emergency
+                details, and incident records all follow the same setup.
               </p>
             </div>
+          </div>
+
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <PrimaryLink href="/client-onboarding-pack">
+              View the Client Onboarding Pack
+            </PrimaryLink>
+            <SecondaryLink href="/generate">
+              Start Building Your Agreement
+            </SecondaryLink>
           </div>
         </section>
 
@@ -257,8 +290,9 @@ export default function PersonalTrainerContractTemplateUKPage() {
           </h2>
 
           <p className="mt-2 text-sm text-zinc-600">
-            Explore the other documents commonly used alongside a personal
-            trainer contract.
+            Explore other documents commonly used alongside a personal trainer
+            contract. Each free template is a preview of one part of the wider
+            onboarding setup.
           </p>
 
           <div className="mt-5 grid gap-2 sm:grid-cols-2">
@@ -266,7 +300,7 @@ export default function PersonalTrainerContractTemplateUKPage() {
               href="/personal-trainer-par-q-form-uk"
               className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-100"
             >
-              PAR-Q Form Template →
+              PAR-Q / Health Details Template →
             </Link>
 
             <Link
@@ -291,14 +325,13 @@ export default function PersonalTrainerContractTemplateUKPage() {
             </Link>
 
             <Link
-              href="/generate"
+              href="/client-onboarding-pack"
               className="rounded-xl border border-zinc-900 bg-zinc-900 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-zinc-800 sm:col-span-2"
             >
-              View Complete Client Onboarding Pack →
+              View the Client Onboarding Pack →
             </Link>
           </div>
         </section>
-    
       </main>
     </div>
   );

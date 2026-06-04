@@ -14,32 +14,39 @@ export function SiteHeader() {
               ContractForge
             </div>
             <div className="text-xs text-zinc-500">
-              Personal Trainer Onboarding (UK)
+              Agreement-first onboarding docs
             </div>
           </div>
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
           <Link
-            href="/#templates"
-            className="text-sm font-medium text-zinc-600 transition hover:text-zinc-900"
-          >
-            Templates
-          </Link>
-
-          <Link
             href="/client-onboarding-pack"
             className="text-sm font-medium text-zinc-600 transition hover:text-zinc-900"
           >
-            Onboarding Pack
+            Client Onboarding Pack
+          </Link>
+
+          <Link
+            href="/generate"
+            className="text-sm font-medium text-zinc-600 transition hover:text-zinc-900"
+          >
+            Start Agreement
+          </Link>
+
+          <Link
+            href="/#templates"
+            className="text-sm font-medium text-zinc-600 transition hover:text-zinc-900"
+          >
+            Free Templates
           </Link>
         </nav>
 
         <Link
-          href="/client-onboarding-pack"
+          href="/generate"
           className="inline-flex items-center justify-center rounded-2xl bg-zinc-900 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-zinc-800"
         >
-          View full pack
+          Start Building
         </Link>
       </div>
     </header>
